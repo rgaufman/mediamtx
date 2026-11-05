@@ -15,6 +15,7 @@ import (
 	"github.com/bluenviron/mediamtx/internal/defs"
 	"github.com/bluenviron/mediamtx/internal/logger"
 	"github.com/bluenviron/mediamtx/internal/packetdumper"
+	"github.com/bluenviron/mediamtx/internal/protocols/httpp"
 	ptls "github.com/bluenviron/mediamtx/internal/protocols/tls"
 	"github.com/bluenviron/mediamtx/internal/protocols/webrtc"
 	"github.com/bluenviron/mediamtx/internal/protocols/whip"
@@ -29,11 +30,12 @@ type parent interface {
 
 // Source is a WebRTC static source.
 type Source struct {
-	DumpPackets       bool
-	ReadTimeout       conf.Duration
-	UDPReadBufferSize uint
-	SupportsIPv6      bool
-	Parent            parent
+	DumpPackets        bool
+	ReadTimeout        conf.Duration
+	UDPReadBufferSize  uint
+	UDPWriteBufferSize uint
+	SupportsIPv6       bool
+	Parent             parent
 
 	mutex  sync.RWMutex
 	client *whip.Client
@@ -108,10 +110,11 @@ func (s *Source) Run(params defs.StaticSourceRunParams) error {
 		URL: u,
 		HTTPClient: &http.Client{
 			Timeout:   time.Duration(s.ReadTimeout),
-			Transport: tr,
+			Transport: &httpp.LoggerTransport{Transport: tr, Log: s},
 		},
 		BearerToken:        params.Conf.WHEPBearerToken,
 		UDPReadBufferSize:  s.UDPReadBufferSize,
+		UDPWriteBufferSize: s.UDPWriteBufferSize,
 		SupportsIPv6:       s.SupportsIPv6,
 		STUNGatherTimeout:  time.Duration(params.Conf.WHEPSTUNGatherTimeout),
 		HandshakeTimeout:   time.Duration(params.Conf.WHEPHandshakeTimeout),
@@ -172,7 +175,7 @@ func (s *Source) Run(params defs.StaticSourceRunParams) error {
 
 		case <-params.Context.Done():
 			client.Close() //nolint:errcheck
-			<-readErr
+			<-readErr      //nolint:errcheck
 			return fmt.Errorf("terminated")
 		}
 	}

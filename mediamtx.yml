@@ -34,6 +34,10 @@ udpMaxPayloadSize: 1452
 # This can be increased to decrease packet losses.
 # It defaults to the default value of the operating system.
 udpReadBufferSize: 0
+# Size of the write buffer of every UDP socket.
+# This can be increased to decrease packet losses.
+# It defaults to the default value of the operating system.
+udpWriteBufferSize: 0
 
 # Command to run when a client connects to the server.
 # This is terminated with SIGINT when a client disconnects from the server.
@@ -578,7 +582,7 @@ pathDefaults:
   # Extension is added automatically.
   # Available variables are %path (path name), %Y %m %d (year, month, day),
   # %H %M %S (hours, minutes, seconds), %f (microseconds), %z (time zone), %s (unix epoch).
-  recordPath: ./recordings/%path/%Y-%m-%d_%H-%M-%S-%f
+  recordPath: ./recordings/%path/%Y-%m-%d_%H-%M-%S-%f_%z
   # Format of recorded segments.
   # Available formats are "fmp4" (fragmented MP4) and "mpegts" (MPEG-TS).
   recordFormat: fmp4

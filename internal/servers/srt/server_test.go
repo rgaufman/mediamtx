@@ -2,6 +2,7 @@ package srt
 
 import (
 	"bufio"
+	"context"
 	"fmt"
 	"net"
 	"reflect"
@@ -25,6 +26,56 @@ import (
 	"github.com/bluenviron/mediamtx/internal/unit"
 )
 
+func TestServerListenError(t *testing.T) {
+	for _, mode := range []string{"error", "close", "close during callback"} {
+		t.Run(mode, func(t *testing.T) {
+			received := make(chan error, 1)
+			s := &Server{
+				Address:           "127.0.0.1:0",
+				ReadTimeout:       conf.Duration(time.Second),
+				WriteTimeout:      conf.Duration(time.Second),
+				UDPMaxPayloadSize: 1472,
+				Parent: &test.ServerParent{
+					OnFatalErrorImpl: func(ctx context.Context, err error) {
+						received <- err
+						if mode == "close during callback" {
+							<-ctx.Done()
+						}
+					},
+				},
+			}
+			require.NoError(t, s.Initialize())
+			t.Cleanup(s.Close)
+
+			if mode != "close" {
+				s.ln.Close()
+				select {
+				case err := <-received:
+					require.Error(t, err)
+				case <-time.After(3 * time.Second):
+					t.Fatal("listener error not reported")
+				}
+			}
+
+			closed := make(chan struct{})
+			go func() {
+				s.Close()
+				close(closed)
+			}()
+			select {
+			case <-closed:
+			case <-time.After(3 * time.Second):
+				t.Fatal("server close blocked")
+			}
+			select {
+			case err := <-received:
+				t.Fatalf("unexpected listener error during close: %v", err)
+			default:
+			}
+		})
+	}
+}
+
 type dummyPath struct{}
 
 func (p *dummyPath) Name() string {
@@ -43,6 +94,97 @@ func (p *dummyPath) RemovePublisher(_ defs.PathRemovePublisherReq) {
 }
 
 func (p *dummyPath) RemoveReader(_ defs.PathRemoveReaderReq) {
+}
+
+func TestServerReadExpiration(t *testing.T) {
+	desc := &description.Session{Medias: []*description.Media{test.MediaH264}}
+	strm := &stream.Stream{
+		OrigDesc:          desc,
+		WriteQueueSize:    512,
+		RTPMaxPayloadSize: 1450,
+		Parent:            test.NilLogger,
+	}
+	require.NoError(t, strm.Initialize())
+
+	pathManager := &test.PathManager{
+		AddReaderImpl: func(_ defs.PathAddReaderReq) (*defs.PathAddReaderRes, error) {
+			expiresAt := time.Now().Add(time.Second)
+			return &defs.PathAddReaderRes{
+				Path:    &dummyPath{},
+				Stream:  strm,
+				AuthRes: &auth.Result{ExpiresAt: &expiresAt},
+			}, nil
+		},
+	}
+	s := &Server{
+		Address:           "127.0.0.1:8890",
+		ReadTimeout:       conf.Duration(10 * time.Second),
+		WriteTimeout:      conf.Duration(10 * time.Second),
+		UDPMaxPayloadSize: 1472,
+		PathManager:       pathManager,
+		Parent:            test.NilLogger,
+	}
+	require.NoError(t, s.Initialize())
+	defer s.Close()
+
+	srtConf := srt.DefaultConfig()
+	address, err := srtConf.UnmarshalURL("srt://127.0.0.1:8890?streamid=read:teststream")
+	require.NoError(t, err)
+	require.NoError(t, srtConf.Validate())
+	reader, err := srt.Dial("srt", address, srtConf)
+	require.NoError(t, err)
+	defer reader.Close()
+
+	require.Eventually(t, func() bool {
+		list, listErr := s.APIConnsList()
+		return listErr == nil && len(list.Items) == 1 && list.Items[0].State == defs.APISRTConnStateRead
+	}, time.Second, 10*time.Millisecond)
+	list, err := s.APIConnsList()
+	require.NoError(t, err)
+	require.NotNil(t, list.Items[0].ExpiresAt)
+	require.Eventually(t, func() bool {
+		currentList, listErr := s.APIConnsList()
+		return listErr == nil && len(currentList.Items) == 0
+	}, 3*time.Second, 20*time.Millisecond)
+}
+
+func TestServerPublishExpiration(t *testing.T) {
+	pathManager := &test.PathManager{
+		FindPathConfImpl: func(_ defs.PathFindPathConfReq) (*defs.PathFindPathConfRes, error) {
+			expiresAt := time.Now().Add(time.Second)
+			return &defs.PathFindPathConfRes{
+				Conf:    &conf.Path{},
+				AuthRes: &auth.Result{ExpiresAt: &expiresAt},
+			}, nil
+		},
+	}
+	s := &Server{
+		Address:           "127.0.0.1:8890",
+		ReadTimeout:       conf.Duration(10 * time.Second),
+		WriteTimeout:      conf.Duration(10 * time.Second),
+		UDPMaxPayloadSize: 1472,
+		PathManager:       pathManager,
+		Parent:            test.NilLogger,
+	}
+	require.NoError(t, s.Initialize())
+	defer s.Close()
+
+	srtConf := srt.DefaultConfig()
+	address, err := srtConf.UnmarshalURL("srt://127.0.0.1:8890?streamid=publish:teststream")
+	require.NoError(t, err)
+	require.NoError(t, srtConf.Validate())
+	publisher, err := srt.Dial("srt", address, srtConf)
+	require.NoError(t, err)
+	defer publisher.Close()
+
+	require.Eventually(t, func() bool {
+		list, listErr := s.APIConnsList()
+		return listErr == nil && len(list.Items) == 1
+	}, time.Second, 10*time.Millisecond)
+	require.Eventually(t, func() bool {
+		list, listErr := s.APIConnsList()
+		return listErr == nil && len(list.Items) == 0
+	}, 3*time.Second, 20*time.Millisecond)
 }
 
 func TestAuthError(t *testing.T) {
@@ -124,7 +266,10 @@ func TestServerPublish(t *testing.T) {
 			require.Equal(t, "param=value", req.AccessRequest.Query)
 			require.Equal(t, "myuser", req.AccessRequest.Credentials.User)
 			require.Equal(t, "mypass", req.AccessRequest.Credentials.Pass)
-			return &defs.PathFindPathConfRes{Conf: &conf.Path{}, User: req.AccessRequest.Credentials.User}, nil
+			return &defs.PathFindPathConfRes{
+				Conf:    &conf.Path{},
+				AuthRes: &auth.Result{User: req.AccessRequest.Credentials.User},
+			}, nil
 		},
 		AddPublisherImpl: func(req defs.PathAddPublisherReq) (*defs.PathAddPublisherRes, error) {
 			require.Equal(t, "teststream", req.AccessRequest.Name)
@@ -344,7 +489,11 @@ func TestServerRead(t *testing.T) {
 			require.Equal(t, "param=value", req.AccessRequest.Query)
 			require.Equal(t, "myuser", req.AccessRequest.Credentials.User)
 			require.Equal(t, "mypass", req.AccessRequest.Credentials.Pass)
-			return &defs.PathAddReaderRes{Path: &dummyPath{}, User: req.AccessRequest.Credentials.User, Stream: strm}, nil
+			return &defs.PathAddReaderRes{
+				Path:    &dummyPath{},
+				AuthRes: &auth.Result{User: req.AccessRequest.Credentials.User},
+				Stream:  strm,
+			}, nil
 		},
 	}
 
@@ -512,41 +661,55 @@ func listenerUDPConn(ln srt.Listener) *net.UDPConn {
 	return pktConnField.(*net.UDPConn)
 }
 
-func TestUDPReadBufferSize(t *testing.T) {
-	externalCmdPool := &externalcmd.Pool{}
-	externalCmdPool.Initialize()
-	defer externalCmdPool.Close()
+func TestUDPBufferSize(t *testing.T) {
+	for _, mode := range []string{"read", "write", "both"} {
+		t.Run(mode, func(t *testing.T) {
+			externalCmdPool := &externalcmd.Pool{}
+			externalCmdPool.Initialize()
+			defer externalCmdPool.Close()
 
-	bufSize := uint(106496)
+			bufSize := uint(106496)
 
-	s := &Server{
-		Address:           "127.0.0.1:0",
-		ReadTimeout:       conf.Duration(10 * time.Second),
-		WriteTimeout:      conf.Duration(10 * time.Second),
-		UDPMaxPayloadSize: 1472,
-		UDPReadBufferSize: bufSize,
-		ExternalCmdPool:   externalCmdPool,
-		PathManager:       &test.PathManager{},
-		Parent:            test.NilLogger,
+			s := &Server{
+				Address:           "127.0.0.1:0",
+				ReadTimeout:       conf.Duration(10 * time.Second),
+				WriteTimeout:      conf.Duration(10 * time.Second),
+				UDPMaxPayloadSize: 1472,
+				ExternalCmdPool:   externalCmdPool,
+				PathManager:       &test.PathManager{},
+				Parent:            test.NilLogger,
+			}
+			if mode != "write" {
+				s.UDPReadBufferSize = bufSize
+			}
+			if mode != "read" {
+				s.UDPWriteBufferSize = bufSize
+			}
+			err := s.Initialize()
+			require.NoError(t, err)
+			defer s.Close()
+
+			// Verify the kernel buffer sizes were increased.
+			udpConn := listenerUDPConn(s.ln)
+			raw, err := udpConn.SyscallConn()
+			require.NoError(t, err)
+
+			for _, option := range []int{syscall.SO_RCVBUF, syscall.SO_SNDBUF} {
+				if (option == syscall.SO_RCVBUF && mode == "write") ||
+					(option == syscall.SO_SNDBUF && mode == "read") {
+					continue
+				}
+				var kernelBuf int
+				var opErr error
+				err = raw.Control(func(fd uintptr) {
+					kernelBuf, opErr = syscall.GetsockoptInt(rawSocket(fd), syscall.SOL_SOCKET, option)
+				})
+				require.NoError(t, err)
+				require.NoError(t, opErr)
+
+				// Linux doubles the value passed to setsockopt.
+				require.GreaterOrEqual(t, kernelBuf, int(bufSize))
+			}
+		})
 	}
-	err := s.Initialize()
-	require.NoError(t, err)
-	defer s.Close()
-
-	// Verify the kernel receive buffer was increased.
-	udpConn := listenerUDPConn(s.ln)
-	raw, err := udpConn.SyscallConn()
-	require.NoError(t, err)
-
-	var kernelBuf int
-	var opErr error
-	err = raw.Control(func(fd uintptr) {
-		kernelBuf, opErr = syscall.GetsockoptInt(rawSocket(fd), syscall.SOL_SOCKET, syscall.SO_RCVBUF)
-	})
-	require.NoError(t, err)
-	require.NoError(t, opErr)
-
-	// The kernel doubles the value passed to setsockopt SO_RCVBUF.
-	require.GreaterOrEqual(t, kernelBuf, int(bufSize),
-		"SO_RCVBUF = %d, expected >= %d", kernelBuf, bufSize)
 }

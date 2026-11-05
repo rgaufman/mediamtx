@@ -104,6 +104,7 @@ func (f *formatMPEGTS) initialize() bool {
 							if !randomAccess {
 								return nil
 							}
+
 							dtsExtractor = &h265.DTSExtractor{}
 							dtsExtractor.Initialize()
 						}
@@ -245,7 +246,7 @@ func (f *formatMPEGTS) initialize() bool {
 			case *rtspformat.Opus:
 				track := addTrack(&tscodecs.Opus{
 					Desc: &substructs.OpusAudioDescriptor{
-						ChannelConfigCode: 2,
+						ChannelConfigCode: uint8(forma.ChannelCount),
 					},
 				})
 
