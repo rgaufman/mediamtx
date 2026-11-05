@@ -125,6 +125,7 @@ func (s *Source) Info() defs.StaticSourceInfo {
 			InboundRTPPacketsLost:     stats.InboundRTPPacketsLost,
 			InboundRTPPacketsInError:  stats.InboundRTPPacketsInError,
 			InboundRTPPacketsJitter:   stats.InboundRTPPacketsJitter,
+			InboundRTPPacketsJitterUs: normalizedJitterUs(stats),
 			InboundRTCPPackets:        stats.InboundRTCPPackets,
 			InboundRTCPPacketsInError: stats.InboundRTCPPacketsInError,
 			OutboundBytes:             stats.OutboundBytes,
@@ -132,6 +133,31 @@ func (s *Source) Info() defs.StaticSourceInfo {
 			OutboundRTCPPackets:       stats.OutboundRTCPPackets,
 		},
 	}
+}
+
+// gortsplib's aggregate jitter averages RTP clock ticks across formats, which
+// cannot be converted after averaging streams with different clock rates.
+func normalizedJitterUs(stats gortsplib.SessionStats) *float64 {
+	var total float64
+	var count int
+	for _, media := range stats.Medias {
+		for forma, formatStats := range media.Formats {
+			if formatStats.InboundRTPPackets == 0 {
+				continue
+			}
+			clockRate := forma.ClockRate()
+			if clockRate <= 0 {
+				return nil
+			}
+			total += formatStats.InboundRTPPacketsJitter * 1_000_000 / float64(clockRate)
+			count++
+		}
+	}
+	if count == 0 {
+		return nil
+	}
+	value := total / float64(count)
+	return &value
 }
 
 // Run implements StaticSource.
@@ -308,6 +334,23 @@ func (s *Source) Run(params defs.StaticSourceRunParams) error {
 	}
 }
 
+// Filter before SETUP: excluded audio is never subscribed to or exposed to
+// readers, recording, HLS or WebRTC. nil preserves upstream's default selection.
+func sourceMediaAllowed(media *description.Media, allowed *[]string) bool {
+	if media.IsBackChannel {
+		return false
+	}
+	if allowed == nil {
+		return true
+	}
+	for _, mediaType := range *allowed {
+		if string(media.Type) == mediaType {
+			return true
+		}
+	}
+	return false
+}
+
 func (s *Source) runInner(
 	ctx context.Context,
 	c *gortsplib.Client,
@@ -315,7 +358,13 @@ func (s *Source) runInner(
 	pathConf *conf.Path,
 	decodeErrors *errordumper.Dumper,
 ) error {
-	desc, _, err := c.Describe(u)
+	desc, res, err := c.Describe(u)
+	if err != nil {
+		return err
+	}
+
+	// Before SETUP: the client times packets with the clock rate of these formats.
+	err = applyG711RTPMap(desc, res.Body)
 	if err != nil {
 		return err
 	}
@@ -323,7 +372,7 @@ func (s *Source) runInner(
 	var medias []*description.Media
 
 	for _, m := range desc.Medias {
-		if !m.IsBackChannel {
+		if sourceMediaAllowed(m, pathConf.RTSPSourceMediaTypes) {
 			_, err = c.Setup(desc.BaseURL, m, 0, 0)
 			if err != nil {
 				return err
@@ -392,7 +441,7 @@ func (s *Source) runInner(
 		var subStream *stream.SubStream
 
 		rtsp.ToStream(
-			c,
+			&timestampRepairSource{Client: c, log: s, preserveNTP: pathConf.UseAbsoluteTimestamp},
 			desc2.Medias,
 			pathConf,
 			&subStream,

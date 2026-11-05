@@ -1191,6 +1191,13 @@ components:
           $ref: "#/components/schemas/RTSPRangeType"
         rtspScale:
           type: string
+        rtspSourceMediaTypes:
+          type: array
+          nullable: true
+          description: RTSP source media types to subscribe to; null selects all non-backchannel media
+          items:
+            type: string
+            enum: [video, audio]
         rtspTransport:
           $ref: "#/components/schemas/RTSPTransport"
           description: RTSP source
@@ -2416,6 +2423,10 @@ components:
           type: number
           format: double
           description: mean jitter of inbound RTP packets
+        inboundRTPPacketsJitterUs:
+          type: number
+          format: double
+          description: mean inbound RTP jitter in microseconds, normalized per format before averaging; omitted when no packets or unknown clock rate
         inboundRTPPacketsLost:
           type: integer
           format: uint64
