@@ -1,5 +1,29 @@
 # TetherX camera validation and fork maintenance
 
+## Real-camera acceptance of the integrated source, 7 November 2026
+
+PROVEN: the [tx.14 identity/result ledger](contrib/tetherx/validation/tx14.json)
+binds production source `0a10f2fc85cead17b86c36c770fe67987f9bdfde`, the two
+provisioner vendor patches and the actual native amd64 binary. Documentation
+publication does not change that tested tuple.
+
+OBSERVED: four scheduled samples span45minutes after a deliberate restart on a
+real camera unit. All432 preserved segments start with a keyframe;64 complete
+video reports and56 audio-track decode reports pass, with0late warnings,
+0recorder drift resets and0automatic restarts through the final57-minute status.
+All487007 complete captured input packets in a fixed47-minute window, plus20652
+startup packets, occur in recordings in order. Both endpoints survive on all335
+audio-bearing chunks overlapping that window. Passive RTSP control binds each
+source flow; independent capture parsers agree.
+
+OBSERVED limits: nine upstream source payload gaps affect three audio cameras;
+five cross rotation. The longest81.3205-second gap explains one fully empty audio
+segment. Both neighboring payloads survive every measured gap. Distributed source
+sample deficits also remain. This passes captured-input recorder retention;
+it does not establish global zero audio holes, camera hardware health, absolute
+A/V synchronization, ARM tx.14 camera acceptance or a fleet rollout. The wider
+59-camera control decodes20frames/camera and is not a full-decode soak.
+
 ## Live-camera release preparation, 7 November 2026
 
 PROVEN: the live-release preflight found the published integration was missing
