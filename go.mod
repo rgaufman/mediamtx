@@ -5,8 +5,8 @@ go 1.27.0
 require (
 	code.cloudfoundry.org/bytefmt v0.96.0
 	github.com/Masterminds/semver/v3 v3.5.0
-	github.com/MicahParks/jwkset v0.11.3
-	github.com/MicahParks/keyfunc/v3 v3.8.2
+	github.com/MicahParks/jwkset v0.11.4
+	github.com/MicahParks/keyfunc/v3 v3.9.1
 	github.com/abema/go-mp4 v1.7.4
 	github.com/alecthomas/kong v1.17.0
 	github.com/asticode/go-astits v1.17.0
@@ -106,4 +106,4 @@ require (
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 )
 
-replace github.com/bluenviron/gortsplib/v5 => github.com/rgaufman/gortsplib/v5 v5.6.8-0.20261107015357-71b21e5fd86f
+replace github.com/bluenviron/gortsplib/v5 => github.com/rgaufman/gortsplib/v5 v5.6.8-0.20261107035123-20edd3ee7f23

@@ -1,0 +1,166 @@
+{
+  "scope": "OBSERVED isolated native Linux ARM64 tests; no deployment",
+  "upstream": {
+    "gortsplib": "e4283d1721bc46f55a177bed164d7b59a51b635d",
+    "mediamtx": "b04cc448bf577d205313faaedaded82e71bacaba"
+  },
+  "published_library": "20edd3ee7f2368633eba741152b6dffb73a33fc1",
+  "module_version": "v5.6.8-0.20261107035123-20edd3ee7f23",
+  "tests": {
+    "gortsplib": {
+      "go_version": "go version go1.27.2 linux/arm64",
+      "archive_sha256": "a9fc3f0fed32153d4a3faa0d3f49d0398ddd90e196b5f8bba4b987db037e2ff7",
+      "commands": [
+        {
+          "command": [
+            "go",
+            "test",
+            "-race",
+            "-p",
+            "1",
+            "-count=1",
+            "-timeout",
+            "8m",
+            "./..."
+          ],
+          "start_aedt": "2026-11-07T13:35:59.550244+11:00",
+          "end_aedt": "2026-11-07T13:38:17.166644+11:00",
+          "seconds": 137.6164002418518,
+          "exit_code": 0,
+          "package_results": [
+            "ok  \tgithub.com/bluenviron/gortsplib/v5\t40.887s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/internal/asyncprocessor\t1.013s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/internal/base64streamreader\t1.014s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/internal/bytecounter\t1.013s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/auth\t1.018s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/base\t1.021s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/bytecounter\t1.013s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/conn\t1.013s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/description\t1.020s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/format\t1.032s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/format/rtpac3\t1.016s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/format/rtpav1\t1.031s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/format/rtpfragmented\t1.014s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/format/rtph264\t1.048s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/format/rtph265\t1.055s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/format/rtpklv\t1.018s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/format/rtplpcm\t1.017s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/format/rtpmjpeg\t1.019s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/format/rtpmpeg1audio\t1.017s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/format/rtpmpeg1video\t1.017s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/format/rtpmpeg4audio\t1.018s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/format/rtpmpegts\t1.015s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/format/rtpsimpleaudio\t1.014s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/format/rtpvp8\t1.014s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/format/rtpvp9\t1.017s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/headers\t1.026s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/mikey\t1.018s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/multicast\t1.014s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/ntp\t1.014s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/readbuffer\t1.014s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/ringbuffer\t1.117s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/rtcpunmarshaler\t1.015s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/rtpreceiver\t6.524s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/rtpsender\t1.615s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/rtptime\t1.014s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/sdes\t1.016s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/sdpunmarshaler\t1.023s",
+            "ok  \tgithub.com/bluenviron/gortsplib/v5/pkg/writebuffer\t1.014s"
+          ]
+        }
+      ]
+    },
+    "mediamtx": {
+      "go_version": "go version go1.27.2 linux/arm64",
+      "archive_sha256": "7dc71350694670c5efabbecdfcbecfcf038325cc6490b74519593db4b832f0d7",
+      "commands": [
+        {
+          "command": [
+            "go",
+            "test",
+            "-race",
+            "-p",
+            "1",
+            "-count=1",
+            "-timeout",
+            "10m",
+            "./internal/recorder",
+            "./internal/stream",
+            "./internal/playback",
+            "./internal/recordstore",
+            "./internal/ntpestimator",
+            "./internal/protocols/webrtc",
+            "./internal/metrics",
+            "./internal/staticsources/rtsp",
+            "./internal/forward/webrtc",
+            "./internal/servers/webrtc",
+            "./internal/api",
+            "./internal/auth"
+          ],
+          "start_aedt": "2026-11-07T14:56:50.453102+11:00",
+          "end_aedt": "2026-11-07T15:02:06.450772+11:00",
+          "seconds": 315.9976704120636,
+          "exit_code": 0,
+          "package_results": [
+            "ok  \tgithub.com/bluenviron/mediamtx/internal/recorder\t144.981s",
+            "ok  \tgithub.com/bluenviron/mediamtx/internal/stream\t2.242s",
+            "ok  \tgithub.com/bluenviron/mediamtx/internal/playback\t3.293s",
+            "ok  \tgithub.com/bluenviron/mediamtx/internal/recordstore\t1.049s",
+            "ok  \tgithub.com/bluenviron/mediamtx/internal/ntpestimator\t1.014s",
+            "ok  \tgithub.com/bluenviron/mediamtx/internal/protocols/webrtc\t53.375s",
+            "ok  \tgithub.com/bluenviron/mediamtx/internal/metrics\t2.743s",
+            "ok  \tgithub.com/bluenviron/mediamtx/internal/staticsources/rtsp\t4.178s",
+            "ok  \tgithub.com/bluenviron/mediamtx/internal/forward/webrtc\t3.262s",
+            "ok  \tgithub.com/bluenviron/mediamtx/internal/servers/webrtc\t27.436s",
+            "ok  \tgithub.com/bluenviron/mediamtx/internal/api\t5.174s",
+            "ok  \tgithub.com/bluenviron/mediamtx/internal/auth\t1.675s"
+          ]
+        },
+        {
+          "command": [
+            "go",
+            "test",
+            "-race",
+            "-p",
+            "1",
+            "-count=1",
+            "-timeout",
+            "5m",
+            "-run",
+            "^TestAPI",
+            "./internal/core"
+          ],
+          "start_aedt": "2026-11-07T15:02:06.451148+11:00",
+          "end_aedt": "2026-11-07T15:02:27.071141+11:00",
+          "seconds": 20.61999249458313,
+          "exit_code": 0,
+          "package_results": [
+            "ok  \tgithub.com/bluenviron/mediamtx/internal/core\t7.734s"
+          ]
+        },
+        {
+          "command": [
+            "go",
+            "build",
+            "-p",
+            "2",
+            "-trimpath",
+            "-buildvcs=false",
+            "-o",
+            "/data/tmp/mtx-sync-app-lab-20261107-1455/mediamtx",
+            "."
+          ],
+          "start_aedt": "2026-11-07T15:02:27.071359+11:00",
+          "end_aedt": "2026-11-07T15:02:57.689325+11:00",
+          "seconds": 30.617966651916504,
+          "exit_code": 0,
+          "package_results": []
+        }
+      ]
+    }
+  },
+  "source_hashes": {
+    "go.mod": "03f6c3564c938c09a9998276c4554579ad0bf51af411bbe0ca818472ec832c13",
+    "go.sum": "38bca683fedd44596934f8acd51069afa7cffa71a7d4afd1d82b67ce85e8dc1e"
+  }
+}

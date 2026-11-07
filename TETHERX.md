@@ -7,11 +7,29 @@ evidence rather than copying evolving status into code comments.
 
 ## Approved surveillance integration
 
+### Upstream sync and publication, 7 November 2026
+
+PROVEN: merged upstream MediaMTX main `b04cc448bf577d205313faaedaded82e71bacaba`,
+updating keyfunc3.9.1 and jwkset0.11.4. The dependency now pins published
+gortsplib commit `20edd3ee7f2368633eba741152b6dffb73a33fc1`, which includes
+upstream main `e4283d1721bc46f55a177bed164d7b59a51b635d` and our camera fixes.
+
+OBSERVED: native Linux ARM64 Go1.27.2 race suites pass on an isolated admitted
+Spark CPU job:12 affected packages, including auth/API, then all core TestAPI
+cases. The native CGO-disabled Linux build also passes. The library's full
+`go test -race ./...`, including root networking cases, passes independently.
+No camera service or deployed release package was changed. RESS is excluded
+until the owner restores availability; this validation used a quiet alternate.
+
+The [upstream-sync ledger](contrib/tetherx/validation/upstream-sync-20261107.json)
+records the exact upstream revisions, source archives and results. Fork defaults
+are updated by fast-forward publication; the original upstream history is retained.
+
 PROVEN: branch `feat/surveillance-hardening-20261107` preserves the local camera
 work and includes recorder PR #6451, empty-file prevention #6438 and WebRTC
-feedback #6347. Its gortsplib dependency is pinned to commit
+feedback #6347. Its initial gortsplib integration was commit
 `71b21e5fd86fd84fdb87cd8375bc1e34d8488fae`, adding upstream #1178/#1181 on top
-of normalized session jitter. The recorder keeps exclusive file creation and
+of normalized session jitter; the published sync above supersedes that pin. The recorder keeps exclusive file creation and
 announces a segment only after its header is written. Existing session-expiry
 API fields are retained.
 
@@ -27,12 +45,11 @@ paths. New compatibility and header/collision regressions pass. The Linux ARM64
 main and API test binaries cross-compile. This is not a new hardware soak or a
 provisioner release: deployed tx.13 packages/recipe are separate from this branch.
 
-The library commit is local until published. Its canonical Go module checksum
-was obtained from that committed Git tree using a temporary local Git URL rewrite;
-no absolute replacement path is committed. Tests also pass with the committed
-module pin outside the workspace. Publish the gortsplib branch before expecting
-a fresh network checkout to resolve the new dependency. Local machine caches and
-the temporary workspace are not part of the committed source.
+The initial library integration was tested locally before publication; the sync
+above now uses its published successor and a normal remotely resolvable module
+pin. No absolute replacement path is committed. Publish future library changes
+before applications pin them for fresh network consumers. Local machine caches
+and temporary workspaces are not part of the committed source.
 
 See [the integration ledger](contrib/tetherx/validation/surveillance-hardening-20261107.json)
 for upstream revisions, test scope and known environment limits. The older
