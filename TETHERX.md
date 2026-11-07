@@ -1,5 +1,19 @@
 # TetherX camera validation and fork maintenance
 
+## Live-camera release preparation, 7 November 2026
+
+PROVEN: the live-release preflight found the published integration was missing
+the coarse-sender arrival-consistency guard present in deployed tx.13. The real
+timing regression accumulated2.454375 s of false correction without it. Restoring
+the existing guard limits the replay's worst correction to429.875 ms and returns
+the final correction to zero; the full RTSP race suite passes.
+
+The regression is intentionally black-box with respect to guard internals and
+keeps the real packet/report timing while removing source identity text. This
+closes a fork-versus-provisioned-source integration gap; unit results alone are
+not live-camera acceptance. The provisioner must select this exact corrected
+fork commit for the next versioned package, not reapply legacy source patches.
+
 This is the portable process for this fork. TetherBox deployment commands, private
 device measurements and raw captures belong in the tetherbox-ai MediaMTX runbook
 and experiment, not in public fixtures. Keep one operational runbook; link to its

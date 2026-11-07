@@ -14,6 +14,24 @@ const (
 	wallClockMaxSlew      = 0.005
 	wallClockReportMaxAge = 30 * time.Second
 	wallClockEvidenceSpan = 30 * time.Second
+
+	// Arrival is only a witness: it never sets a correction, it vetoes one. Its drift is the
+	// minimum of arrival minus media time per window (network queueing only delays a packet,
+	// so a window's minimum is its least-delayed packet), against the first window's minimum.
+	wallClockArrivalWindow = 10 * time.Second
+	// A change between two windows no clock rate can produce (500 ms in 10 s is 50000 ppm) is
+	// a pause or a discontinuity; the arrival baseline absorbs it.
+	wallClockArrivalStep = 500 * time.Millisecond
+	// How far the sender-report correction may disagree with arrival before the sender's NTP
+	// clock is distrusted. Two things explain a disagreement: a growing network queue (250 ms
+	// plus up to 1200 ppm, at most 1 s; a queue past 1 s would itself push tracks outside the
+	// recorder's 1 s cross-track window) and a camera NTP clock that runs off real time
+	// (300 ppm, several times a free-running crystal; observed sender NTP remained
+	// within about 200 ppm while video RTP ran +4200 ppm).
+	wallClockArrivalBase       = 250 * time.Millisecond
+	wallClockArrivalQueueRate  = 1200e-6
+	wallClockArrivalQueueLimit = time.Second
+	wallClockArrivalClockRate  = 300e-6
 )
 
 var wallClockNow = time.Now
@@ -26,15 +44,27 @@ var wallClockNow = time.Now
 // clocks share the same error. Fixed-sample audio repair is independent and takes
 // precedence, since original sender reports cannot describe its rewritten RTP.
 //
-// Confirmed source: TetherBox 9abcd9bd738fc20c46aa, camera
-// 6aad85cd4d716f7d3efbee7c (Uniview VCP IPC): video +1595 ppm against
-// arrival and +1610 ppm against sender NTP; audio approximately real time.
+// Sender NTP is checked against a windowed arrival witness before correction.
+// The coarse-sender regression fixture demonstrates near-real-time RTP arrivals
+// paired with quantized sender reports that would accumulate seconds of false
+// correction. Disagreement beyond the queue/clock allowance distrusts that
+// sender for the session and slews the correction back to its native timeline.
 type wallClock struct {
 	mu                 sync.Mutex // UDP RTP and RTCP callbacks can run concurrently.
 	clockRate          int64
 	onStart            func(float64, time.Duration)
 	onReport           func(float64, time.Duration)
+	onDistrust         func(disagreement, allowed, after time.Duration)
 	initialized        bool
+	distrusted         bool
+	firstArrival       time.Time
+	arrivalMedia       int64 // input ticks since the session's first packet
+	windowStart        time.Time
+	windowMin          time.Duration
+	arrivalBase        time.Duration
+	arrivalDrift       time.Duration
+	arrivalReady       bool // a window has closed after the baseline window
+	arrivalBaseSet     bool
 	disabled           bool
 	ssrc               uint32
 	lastIn, lastOut    uint32
@@ -73,7 +103,7 @@ func ntpElapsed(a, b uint64) time.Duration {
 func (c *wallClock) senderReport(report *rtcp.SenderReport) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
-	if c.disabled || !c.initialized || report.SSRC != c.ssrc || report.NTPTime == 0 {
+	if c.disabled || c.distrusted || !c.initialized || report.SSRC != c.ssrc || report.NTPTime == 0 {
 		return
 	}
 	now := wallClockNow()
@@ -104,7 +134,24 @@ func (c *wallClock) senderReport(report *rtcp.SenderReport) {
 	if !c.active && drift.Abs() < wallClockDeadband {
 		return
 	}
-	c.target = c.reportBase + c.ticks(drift)
+	target := c.reportBase + c.ticks(drift)
+	if !c.arrivalReady {
+		// No arrival witness yet: nothing moves until there is one.
+		return
+	}
+	after := now.Sub(c.firstArrival)
+	allowed := min(wallClockArrivalQueueLimit,
+		wallClockArrivalBase+time.Duration(wallClockArrivalQueueRate*float64(after))) +
+		time.Duration(wallClockArrivalClockRate*float64(after))
+	if disagreement := c.duration(target) - c.arrivalDrift; disagreement.Abs() > allowed {
+		c.distrusted = true
+		c.target = 0
+		if c.onDistrust != nil {
+			c.onDistrust(disagreement, allowed, after)
+		}
+		return
+	}
+	c.target = target
 	if !c.active {
 		c.active = true
 		c.lastLog = now
@@ -130,6 +177,33 @@ func (c *wallClock) disable() {
 	c.target = c.correction
 }
 
+// witness tracks how far the input timestamps have drifted from arrival. It follows the same
+// envelope as lastIn: only advancing timestamps count, so B-frame reordering is not drift.
+func (c *wallClock) witness(now time.Time, step int64) {
+	if step <= 0 {
+		return
+	}
+	c.arrivalMedia += step
+	offset := now.Sub(c.firstArrival) - c.duration(c.arrivalMedia)
+	c.windowMin = min(c.windowMin, offset)
+	if now.Sub(c.windowStart) < wallClockArrivalWindow {
+		return
+	}
+	windowMin := c.windowMin
+	c.windowStart = now
+	c.windowMin = time.Duration(math.MaxInt64)
+	if !c.arrivalBaseSet {
+		c.arrivalBase, c.arrivalBaseSet = windowMin, true
+		return
+	}
+	drift := windowMin - c.arrivalBase
+	if jump := drift - c.arrivalDrift; jump.Abs() > wallClockArrivalStep {
+		c.arrivalBase += jump
+		drift = c.arrivalDrift
+	}
+	c.arrivalDrift, c.arrivalReady = drift, true
+}
+
 func (c *wallClock) process(pkt *rtp.Packet) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
@@ -141,6 +215,12 @@ func (c *wallClock) process(pkt *rtp.Packet) {
 		c.reportSet = false
 		c.correction, c.target = 0, 0
 		c.active = false
+		c.distrusted = false
+		c.firstArrival, c.windowStart = now, now
+		c.arrivalMedia = 0
+		c.windowMin = time.Duration(math.MaxInt64)
+		c.arrivalBaseSet, c.arrivalReady = false, false
+		c.arrivalDrift = 0
 		return
 	}
 	if pkt.Timestamp == c.lastIn {
@@ -149,7 +229,10 @@ func (c *wallClock) process(pkt *rtp.Packet) {
 	}
 	in := pkt.Timestamp
 	step := int64(int32(in - c.lastIn))
-	if !c.disabled && c.reportSet && now.Sub(c.lastReport) <= wallClockReportMaxAge && step > 0 {
+	c.witness(now, step)
+	fresh := c.reportSet && now.Sub(c.lastReport) <= wallClockReportMaxAge
+	// A distrusted clock returns to the camera's own timestamps whether or not reports arrive.
+	if !c.disabled && (c.distrusted || fresh) && step > 0 {
 		limit := int64(math.Max(1, wallClockMaxSlew*float64(step)))
 		delta := max(-limit, min(limit, c.target-c.correction))
 		c.correction += delta

@@ -260,6 +260,10 @@ func (s *timestampRepairSource) OnPacketRTP(medi *description.Media, forma forma
 			s.log.Log(logger.Warn, "wall clock: %s %d Hz still slewed using sender reports, RTP clock %+.0f ppm, correction %v",
 				codec, rate, ppm, correction)
 		}
+		wall.onDistrust = func(disagreement, allowed, after time.Duration) {
+			s.log.Log(logger.Warn, "wall clock: %s %d Hz sender NTP disagrees with arrival by %v (allowed %v after %v); "+
+				"distrusting sender reports for this session", codec, rate, disagreement, allowed, after)
+		}
 	}
 
 	if clock == nil && wall == nil {
