@@ -1,0 +1,83 @@
+{
+  "scope": "PROVEN identity; OBSERVED bounded validation, not universal AV quality",
+  "release": "1.21.3-tetherx.13",
+  "build_identity": {
+    "version": "1.21.3-tetherx.13",
+    "architecture": "amd64",
+    "source_ref": "ede14930ebd989401257d6f0729676712db36705",
+    "source_sha256": "fed85d723a819d7b19354d2e63dbd9c4d1b8aa43ee4745a32babb5ac9c364a7c",
+    "go_version": "1.27.2",
+    "patch_sha256": "159fced05314d0dbeed3cc41691df9bd4247193830c3bbb2763fabfb6ddf3194",
+    "h264_patch_sha256": "ad8133f9dffecfc05c5fba9813ca0410e2bec136ed99de345ee6d22b3f574662",
+    "audio_clock_patch_sha256": "26560e2133c9475578be216be6132e055408d9e3c86be3cf233f3d8bedf5bfbc",
+    "recorder_patch_sha256": "7ecdc2264ecbd6205f1b17bbf5223bb61a32046d23996de376c54e2c817da8fa",
+    "recorder_audio_patch_sha256": "5b5682c1559d97fd29e35dafe6d60dda9bb5dde9d748088dcdc0f52ecfab9ef2",
+    "hls_patch_sha256": "5142a7f0178d5c4aebbb4bd33fd410fb478190e8d6ad68a827730df1e76a23fb",
+    "gortsplib_patch_sha256": "9e665cd1c32fe192b80bf92364450f14d29d987b2fee48d4568cea933bb0c654"
+  },
+  "upstream_pr": "https://github.com/bluenviron/mediamtx/pull/6451",
+  "upstream_base": "b04cc448bf577d205313faaedaded82e71bacaba",
+  "upstream_head": "f950574408b4eb14871eb88e497509b95d8786ce",
+  "production_files_sha256": {
+    "internal/recorder/format_fmp4.go": "d03534601e842e0f76d9450fc8039659cb3aad42e5d24532ba02c3af8cad22e0",
+    "internal/recorder/format_fmp4_track.go": "bd335f4b1a7af047d76968c925691a329e52c90f1e453aa0a71b4fe7ebd51374",
+    "internal/stream/reader.go": "a6a137a3cdc28b84c16f52e37c83a6b33a354a1a648ed635598d0aaad324217b",
+    "internal/stream/sub_stream_format.go": "3b532e2c9a2c6c1c7f60ab1ce24756c29aa24e71ed192a93d10fdbf2affa2450",
+    "internal/recorder/format_fmp4_segment.go": "ad95ddca914e74ffaa497f38fdec8063ee4c29e29af57c90b7401c7536f8b563",
+    "internal/ntpestimator/estimator.go": "8c7e820dd779b21d55542c922f764060c07c25b08b057d662944ae1a5b536d46"
+  },
+  "amd64_binary_sha256": "44efcf32d51db18b08e6e90f918acd9907e0d133ce54e87cc1d98024b39af068",
+  "live_stress": {
+    "samples": 4,
+    "sample_span_seconds": 2700,
+    "input_window_seconds": 2820,
+    "complete_captured_audio": 281827,
+    "retained_audio": 281827,
+    "video_keyfirst_files": 432,
+    "files": 432,
+    "late_warnings": 0,
+    "audio_paths": 4,
+    "video_only_source_paths": 4
+  },
+  "controlled_spark": {
+    "duration_ns": 2830000000000,
+    "errors": null,
+    "excluded_audio_ids": [
+      22581
+    ],
+    "excluded_video_ids": [
+      70558
+    ],
+    "files": 49,
+    "late": 0,
+    "latest_lookahead_excluded": true,
+    "mode": "soak",
+    "native_dts_preserved": true,
+    "received_audio": 22582,
+    "received_video": 70559,
+    "resets": 0,
+    "retained_audio": 22581,
+    "retained_video": 70558,
+    "scope": "synthetic production Recorder+Stream/SubStream; no real camera or RTSP wire claim",
+    "video_keyfirst": true
+  },
+  "limitations": [
+    "Global end-to-end zero audio holes not established",
+    "Source deficits and incoming sequence gaps remain",
+    "Historical producer NTP and initial state not fully observed",
+    "Old H264 corruption and inaccessible-unit outage causes unresolved",
+    "A newly colliding recording filename can still fail",
+    "Controlled clock rates are not measured source wire drift"
+  ],
+  "recipe_declared_build_flags": {
+    "CGO_ENABLED": "0",
+    "GOOS": "linux",
+    "GOARCH": "amd64",
+    "flags": [
+      "-trimpath",
+      "-buildvcs=false",
+      "-ldflags=-s -w"
+    ],
+    "scope": "Recipe declarations; ambient GOFLAGS/GOAMD64 were not separate manifest fields"
+  }
+}

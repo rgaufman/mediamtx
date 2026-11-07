@@ -1044,8 +1044,16 @@ func (m *Metrics) onMetrics(ctx *gin.Context) {
 					metric(&out, "webrtc_sessions_inbound_rtp_packets_lost", ta, int64(i.InboundRTPPacketsLost))
 					metricFloat(&out, "webrtc_sessions_inbound_rtp_packets_jitter", ta, i.InboundRTPPacketsJitter)
 					metric(&out, "webrtc_sessions_inbound_rtcp_packets", ta, int64(i.InboundRTCPPackets))
+					metric(&out, "webrtc_sessions_inbound_rtcp_nack_packets", ta, int64(i.InboundRTCPNACKPackets))
+					metric(&out, "webrtc_sessions_inbound_rtcp_pli_packets", ta, int64(i.InboundRTCPPLIPackets))
 					metric(&out, "webrtc_sessions_outbound_bytes", ta, int64(i.OutboundBytes))
 					metric(&out, "webrtc_sessions_outbound_rtp_packets", ta, int64(i.OutboundRTPPackets))
+					metric(&out, "webrtc_sessions_outbound_rtp_packets_reported_lost", ta, int64(i.OutboundRTPPacketsReportedLost))
+					metricFloat(&out, "webrtc_sessions_outbound_rtp_packets_reported_jitter", ta, i.OutboundRTPPacketsReportedJitter)
+					if i.OutboundRTPPacketsReportedJitterUs != nil {
+						metricFloat(&out, "webrtc_sessions_outbound_rtp_packets_reported_jitter_us",
+							ta, *i.OutboundRTPPacketsReportedJitterUs)
+					}
 					metric(&out, "webrtc_sessions_outbound_rtcp_packets", ta, int64(i.OutboundRTCPPackets))
 					metric(&out, "webrtc_sessions_outbound_frames_discarded", ta, int64(i.OutboundFramesDiscarded))
 				}
@@ -1082,8 +1090,12 @@ func (m *Metrics) onMetrics(ctx *gin.Context) {
 			metric(&out, "webrtc_sessions_inbound_rtp_packets_lost", "", 0)
 			metricFloat(&out, "webrtc_sessions_inbound_rtp_packets_jitter", "", 0)
 			metric(&out, "webrtc_sessions_inbound_rtcp_packets", "", 0)
+			metric(&out, "webrtc_sessions_inbound_rtcp_nack_packets", "", 0)
+			metric(&out, "webrtc_sessions_inbound_rtcp_pli_packets", "", 0)
 			metric(&out, "webrtc_sessions_outbound_bytes", "", 0)
 			metric(&out, "webrtc_sessions_outbound_rtp_packets", "", 0)
+			metric(&out, "webrtc_sessions_outbound_rtp_packets_reported_lost", "", 0)
+			metricFloat(&out, "webrtc_sessions_outbound_rtp_packets_reported_jitter", "", 0)
 			metric(&out, "webrtc_sessions_outbound_rtcp_packets", "", 0)
 			metric(&out, "webrtc_sessions_outbound_frames_discarded", "", 0)
 			out.WriteString("\n")

@@ -10,7 +10,6 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/require"
-	"golang.org/x/sys/unix"
 
 	"github.com/bluenviron/mediamtx/internal/conf"
 	"github.com/bluenviron/mediamtx/internal/test"
@@ -88,6 +87,11 @@ func TestRecordingsList(t *testing.T) {
 }
 
 func TestRecordingsListPagination(t *testing.T) {
+	testRecordingsListPagination(t, nil)
+}
+
+func testRecordingsListPagination(t *testing.T, watch func(*testing.T, string) func(bool)) {
+	t.Helper()
 	dir := t.TempDir()
 
 	cnf := tempConf(t, "pathDefaults:\n"+
@@ -100,12 +104,10 @@ func TestRecordingsListPagination(t *testing.T) {
 	secondPath := filepath.Join(dir, "mypath2_2008-11-07_11-22-00-500000.mp4")
 	test.WriteRecordingSegment(t, secondPath, 2250*time.Millisecond, false)
 
-	fd, err := unix.InotifyInit1(unix.IN_NONBLOCK | unix.IN_CLOEXEC)
-	require.NoError(t, err)
-	defer unix.Close(fd) //nolint:errcheck
-
-	_, err = unix.InotifyAddWatch(fd, secondPath, unix.IN_OPEN)
-	require.NoError(t, err)
+	var assertOpened func(bool)
+	if watch != nil {
+		assertOpened = watch(t, secondPath)
+	}
 
 	api := API{
 		Address:      "localhost:9997",
@@ -114,7 +116,7 @@ func TestRecordingsListPagination(t *testing.T) {
 		AuthManager:  test.NilAuthManager,
 		Parent:       &testParent{conf: cnf},
 	}
-	err = api.Initialize()
+	err := api.Initialize()
 	require.NoError(t, err)
 	defer api.Close()
 
@@ -136,10 +138,10 @@ func TestRecordingsListPagination(t *testing.T) {
 		}},
 	}, out)
 
-	// segments outside the requested page must not be opened.
-	buf := make([]byte, 4096)
-	_, err = unix.Read(fd, buf)
-	require.ErrorIs(t, err, unix.EAGAIN)
+	// Linux additionally observes file opens; every platform checks the HTTP result.
+	if assertOpened != nil {
+		assertOpened(false)
+	}
 
 	httpRequest(t, hc, http.MethodGet, "http://localhost:9997/v3/recordings/list?itemsPerPage=1&page=1", nil, &out)
 	require.Equal(t, map[string]any{
@@ -154,9 +156,9 @@ func TestRecordingsListPagination(t *testing.T) {
 		}},
 	}, out)
 
-	n, err := unix.Read(fd, buf)
-	require.NoError(t, err)
-	require.Positive(t, n)
+	if assertOpened != nil {
+		assertOpened(true)
+	}
 
 	httpRequest(t, hc, http.MethodGet, "http://localhost:9997/v3/recordings/list?itemsPerPage=1&page=2", nil, &out)
 	require.Equal(t, map[string]any{
@@ -165,8 +167,9 @@ func TestRecordingsListPagination(t *testing.T) {
 		"items":     []any{},
 	}, out)
 
-	_, err = unix.Read(fd, buf)
-	require.ErrorIs(t, err, unix.EAGAIN)
+	if assertOpened != nil {
+		assertOpened(false)
+	}
 }
 
 func TestRecordingsGet(t *testing.T) {

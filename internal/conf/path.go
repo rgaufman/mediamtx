@@ -262,8 +262,10 @@ type Path struct {
 	SRTPublishPassphrase     string `json:"srtPublishPassphrase"`
 	RTSPDemuxMpegts          bool   `json:"rtspDemuxMpegts"`
 
-	// RTSP source
-	RTSPSourceMediaTypes   *[]string      `json:"rtspSourceMediaTypes"`
+	// RTSP source media types to subscribe to; null selects all non-backchannel media.
+	// Only video and audio are supported.
+	RTSPSourceMediaTypes *[]string `json:"rtspSourceMediaTypes"`
+	// RTSP source transport.
 	RTSPTransport          RTSPTransport  `json:"rtspTransport"`
 	RTSPAnyPort            bool           `json:"rtspAnyPort"`
 	SourceProtocol         *RTSPTransport `json:"sourceProtocol,omitempty" deprecated:"true"`

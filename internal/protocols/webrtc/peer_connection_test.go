@@ -27,6 +27,19 @@ func (nilWriter) Write(p []byte) (int, error) {
 
 var webrtcNilLogger = logging.NewDefaultLeveledLoggerForScope("", 0, &nilWriter{})
 
+func loopbackInterfaceName(t *testing.T) string {
+	t.Helper()
+	interfaces, err := net.Interfaces()
+	require.NoError(t, err)
+	for _, iface := range interfaces {
+		if iface.Flags&net.FlagLoopback != 0 && iface.Flags&net.FlagUp != 0 {
+			return iface.Name
+		}
+	}
+	t.Fatal("no active loopback interface")
+	return ""
+}
+
 func gatherCodecs(tracks []*InboundTrack) []webrtc.RTPCodecParameters {
 	codecs := make([]webrtc.RTPCodecParameters, len(tracks))
 	for i, track := range tracks {
@@ -163,7 +176,7 @@ func TestPeerConnectionCandidates(t *testing.T) {
 				ICETCPMux:             tcpMux,
 				SupportsIPv6:          true,
 				IPsFromInterfaces:     true,
-				IPsFromInterfacesList: []string{"lo"},
+				IPsFromInterfacesList: []string{loopbackInterfaceName(t)},
 				Log:                   test.NilLogger,
 			}
 
@@ -228,7 +241,7 @@ func TestPeerConnectionCandidatesIPv6Disabled(t *testing.T) {
 	pc := &PeerConnection{
 		SupportsIPv6:          false,
 		IPsFromInterfaces:     true,
-		IPsFromInterfacesList: []string{"lo"},
+		IPsFromInterfacesList: []string{loopbackInterfaceName(t)},
 		Log:                   test.NilLogger,
 	}
 
@@ -290,7 +303,7 @@ func TestPeerConnectionConnectivity(t *testing.T) {
 				clientPC := &PeerConnection{
 					LocalRandomUDP:        (mode == "passive udp" || mode == "active udp"),
 					IPsFromInterfaces:     true,
-					IPsFromInterfacesList: []string{"lo"},
+					IPsFromInterfacesList: []string{loopbackInterfaceName(t)},
 					ICEServers:            iceServers,
 					Log:                   test.NilLogger,
 				}
@@ -337,7 +350,7 @@ func TestPeerConnectionConnectivity(t *testing.T) {
 
 				if ip == "from interfaces" {
 					serverPC.IPsFromInterfaces = true
-					serverPC.IPsFromInterfacesList = []string{"lo"}
+					serverPC.IPsFromInterfacesList = []string{loopbackInterfaceName(t)}
 				} else {
 					serverPC.AdditionalHosts = []string{"127.0.0.1"}
 				}
@@ -978,7 +991,7 @@ func TestPeerConnectionAdditionalHostsUnresolvable(t *testing.T) {
 	clientPC := &PeerConnection{
 		LocalRandomUDP:        true,
 		IPsFromInterfaces:     true,
-		IPsFromInterfacesList: []string{"lo"},
+		IPsFromInterfacesList: []string{loopbackInterfaceName(t)},
 		Log:                   test.NilLogger,
 	}
 	err := clientPC.Start()

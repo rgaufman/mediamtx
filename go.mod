@@ -105,3 +105,5 @@ require (
 	google.golang.org/protobuf v1.36.11 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 )
+
+replace github.com/bluenviron/gortsplib/v5 => github.com/rgaufman/gortsplib/v5 v5.6.8-0.20261107015357-71b21e5fd86f

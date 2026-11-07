@@ -1,0 +1,106 @@
+{
+  "midstream-g711-h264": [
+    {
+      "file": "go.mod",
+      "bytes": 40,
+      "sha256": "1e3adde05157f4018c8cb63160bd3aa4a7dc17a00dfc7e8d44a2eb04cf0ae481"
+    },
+    {
+      "file": "fixture.go",
+      "bytes": 6995,
+      "sha256": "8d580dad988424c623394f05ef8bc523475f7d4a683b34994a394faabba5aa6f"
+    },
+    {
+      "file": "equivalent-audio-events.jsonl.gz",
+      "bytes": 75394,
+      "sha256": "80b629c0094def84e09acb470d49cc18ed15404ba92491565f7fc1e79a2682ea"
+    },
+    {
+      "file": "fixture_test.go",
+      "bytes": 3729,
+      "sha256": "4af232c644a6730d4e03c1ae50c1dbb81c669538e428aff081cf1faaa0ac9888"
+    },
+    {
+      "file": "README.md",
+      "bytes": 5720,
+      "sha256": "e30d8f2e0839741511358c6a293da6cd422ac85421a3adb29c6e34e2345c0031"
+    },
+    {
+      "file": "recorded-files.json",
+      "bytes": 5290,
+      "sha256": "baa90308a603ddefdcad4318cc4da8accbcc8f2de40a31c288fc13bf0ad06c72"
+    },
+    {
+      "file": "observed-audio-outcomes.jsonl.gz",
+      "bytes": 23061,
+      "sha256": "e91142adc8a77ebb721a154a899aa14f9f442daf7e620171e5adcbce30873f9b"
+    },
+    {
+      "file": "manifest.json",
+      "bytes": 3558,
+      "sha256": "2b75645daccf836001065b676433e3f28cefe1dbbadd3eaa2178793b2bc5586d"
+    },
+    {
+      "file": "events.jsonl.gz",
+      "bytes": 1583035,
+      "sha256": "043c8df2f26860cd2c36d983649cc950f467db8c7646a93ee7ff42176a51ea18"
+    }
+  ],
+  "startup-g711-h265": [
+    {
+      "file": "observed-initial-video.json",
+      "bytes": 11713,
+      "sha256": "56a2bb271a71c7a5ccef9a1b502c6f2203a2a06009766a9d6f9e6b74829690cd"
+    },
+    {
+      "file": "initial-anchors.json",
+      "bytes": 105293,
+      "sha256": "c61f0774eff13c5cb6c7df59b30b9e9d0c881240e127789dfa4c6353df196508"
+    },
+    {
+      "file": "go.mod",
+      "bytes": 38,
+      "sha256": "f93397d192f4d8536d3e7ded97a74f67249c99852d826ae1e0f889f31a2b2f41"
+    },
+    {
+      "file": "sessions.json",
+      "bytes": 32827,
+      "sha256": "b6e16d68f593bb0bdfe401b3a9d6969a1c21a1ea2275dacb850dbd1605eec9c8"
+    },
+    {
+      "file": "fixture.go",
+      "bytes": 5122,
+      "sha256": "defdae3fc419feccc0a60fac971418099d052403d7869fc6f54d7f73d5601f9f"
+    },
+    {
+      "file": "fixture_test.go",
+      "bytes": 1194,
+      "sha256": "687fa537d4800ee541fb034e1edb8a6c116df387ff9693f6ed2dc5c613a6d9ec"
+    },
+    {
+      "file": "observed-startup-audio.jsonl.gz",
+      "bytes": 51595,
+      "sha256": "11f5b581f45b833f4babb793a8dfd50a2915d8641f457e60dacca7533f0d3220"
+    },
+    {
+      "file": "README.md",
+      "bytes": 6035,
+      "sha256": "cd7ccb95e3b58730bd42b6b4a793366e6cdf7371d9ed133f928f97de2933ac94"
+    },
+    {
+      "file": "manifest.json",
+      "bytes": 3064,
+      "sha256": "3ee33ecfd3cde909bbf8805895799832f98579092fea162a4e4f2e3790ae07e2"
+    },
+    {
+      "file": "recorded-startup.json",
+      "bytes": 2087,
+      "sha256": "318d37c580e6c6faeae2b876ceddcb98a9f0585cf163fd401ef9bf36891a45a4"
+    },
+    {
+      "file": "events.jsonl.gz",
+      "bytes": 479039,
+      "sha256": "dd918eba7a07f9b2947c04890de14481e66ee15d0c72b84fb0732cfdf507aec9"
+    }
+  ]
+}

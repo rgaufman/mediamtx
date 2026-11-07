@@ -1272,14 +1272,13 @@ components:
           type: string
         rtspSourceMediaTypes:
           type: array
+          description: RTSP source media types to subscribe to; null selects all non-backchannel media. Only video and audio are supported.
           nullable: true
-          description: RTSP source media types to subscribe to; null selects all non-backchannel media
           items:
             type: string
-            enum: [video, audio]
         rtspTransport:
           $ref: "#/components/schemas/RTSPTransport"
-          description: RTSP source
+          description: RTSP source transport.
         rtspUDPReadBufferSize:
           type: integer
           format: uint64
@@ -1904,6 +1903,12 @@ components:
         inboundBytes:
           type: integer
           format: uint64
+        inboundRTCPNACKPackets:
+          type: integer
+          format: uint64
+        inboundRTCPPLIPackets:
+          type: integer
+          format: uint64
         inboundRTCPPackets:
           type: integer
           format: uint64
@@ -1928,6 +1933,18 @@ components:
           type: integer
           format: uint64
         outboundRTPPackets:
+          type: integer
+          format: uint64
+        outboundRTPPacketsReportedJitter:
+          type: number
+          format: double
+          description: Mean raw RTP clock ticks; use the microsecond field for mixed clocks.
+        outboundRTPPacketsReportedJitterUs:
+          type: number
+          format: double
+          description: Mean jitter after per-track clock conversion; null without reports or with an unknown clock.
+          nullable: true
+        outboundRTPPacketsReportedLost:
           type: integer
           format: uint64
         peerConnectionEstablished:
@@ -2516,10 +2533,6 @@ components:
           type: number
           format: double
           description: mean jitter of inbound RTP packets
-        inboundRTPPacketsJitterUs:
-          type: number
-          format: double
-          description: mean inbound RTP jitter in microseconds, normalized per format before averaging; omitted when no packets or unknown clock rate
         inboundRTPPacketsLost:
           type: integer
           format: uint64
@@ -2829,6 +2842,12 @@ components:
         inboundBytes:
           type: integer
           format: uint64
+        inboundRTCPNACKPackets:
+          type: integer
+          format: uint64
+        inboundRTCPPLIPackets:
+          type: integer
+          format: uint64
         inboundRTCPPackets:
           type: integer
           format: uint64
@@ -2853,6 +2872,18 @@ components:
           type: integer
           format: uint64
         outboundRTPPackets:
+          type: integer
+          format: uint64
+        outboundRTPPacketsReportedJitter:
+          type: number
+          format: double
+          description: Mean raw RTP clock ticks; use the microsecond field for mixed clocks.
+        outboundRTPPacketsReportedJitterUs:
+          type: number
+          format: double
+          description: Mean jitter after per-track clock conversion; null without reports or with an unknown clock.
+          nullable: true
+        outboundRTPPacketsReportedLost:
           type: integer
           format: uint64
         path:
