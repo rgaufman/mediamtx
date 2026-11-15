@@ -2,6 +2,7 @@ package recordcleaner
 
 import (
 	"encoding/json"
+	"maps"
 	"os"
 	"path"
 	"path/filepath"
@@ -145,10 +146,7 @@ var flatSegmentRe = regexp.MustCompile(`^([0-9a-f]+)_(\d{8})_(\d{6})_(\d{6})\.mp
 func expectedAfterPass(before map[string]string, root string, now time.Time,
 	confs map[string]*conf.Path,
 ) (after map[string]string, removedSegments int) {
-	after = make(map[string]string, len(before))
-	for k, v := range before {
-		after[k] = v
-	}
+	after = maps.Clone(before)
 
 	for rel, typ := range before {
 		if typ != "file" || path.Dir(rel) != root {
@@ -266,10 +264,7 @@ func runPassWithReload(t *testing.T, dir string, confs, reloadConfs map[string]*
 	release()
 
 	deadline := time.Now().Add(20 * time.Second)
-	for {
-		if reflectEqual(snapshot(t, dir), want) {
-			break
-		}
+	for !reflectEqual(snapshot(t, dir), want) {
 		if time.Now().After(deadline) {
 			requireSameTree(t, want, snapshot(t, dir))
 			t.Fatal("tree did not reach the expected state")
