@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net"
 	"net/url"
+	"slices"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -322,12 +323,7 @@ func sourceMediaAllowed(media *description.Media, allowed *[]string) bool {
 	if allowed == nil {
 		return true
 	}
-	for _, mediaType := range *allowed {
-		if string(media.Type) == mediaType {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(*allowed, string(media.Type))
 }
 
 func (s *Source) runInner(
