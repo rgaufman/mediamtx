@@ -1,0 +1,1788 @@
+---
+logLevel: info
+rtspAddress: 127.0.0.1:8554
+rtspTransports:
+- tcp
+api: true
+apiAddress: 127.0.0.1:9997
+hlsAddress: 127.0.0.1:8888
+hlsVariant: lowLatency
+hlsAlwaysRemux: false
+hlsSegmentDuration: 1s
+hlsPartDuration: 200ms
+hlsSegmentCount: 7
+hlsAllowOrigins: []
+hlsMuxerCloseAfter: 15s
+hlsCDNSecret: REDACTED
+webrtc: true
+webrtcAddress: 127.0.0.1:8889
+webrtcLocalUDPAddress: ":8189"
+webrtcLocalTCPAddress: ":8189"
+webrtcAllowOrigins:
+- "*"
+webrtcIPsFromInterfaces: false
+webrtcAdditionalHosts:
+- 192.0.2.1
+- 192.0.2.2
+rtmp: false
+srt: false
+moq: false
+authInternalUsers:
+- user: any
+  ips:
+  - 127.0.0.1
+  - "::1"
+  permissions:
+  - action: read
+  - action: publish
+  - action: api
+  - action: metrics
+  - action: pprof
+paths:
+  6441033b5f439f3466d30712-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  6441033b5f439f3466d30712:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  64429da25f439f3466d708ce-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  64429da25f439f3466d708ce:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa294caa415c1d2b7eff-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa294caa415c1d2b7eff:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  6441089b16a95a1be280d6c9-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  6441089b16a95a1be280d6c9:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa59a79dfa3a216131ab-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa59a79dfa3a216131ab:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa59a79dfa3a216131ab-browser:
+    source: publisher
+    runOnDemand: |-
+      /bin/sh -c \#\ Map\ the\ proxy\'s\ audio\ only\ when\ packets\ are\ arriving\ on\ it.\ An\ advertised\ track\ with\ no\ packets'
+      '\#\ stalls\ ffmpeg\ before\ its\ first\ segment\ \(CameraCmds::STREAM_AUDIO_PROBE_SECONDS\ explains\).'
+      'audio_args\=\'-map\ 0:a\?\ -c:a\ aac\''
+      'audio_packets\=\$\(timeout\ 20\ /usr/local/bin/ffprobe\ -v\ error\ -rtsp_transport\ tcp\ -select_streams\ a\ -show_entries\ packet\=stream_index\ -of\ csv\=p\=0\ -read_intervals\ \%+5\ rtsp://127.0.0.1:8554/659ffa59a79dfa3a216131ab\ \|\ wc\ -l\)'
+      'if\ \[\ \"\$audio_packets\"\ -eq\ 0\ \]\;\ then'
+      '\ \ echo\ \"media_audio\ 659ffa59a79dfa3a216131ab:\ no\ audio\ packets\ from\ rtsp://127.0.0.1:8554/659ffa59a79dfa3a216131ab\ in\ 5s\ \(track\ absent,\ silent,\ or\ no\ answer\),\ recording\ video\ only\ \(-an\)\"\ \>\&2'
+      '\ \ audio_args\=\'-an\''
+      'fi'
+      'exec\ /usr/local/bin/ffmpeg\ -nostdin\ -v\ error\ -rtsp_transport\ tcp\ -i\ rtsp://127.0.0.1:8554/659ffa59a79dfa3a216131ab\ -map\ 0:v:0\ -c:v\ copy\ \$audio_args\ -f\ rtsp\ -rtsp_transport\ tcp\ rtsp://127.0.0.1:8554/659ffa59a79dfa3a216131ab-browser
+    runOnDemandRestart: true
+    runOnDemandStartTimeout: 15s
+    runOnDemandCloseAfter: 5s
+  659ffa234caa415c1d2b7edb-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa234caa415c1d2b7edb:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa234caa415c1d2b7edb-browser:
+    source: publisher
+    runOnDemand: |-
+      /bin/sh -c \#\ Map\ the\ proxy\'s\ audio\ only\ when\ packets\ are\ arriving\ on\ it.\ An\ advertised\ track\ with\ no\ packets'
+      '\#\ stalls\ ffmpeg\ before\ its\ first\ segment\ \(CameraCmds::STREAM_AUDIO_PROBE_SECONDS\ explains\).'
+      'audio_args\=\'-map\ 0:a\?\ -c:a\ aac\''
+      'audio_packets\=\$\(timeout\ 20\ /usr/local/bin/ffprobe\ -v\ error\ -rtsp_transport\ tcp\ -select_streams\ a\ -show_entries\ packet\=stream_index\ -of\ csv\=p\=0\ -read_intervals\ \%+5\ rtsp://127.0.0.1:8554/659ffa234caa415c1d2b7edb\ \|\ wc\ -l\)'
+      'if\ \[\ \"\$audio_packets\"\ -eq\ 0\ \]\;\ then'
+      '\ \ echo\ \"media_audio\ 659ffa234caa415c1d2b7edb:\ no\ audio\ packets\ from\ rtsp://127.0.0.1:8554/659ffa234caa415c1d2b7edb\ in\ 5s\ \(track\ absent,\ silent,\ or\ no\ answer\),\ recording\ video\ only\ \(-an\)\"\ \>\&2'
+      '\ \ audio_args\=\'-an\''
+      'fi'
+      'exec\ /usr/local/bin/ffmpeg\ -nostdin\ -v\ error\ -rtsp_transport\ tcp\ -i\ rtsp://127.0.0.1:8554/659ffa234caa415c1d2b7edb\ -map\ 0:v:0\ -c:v\ copy\ \$audio_args\ -f\ rtsp\ -rtsp_transport\ tcp\ rtsp://127.0.0.1:8554/659ffa234caa415c1d2b7edb-browser
+    runOnDemandRestart: true
+    runOnDemandStartTimeout: 15s
+    runOnDemandCloseAfter: 5s
+  659ffa244caa415c1d2b7ede-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa244caa415c1d2b7ede:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa274caa415c1d2b7ef3-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa274caa415c1d2b7ef3:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa264caa415c1d2b7eec-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa264caa415c1d2b7eec:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  644106fabc3f1422ff8b0776-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  644106fabc3f1422ff8b0776:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  64410773c052884677d66758-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  64410773c052884677d66758:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  644108274caa41757e8a872a-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  644108274caa41757e8a872a:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  6a1da40d2500453f8c3fa3c7-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  6a1da40d2500453f8c3fa3c7:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  644102c24caa4175798a8012-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  644102c24caa4175798a8012:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa244caa415c1d2b7ee1-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa244caa415c1d2b7ee1:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa234caa415c1d2b7ed5-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa234caa415c1d2b7ed5:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa234caa415c1d2b7ed5-browser:
+    source: publisher
+    runOnDemand: |-
+      /bin/sh -c \#\ Map\ the\ proxy\'s\ audio\ only\ when\ packets\ are\ arriving\ on\ it.\ An\ advertised\ track\ with\ no\ packets'
+      '\#\ stalls\ ffmpeg\ before\ its\ first\ segment\ \(CameraCmds::STREAM_AUDIO_PROBE_SECONDS\ explains\).'
+      'audio_args\=\'-map\ 0:a\?\ -c:a\ aac\''
+      'audio_packets\=\$\(timeout\ 20\ /usr/local/bin/ffprobe\ -v\ error\ -rtsp_transport\ tcp\ -select_streams\ a\ -show_entries\ packet\=stream_index\ -of\ csv\=p\=0\ -read_intervals\ \%+5\ rtsp://127.0.0.1:8554/659ffa234caa415c1d2b7ed5\ \|\ wc\ -l\)'
+      'if\ \[\ \"\$audio_packets\"\ -eq\ 0\ \]\;\ then'
+      '\ \ echo\ \"media_audio\ 659ffa234caa415c1d2b7ed5:\ no\ audio\ packets\ from\ rtsp://127.0.0.1:8554/659ffa234caa415c1d2b7ed5\ in\ 5s\ \(track\ absent,\ silent,\ or\ no\ answer\),\ recording\ video\ only\ \(-an\)\"\ \>\&2'
+      '\ \ audio_args\=\'-an\''
+      'fi'
+      'exec\ /usr/local/bin/ffmpeg\ -nostdin\ -v\ error\ -rtsp_transport\ tcp\ -i\ rtsp://127.0.0.1:8554/659ffa234caa415c1d2b7ed5\ -map\ 0:v:0\ -c:v\ copy\ \$audio_args\ -f\ rtsp\ -rtsp_transport\ tcp\ rtsp://127.0.0.1:8554/659ffa234caa415c1d2b7ed5-browser
+    runOnDemandRestart: true
+    runOnDemandStartTimeout: 15s
+    runOnDemandCloseAfter: 5s
+  64425058c052884677d98a2d-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  64425058c052884677d98a2d:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  64410d8abc3f1423028b2bae-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  64410d8abc3f1423028b2bae:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  6453d0ba35e36e0b224e593f-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  6453d0ba35e36e0b224e593f:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa294caa415c1d2b7f02-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa294caa415c1d2b7f02:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa224caa415c1d2b7ecd-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa224caa415c1d2b7ecd:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa274caa415c1d2b7ef0-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa274caa415c1d2b7ef0:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  64410284a79dfa02a9fa7144-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  64410284a79dfa02a9fa7144:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa5ba79dfa3a216131cd-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa5ba79dfa3a216131cd:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa234caa415c1d2b7ed8-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa234caa415c1d2b7ed8:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa2a4caa415c1d2b7f07-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa2a4caa415c1d2b7f07:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  6442505916a95a1bdc841278-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  6442505916a95a1bdc841278:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa5aa79dfa3a216131c3-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa5aa79dfa3a216131c3:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  644104695f439f345ed2fdf8-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  644104695f439f345ed2fdf8:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa59a79dfa3a216131b2-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa59a79dfa3a216131b2:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa59a79dfa3a216131b2-browser:
+    source: publisher
+    runOnDemand: |-
+      /bin/sh -c \#\ Map\ the\ proxy\'s\ audio\ only\ when\ packets\ are\ arriving\ on\ it.\ An\ advertised\ track\ with\ no\ packets'
+      '\#\ stalls\ ffmpeg\ before\ its\ first\ segment\ \(CameraCmds::STREAM_AUDIO_PROBE_SECONDS\ explains\).'
+      'audio_args\=\'-map\ 0:a\?\ -c:a\ aac\''
+      'audio_packets\=\$\(timeout\ 20\ /usr/local/bin/ffprobe\ -v\ error\ -rtsp_transport\ tcp\ -select_streams\ a\ -show_entries\ packet\=stream_index\ -of\ csv\=p\=0\ -read_intervals\ \%+5\ rtsp://127.0.0.1:8554/659ffa59a79dfa3a216131b2\ \|\ wc\ -l\)'
+      'if\ \[\ \"\$audio_packets\"\ -eq\ 0\ \]\;\ then'
+      '\ \ echo\ \"media_audio\ 659ffa59a79dfa3a216131b2:\ no\ audio\ packets\ from\ rtsp://127.0.0.1:8554/659ffa59a79dfa3a216131b2\ in\ 5s\ \(track\ absent,\ silent,\ or\ no\ answer\),\ recording\ video\ only\ \(-an\)\"\ \>\&2'
+      '\ \ audio_args\=\'-an\''
+      'fi'
+      'exec\ /usr/local/bin/ffmpeg\ -nostdin\ -v\ error\ -rtsp_transport\ tcp\ -i\ rtsp://127.0.0.1:8554/659ffa59a79dfa3a216131b2\ -map\ 0:v:0\ -c:v\ copy\ \$audio_args\ -f\ rtsp\ -rtsp_transport\ tcp\ rtsp://127.0.0.1:8554/659ffa59a79dfa3a216131b2-browser
+    runOnDemandRestart: true
+    runOnDemandStartTimeout: 15s
+    runOnDemandCloseAfter: 5s
+  659ffa58a79dfa3a216131a8-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa58a79dfa3a216131a8:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa58a79dfa3a216131a8-browser:
+    source: publisher
+    runOnDemand: |-
+      /bin/sh -c \#\ Map\ the\ proxy\'s\ audio\ only\ when\ packets\ are\ arriving\ on\ it.\ An\ advertised\ track\ with\ no\ packets'
+      '\#\ stalls\ ffmpeg\ before\ its\ first\ segment\ \(CameraCmds::STREAM_AUDIO_PROBE_SECONDS\ explains\).'
+      'audio_args\=\'-map\ 0:a\?\ -c:a\ aac\''
+      'audio_packets\=\$\(timeout\ 20\ /usr/local/bin/ffprobe\ -v\ error\ -rtsp_transport\ tcp\ -select_streams\ a\ -show_entries\ packet\=stream_index\ -of\ csv\=p\=0\ -read_intervals\ \%+5\ rtsp://127.0.0.1:8554/659ffa58a79dfa3a216131a8\ \|\ wc\ -l\)'
+      'if\ \[\ \"\$audio_packets\"\ -eq\ 0\ \]\;\ then'
+      '\ \ echo\ \"media_audio\ 659ffa58a79dfa3a216131a8:\ no\ audio\ packets\ from\ rtsp://127.0.0.1:8554/659ffa58a79dfa3a216131a8\ in\ 5s\ \(track\ absent,\ silent,\ or\ no\ answer\),\ recording\ video\ only\ \(-an\)\"\ \>\&2'
+      '\ \ audio_args\=\'-an\''
+      'fi'
+      'exec\ /usr/local/bin/ffmpeg\ -nostdin\ -v\ error\ -rtsp_transport\ tcp\ -i\ rtsp://127.0.0.1:8554/659ffa58a79dfa3a216131a8\ -map\ 0:v:0\ -c:v\ copy\ \$audio_args\ -f\ rtsp\ -rtsp_transport\ tcp\ rtsp://127.0.0.1:8554/659ffa58a79dfa3a216131a8-browser
+    runOnDemandRestart: true
+    runOnDemandStartTimeout: 15s
+    runOnDemandCloseAfter: 5s
+  644104cfc05288466cd64c2c-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  644104cfc05288466cd64c2c:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  6441055516a95a1bdc80e63d-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  6441055516a95a1bdc80e63d:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa59a79dfa3a216131af-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa59a79dfa3a216131af:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa59a79dfa3a216131af-browser:
+    source: publisher
+    runOnDemand: |-
+      /bin/sh -c \#\ Map\ the\ proxy\'s\ audio\ only\ when\ packets\ are\ arriving\ on\ it.\ An\ advertised\ track\ with\ no\ packets'
+      '\#\ stalls\ ffmpeg\ before\ its\ first\ segment\ \(CameraCmds::STREAM_AUDIO_PROBE_SECONDS\ explains\).'
+      'audio_args\=\'-map\ 0:a\?\ -c:a\ aac\''
+      'audio_packets\=\$\(timeout\ 20\ /usr/local/bin/ffprobe\ -v\ error\ -rtsp_transport\ tcp\ -select_streams\ a\ -show_entries\ packet\=stream_index\ -of\ csv\=p\=0\ -read_intervals\ \%+5\ rtsp://127.0.0.1:8554/659ffa59a79dfa3a216131af\ \|\ wc\ -l\)'
+      'if\ \[\ \"\$audio_packets\"\ -eq\ 0\ \]\;\ then'
+      '\ \ echo\ \"media_audio\ 659ffa59a79dfa3a216131af:\ no\ audio\ packets\ from\ rtsp://127.0.0.1:8554/659ffa59a79dfa3a216131af\ in\ 5s\ \(track\ absent,\ silent,\ or\ no\ answer\),\ recording\ video\ only\ \(-an\)\"\ \>\&2'
+      '\ \ audio_args\=\'-an\''
+      'fi'
+      'exec\ /usr/local/bin/ffmpeg\ -nostdin\ -v\ error\ -rtsp_transport\ tcp\ -i\ rtsp://127.0.0.1:8554/659ffa59a79dfa3a216131af\ -map\ 0:v:0\ -c:v\ copy\ \$audio_args\ -f\ rtsp\ -rtsp_transport\ tcp\ rtsp://127.0.0.1:8554/659ffa59a79dfa3a216131af-browser
+    runOnDemandRestart: true
+    runOnDemandStartTimeout: 15s
+    runOnDemandCloseAfter: 5s
+  6442505935e36e0b2227b4ff-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  6442505935e36e0b2227b4ff:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa224caa415c1d2b7ed1-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa224caa415c1d2b7ed1:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa59a79dfa3a216131b6-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa59a79dfa3a216131b6:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa59a79dfa3a216131b6-browser:
+    source: publisher
+    runOnDemand: |-
+      /bin/sh -c \#\ Map\ the\ proxy\'s\ audio\ only\ when\ packets\ are\ arriving\ on\ it.\ An\ advertised\ track\ with\ no\ packets'
+      '\#\ stalls\ ffmpeg\ before\ its\ first\ segment\ \(CameraCmds::STREAM_AUDIO_PROBE_SECONDS\ explains\).'
+      'audio_args\=\'-map\ 0:a\?\ -c:a\ aac\''
+      'audio_packets\=\$\(timeout\ 20\ /usr/local/bin/ffprobe\ -v\ error\ -rtsp_transport\ tcp\ -select_streams\ a\ -show_entries\ packet\=stream_index\ -of\ csv\=p\=0\ -read_intervals\ \%+5\ rtsp://127.0.0.1:8554/659ffa59a79dfa3a216131b6\ \|\ wc\ -l\)'
+      'if\ \[\ \"\$audio_packets\"\ -eq\ 0\ \]\;\ then'
+      '\ \ echo\ \"media_audio\ 659ffa59a79dfa3a216131b6:\ no\ audio\ packets\ from\ rtsp://127.0.0.1:8554/659ffa59a79dfa3a216131b6\ in\ 5s\ \(track\ absent,\ silent,\ or\ no\ answer\),\ recording\ video\ only\ \(-an\)\"\ \>\&2'
+      '\ \ audio_args\=\'-an\''
+      'fi'
+      'exec\ /usr/local/bin/ffmpeg\ -nostdin\ -v\ error\ -rtsp_transport\ tcp\ -i\ rtsp://127.0.0.1:8554/659ffa59a79dfa3a216131b6\ -map\ 0:v:0\ -c:v\ copy\ \$audio_args\ -f\ rtsp\ -rtsp_transport\ tcp\ rtsp://127.0.0.1:8554/659ffa59a79dfa3a216131b6-browser
+    runOnDemandRestart: true
+    runOnDemandStartTimeout: 15s
+    runOnDemandCloseAfter: 5s
+  644115f6c05288466cd68188-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  644115f6c05288466cd68188:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa5aa79dfa3a216131bf-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa5aa79dfa3a216131bf:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  644250c835e36e0b1b27ab26-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  644250c835e36e0b1b27ab26:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa5ba79dfa3a216131ca-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa5ba79dfa3a216131ca:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  6a1da40d2500453f8c3fa3ca-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  6a1da40d2500453f8c3fa3ca:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  6a1da40d2500453f8c3fa3ca-browser:
+    source: publisher
+    runOnDemand: |-
+      /bin/sh -c \#\ Map\ the\ proxy\'s\ audio\ only\ when\ packets\ are\ arriving\ on\ it.\ An\ advertised\ track\ with\ no\ packets'
+      '\#\ stalls\ ffmpeg\ before\ its\ first\ segment\ \(CameraCmds::STREAM_AUDIO_PROBE_SECONDS\ explains\).'
+      'audio_args\=\'-map\ 0:a\?\ -c:a\ aac\''
+      'audio_packets\=\$\(timeout\ 20\ /usr/local/bin/ffprobe\ -v\ error\ -rtsp_transport\ tcp\ -select_streams\ a\ -show_entries\ packet\=stream_index\ -of\ csv\=p\=0\ -read_intervals\ \%+5\ rtsp://127.0.0.1:8554/6a1da40d2500453f8c3fa3ca\ \|\ wc\ -l\)'
+      'if\ \[\ \"\$audio_packets\"\ -eq\ 0\ \]\;\ then'
+      '\ \ echo\ \"media_audio\ 6a1da40d2500453f8c3fa3ca:\ no\ audio\ packets\ from\ rtsp://127.0.0.1:8554/6a1da40d2500453f8c3fa3ca\ in\ 5s\ \(track\ absent,\ silent,\ or\ no\ answer\),\ recording\ video\ only\ \(-an\)\"\ \>\&2'
+      '\ \ audio_args\=\'-an\''
+      'fi'
+      'exec\ /usr/local/bin/ffmpeg\ -nostdin\ -v\ error\ -rtsp_transport\ tcp\ -i\ rtsp://127.0.0.1:8554/6a1da40d2500453f8c3fa3ca\ -map\ 0:v:0\ -c:v\ copy\ \$audio_args\ -f\ rtsp\ -rtsp_transport\ tcp\ rtsp://127.0.0.1:8554/6a1da40d2500453f8c3fa3ca-browser
+    runOnDemandRestart: true
+    runOnDemandStartTimeout: 15s
+    runOnDemandCloseAfter: 5s
+  659ffa254caa415c1d2b7ee4-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa254caa415c1d2b7ee4:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  64410b3235e36e0b2224a4c8-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  64410b3235e36e0b2224a4c8:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa284caa415c1d2b7efa-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa284caa415c1d2b7efa:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa5aa79dfa3a216131c6-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa5aa79dfa3a216131c6:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  6441051a4caa4175798a87c0-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  6441051a4caa4175798a87c0:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  6442505835e36e0b1b27aa10-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  6442505835e36e0b1b27aa10:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  6658a5f76a9284c2a6be06b1:
+    source: rtsp://REDACTED
+    sourceOnDemand: true
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: false
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  6658a5f76a9284c2a6be06b1-browser:
+    source: publisher
+    runOnDemand: |-
+      /bin/sh -c \#\ Map\ the\ proxy\'s\ audio\ only\ when\ packets\ are\ arriving\ on\ it.\ An\ advertised\ track\ with\ no\ packets'
+      '\#\ stalls\ ffmpeg\ before\ its\ first\ segment\ \(CameraCmds::STREAM_AUDIO_PROBE_SECONDS\ explains\).'
+      'audio_args\=\'-map\ 0:a\?\ -c:a\ aac\''
+      'audio_packets\=\$\(timeout\ 20\ /usr/local/bin/ffprobe\ -v\ error\ -rtsp_transport\ tcp\ -select_streams\ a\ -show_entries\ packet\=stream_index\ -of\ csv\=p\=0\ -read_intervals\ \%+5\ rtsp://127.0.0.1:8554/6658a5f76a9284c2a6be06b1\ \|\ wc\ -l\)'
+      'if\ \[\ \"\$audio_packets\"\ -eq\ 0\ \]\;\ then'
+      '\ \ echo\ \"media_audio\ 6658a5f76a9284c2a6be06b1:\ no\ audio\ packets\ from\ rtsp://127.0.0.1:8554/6658a5f76a9284c2a6be06b1\ in\ 5s\ \(track\ absent,\ silent,\ or\ no\ answer\),\ recording\ video\ only\ \(-an\)\"\ \>\&2'
+      '\ \ audio_args\=\'-an\''
+      'fi'
+      'exec\ /usr/local/bin/ffmpeg\ -nostdin\ -v\ error\ -rtsp_transport\ tcp\ -i\ rtsp://127.0.0.1:8554/6658a5f76a9284c2a6be06b1\ -map\ 0:v:0\ -c:v\ copy\ \$audio_args\ -f\ rtsp\ -rtsp_transport\ tcp\ rtsp://127.0.0.1:8554/6658a5f76a9284c2a6be06b1-browser
+    runOnDemandRestart: true
+    runOnDemandStartTimeout: 15s
+    runOnDemandCloseAfter: 5s
+  64425058c052884677d98a32-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  64425058c052884677d98a32:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  644108d7c052884677d66bc8-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  644108d7c052884677d66bc8:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  64425058a79dfa02a9fd9c4f-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  64425058a79dfa02a9fd9c4f:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  644106495f439f3466d310bf-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  644106495f439f3466d310bf:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  644103b24caa4175798a8340-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  644103b24caa4175798a8340:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  644103ef5f439f3466d3092e-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  644103ef5f439f3466d3092e:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa264caa415c1d2b7ee9-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa264caa415c1d2b7ee9:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  64410377bc3f1422ff8afd28-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  64410377bc3f1422ff8afd28:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa58a79dfa3a216131a5-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa58a79dfa3a216131a5:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  644105cec05288466cd64ef0-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  644105cec05288466cd64ef0:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+  659ffa58a79dfa3a2161319f-sub:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+  659ffa58a79dfa3a2161319f:
+    source: rtsp://REDACTED
+    sourceOnDemand: false
+    sourceOnDemandCloseAfter: 5s
+    rtspTransport: automatic
+    rtspSourceMediaTypes:
+    - video
+    - audio
+    record: true
+    recordFormat: fmp4
+    recordPath: "/data/deployer/tetherbox/tmp/spools/cameras/%path/%path_%Y%m%d_%H%M%S_%f"
+    recordSegmentDuration: 60s
+    recordPartDuration: 1s
+    recordDeleteAfter: 5m
+    useAbsoluteTimestamp: false
+    runOnRecordSegmentCreate: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      start /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
+    runOnRecordSegmentComplete: "/usr/local/bin/ruby /data/deployer/tetherbox/bin/mediamtx_recording_complete
+      complete /data/deployer/tetherbox/tmp/recorder /data/deployer/tetherbox/tmp/spools"
