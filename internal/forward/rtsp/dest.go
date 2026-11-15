@@ -63,13 +63,14 @@ func (d *Dest) Info() defs.ForwardDestInfo {
 	return defs.ForwardDestInfo{
 		OutboundBytes: stats.OutboundBytes,
 		TypeSpecific: &defs.APIForwardDestTypeSpecificRTSP{
-			RemoteAddr:                     remoteAddr,
-			Transport:                      transport,
-			InboundBytes:                   stats.InboundBytes,
-			InboundRTPPackets:              stats.InboundRTPPackets,
-			InboundRTPPacketsLost:          stats.InboundRTPPacketsLost,
-			InboundRTPPacketsInError:       stats.InboundRTPPacketsInError,
-			InboundRTPPacketsJitter:        stats.InboundRTPPacketsJitter,
+			RemoteAddr:               remoteAddr,
+			Transport:                transport,
+			InboundBytes:             stats.InboundBytes,
+			InboundRTPPackets:        stats.InboundRTPPackets,
+			InboundRTPPacketsLost:    stats.InboundRTPPacketsLost,
+			InboundRTPPacketsInError: stats.InboundRTPPacketsInError,
+			// Reports RTP clock ticks as before; the microsecond replacement is not tick-valued.
+			InboundRTPPacketsJitter:        stats.InboundRTPPacketsJitter, //nolint:staticcheck
 			InboundRTCPPackets:             stats.InboundRTCPPackets,
 			InboundRTCPPacketsInError:      stats.InboundRTCPPacketsInError,
 			OutboundBytes:                  stats.OutboundBytes,

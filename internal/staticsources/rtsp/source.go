@@ -121,13 +121,15 @@ func (s *Source) Info() defs.StaticSourceInfo {
 
 	return defs.StaticSourceInfo{
 		TypeSpecific: &defs.APIStaticSourceTypeSpecificRTSP{
-			RemoteAddr:                remoteAddr,
-			Transport:                 transport,
-			InboundBytes:              stats.InboundBytes,
-			InboundRTPPackets:         stats.InboundRTPPackets,
-			InboundRTPPacketsLost:     stats.InboundRTPPacketsLost,
-			InboundRTPPacketsInError:  stats.InboundRTPPacketsInError,
-			InboundRTPPacketsJitter:   stats.InboundRTPPacketsJitter,
+			RemoteAddr:               remoteAddr,
+			Transport:                transport,
+			InboundBytes:             stats.InboundBytes,
+			InboundRTPPackets:        stats.InboundRTPPackets,
+			InboundRTPPacketsLost:    stats.InboundRTPPacketsLost,
+			InboundRTPPacketsInError: stats.InboundRTPPacketsInError,
+			// The API field keeps reporting RTP clock ticks; JitterUs below is the microsecond
+			// replacement and has no tick-valued equivalent, so the deprecated field is still read.
+			InboundRTPPacketsJitter:   stats.InboundRTPPacketsJitter, //nolint:staticcheck
 			InboundRTPPacketsJitterUs: stats.InboundRTPPacketsJitterUs,
 			InboundRTCPPackets:        stats.InboundRTCPPackets,
 			InboundRTCPPacketsInError: stats.InboundRTCPPacketsInError,

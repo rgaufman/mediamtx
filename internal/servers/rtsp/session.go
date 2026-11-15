@@ -588,11 +588,12 @@ func (s *session) apiItem() *defs.APIRTSPSession {
 
 			return ret
 		}(),
-		InboundBytes:                   stats.InboundBytes,
-		InboundRTPPackets:              stats.InboundRTPPackets,
-		InboundRTPPacketsLost:          stats.InboundRTPPacketsLost,
-		InboundRTPPacketsInError:       stats.InboundRTPPacketsInError,
-		InboundRTPPacketsJitter:        stats.InboundRTPPacketsJitter,
+		InboundBytes:             stats.InboundBytes,
+		InboundRTPPackets:        stats.InboundRTPPackets,
+		InboundRTPPacketsLost:    stats.InboundRTPPacketsLost,
+		InboundRTPPacketsInError: stats.InboundRTPPacketsInError,
+		// Reports RTP clock ticks as before; the microsecond replacement is not tick-valued.
+		InboundRTPPacketsJitter:        stats.InboundRTPPacketsJitter, //nolint:staticcheck
 		InboundRTCPPackets:             stats.InboundRTCPPackets,
 		InboundRTCPPacketsInError:      stats.InboundRTCPPacketsInError,
 		OutboundBytes:                  stats.OutboundBytes,
@@ -606,7 +607,7 @@ func (s *session) apiItem() *defs.APIRTSPSession {
 		RTPPacketsSent:                 stats.OutboundRTPPackets,
 		RTPPacketsLost:                 stats.InboundRTPPacketsLost,
 		RTPPacketsInError:              stats.InboundRTPPacketsInError,
-		RTPPacketsJitter:               stats.InboundRTPPacketsJitter,
+		RTPPacketsJitter:               stats.InboundRTPPacketsJitter, //nolint:staticcheck
 		RTCPPacketsReceived:            stats.InboundRTCPPackets,
 		RTCPPacketsSent:                stats.OutboundRTCPPackets,
 		RTCPPacketsInError:             stats.InboundRTCPPacketsInError,
