@@ -753,6 +753,7 @@ func (p *Core) createResources(initial bool) error {
 			DumpPackets:         p.conf.DumpPackets,
 			UDPReadBufferSize:   udpReadBufferSize,
 			UDPWriteBufferSize:  p.conf.UDPWriteBufferSize,
+			UDPMaxPayloadSize:   p.conf.UDPMaxPayloadSize,
 			ReadTimeout:         p.conf.ReadTimeout,
 			WriteTimeout:        p.conf.WriteTimeout,
 			WriteQueueSize:      p.conf.WriteQueueSize,
@@ -798,6 +799,7 @@ func (p *Core) createResources(initial bool) error {
 			DumpPackets:         p.conf.DumpPackets,
 			UDPReadBufferSize:   udpReadBufferSize,
 			UDPWriteBufferSize:  p.conf.UDPWriteBufferSize,
+			UDPMaxPayloadSize:   p.conf.UDPMaxPayloadSize,
 			ReadTimeout:         p.conf.ReadTimeout,
 			WriteTimeout:        p.conf.WriteTimeout,
 			WriteQueueSize:      p.conf.WriteQueueSize,
@@ -936,6 +938,7 @@ func (p *Core) createResources(initial bool) error {
 			LocalUDPAddress:              p.conf.WebRTCLocalUDPAddress,
 			LocalTCPAddress:              p.conf.WebRTCLocalTCPAddress,
 			SupportsIPv6:                 p.supportsIPv6,
+			UDPMaxPayloadSize:            p.conf.UDPMaxPayloadSize,
 			IPsFromInterfaces:            p.conf.WebRTCIPsFromInterfaces,
 			IPsFromInterfacesList:        p.conf.WebRTCIPsFromInterfacesList,
 			IPsFromInterfacesExcludeList: p.conf.WebRTCIPsFromInterfacesExcludeList,
@@ -993,6 +996,7 @@ func (p *Core) createResources(initial bool) error {
 			TrustedProxies:     p.conf.MoQTrustedProxies,
 			UDPReadBufferSize:  p.conf.UDPReadBufferSize,
 			UDPWriteBufferSize: p.conf.UDPWriteBufferSize,
+			UDPMaxPayloadSize:  p.conf.UDPMaxPayloadSize,
 			ReadTimeout:        p.conf.ReadTimeout,
 			WriteTimeout:       p.conf.WriteTimeout,
 			PathManager:        p.pathManager,
@@ -1267,6 +1271,7 @@ func (p *Core) closeResources(newConf *conf.Conf) error {
 		newConf.WriteTimeout != p.conf.WriteTimeout ||
 		newConf.UDPReadBufferSize != p.conf.UDPReadBufferSize ||
 		newConf.UDPWriteBufferSize != p.conf.UDPWriteBufferSize ||
+		newConf.UDPMaxPayloadSize != p.conf.UDPMaxPayloadSize ||
 		newConf.WebRTCLocalUDPAddress != p.conf.WebRTCLocalUDPAddress ||
 		newConf.WebRTCLocalTCPAddress != p.conf.WebRTCLocalTCPAddress ||
 		newConf.WebRTCIPsFromInterfaces != p.conf.WebRTCIPsFromInterfaces ||
@@ -1303,6 +1308,7 @@ func (p *Core) closeResources(newConf *conf.Conf) error {
 		newConf.MoQQUICAddress != p.conf.MoQQUICAddress ||
 		newConf.MoQServerKey != p.conf.MoQServerKey ||
 		newConf.MoQServerCert != p.conf.MoQServerCert ||
+		newConf.UDPMaxPayloadSize != p.conf.UDPMaxPayloadSize ||
 		!slices.Equal(newConf.MoQAllowOrigins, p.conf.MoQAllowOrigins) ||
 		!reflect.DeepEqual(newConf.MoQTrustedProxies, p.conf.MoQTrustedProxies) ||
 		newConf.UDPReadBufferSize != p.conf.UDPReadBufferSize ||

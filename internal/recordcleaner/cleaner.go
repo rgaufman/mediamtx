@@ -6,6 +6,7 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"slices"
 	"sort"
 	"strings"
 	"sync"
@@ -287,13 +288,13 @@ func (p *pass) processFile(fpath string, formats []format) {
 // that have been cleaned.
 func (p *pass) deleteEmptyDirs(dirs []string) {
 	// walk directories in reverse order, in order to remove children before parents.
-	for i := len(dirs) - 1; i >= 0; i-- {
+	for _, dir := range slices.Backward(dirs) {
 		if p.c.ctx.Err() != nil {
 			return
 		}
 
-		if p.isInsideCleanedDir(dirs[i]) {
-			os.Remove(dirs[i])
+		if p.isInsideCleanedDir(dir) {
+			os.Remove(dir)
 		}
 	}
 }
