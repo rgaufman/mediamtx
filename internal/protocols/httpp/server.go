@@ -226,7 +226,11 @@ func (s *Server) Close() {
 	<-s.done
 
 	ctx, ctxCancel := context.WithTimeout(context.Background(), shutdownTimeout)
-	s.inner.Shutdown(ctx) //nolint:errcheck
+	// Shutdown leaves active connections open on timeout. Close them to cancel
+	// request contexts before waiting for tracked handlers.
+	if err := s.inner.Shutdown(ctx); err != nil {
+		s.inner.Close() //nolint:errcheck
+	}
 	ctxCancel()
 
 	s.tracker.close()

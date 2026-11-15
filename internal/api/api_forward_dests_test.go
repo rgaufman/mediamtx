@@ -1,6 +1,7 @@
 package api //nolint:revive
 
 import (
+	"context"
 	"net/http"
 	"testing"
 	"time"
@@ -18,11 +19,11 @@ type testForwardDestsPathManager struct {
 	items map[uuid.UUID]*defs.APIForwardDest
 }
 
-func (*testForwardDestsPathManager) APIPathsList() (*defs.APIPathList, error) {
+func (*testForwardDestsPathManager) APIPathsList(context.Context) (*defs.APIPathList, error) {
 	return &defs.APIPathList{}, nil
 }
 
-func (*testForwardDestsPathManager) APIPathsGet(string) (*defs.APIPath, error) {
+func (*testForwardDestsPathManager) APIPathsGet(context.Context, string) (*defs.APIPath, error) {
 	return &defs.APIPath{}, nil
 }
 
@@ -52,7 +53,7 @@ func (m *testForwardDestsPathManager) APIForwardDestsGet(path string, id uuid.UU
 	return item, nil
 }
 
-func (*testForwardDestsPathManager) APIStaticSourcesGet(string) (*defs.APIStaticSource, error) {
+func (*testForwardDestsPathManager) APIStaticSourcesGet(context.Context, string) (*defs.APIStaticSource, error) {
 	return nil, conf.ErrPathNotFound
 }
 

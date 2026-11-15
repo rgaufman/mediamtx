@@ -1,6 +1,7 @@
 package metrics //nolint:revive
 
 import (
+	"context"
 	"fmt"
 	"io"
 	"net/http"
@@ -21,7 +22,7 @@ import (
 
 type dummyPathManager struct{}
 
-func (dummyPathManager) APIPathsList() (*defs.APIPathList, error) {
+func (dummyPathManager) APIPathsList(context.Context) (*defs.APIPathList, error) {
 	return &defs.APIPathList{
 		ItemCount: 1,
 		PageCount: 1,
@@ -58,7 +59,7 @@ func (dummyPathManager) APIPathsList() (*defs.APIPathList, error) {
 	}, nil
 }
 
-func (dummyPathManager) APIPathsGet(string) (*defs.APIPath, error) {
+func (dummyPathManager) APIPathsGet(context.Context, string) (*defs.APIPath, error) {
 	panic("unused")
 }
 
@@ -70,7 +71,7 @@ func (dummyPathManager) APIForwardDestsGet(string, uuid.UUID) (*defs.APIForwardD
 	panic("unused")
 }
 
-func (dummyPathManager) APIStaticSourcesGet(string) (*defs.APIStaticSource, error) {
+func (dummyPathManager) APIStaticSourcesGet(context.Context, string) (*defs.APIStaticSource, error) {
 	panic("unused")
 }
 
@@ -395,11 +396,11 @@ func (dummyMoQServer) APISessionsKick(uuid.UUID) error {
 
 type emptyPathManager struct{}
 
-func (emptyPathManager) APIPathsList() (*defs.APIPathList, error) {
+func (emptyPathManager) APIPathsList(context.Context) (*defs.APIPathList, error) {
 	return &defs.APIPathList{}, nil
 }
 
-func (emptyPathManager) APIPathsGet(string) (*defs.APIPath, error) {
+func (emptyPathManager) APIPathsGet(context.Context, string) (*defs.APIPath, error) {
 	panic("unused")
 }
 
@@ -411,7 +412,7 @@ func (emptyPathManager) APIForwardDestsGet(string, uuid.UUID) (*defs.APIForwardD
 	panic("unused")
 }
 
-func (emptyPathManager) APIStaticSourcesGet(string) (*defs.APIStaticSource, error) {
+func (emptyPathManager) APIStaticSourcesGet(context.Context, string) (*defs.APIStaticSource, error) {
 	panic("unused")
 }
 

@@ -1,6 +1,7 @@
 package core
 
 import (
+	"context"
 	"net/http"
 	"regexp"
 	"testing"
@@ -78,7 +79,7 @@ func TestPathManagerDynamicPathAutoDeletion(t *testing.T) {
 
 			time.Sleep(100 * time.Millisecond)
 
-			data, err := pm.APIPathsList()
+			data, err := pm.APIPathsList(context.Background())
 			require.NoError(t, err)
 
 			require.Empty(t, data.Items)
@@ -192,7 +193,7 @@ func TestPathManagerConfigHotReload(t *testing.T) {
 	time.Sleep(100 * time.Millisecond)
 
 	// Verify the path exists and is using the "all" configuration
-	pathData, err := p.pathManager.APIPathsGet("undefined_stream")
+	pathData, err := p.pathManager.APIPathsGet(context.Background(), "undefined_stream")
 	require.NoError(t, err)
 	require.Equal(t, "undefined_stream", pathData.Name)
 	require.Equal(t, "all", pathData.ConfName)
@@ -212,7 +213,7 @@ func TestPathManagerConfigHotReload(t *testing.T) {
 	time.Sleep(200 * time.Millisecond)
 
 	// Verify the path now uses the new specific configuration
-	pathData, err = p.pathManager.APIPathsGet("undefined_stream")
+	pathData, err = p.pathManager.APIPathsGet(context.Background(), "undefined_stream")
 	require.NoError(t, err)
 	require.Equal(t, "undefined_stream", pathData.Name)
 	require.Equal(t, "undefined_stream", pathData.ConfName) // Should now use the specific config
@@ -242,7 +243,7 @@ func TestPathManagerConfigHotReload(t *testing.T) {
 	time.Sleep(200 * time.Millisecond)
 
 	// Verify the path now uses the old configuration
-	pathData, err = p.pathManager.APIPathsGet("undefined_stream")
+	pathData, err = p.pathManager.APIPathsGet(context.Background(), "undefined_stream")
 	require.NoError(t, err)
 	require.Equal(t, "undefined_stream", pathData.Name)
 	require.Equal(t, "all", pathData.ConfName)

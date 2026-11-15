@@ -1222,13 +1222,22 @@ func (pa *path) RemoveReader(req defs.PathRemoveReaderReq) {
 }
 
 // APIPathsGet implements defs.APIPathManager.
-func (pa *path) APIPathsGet(req pathAPIPathsGetReq) (*defs.APIPath, error) {
-	req.res = make(chan pathAPIPathsGetRes)
+func (pa *path) APIPathsGet(reqCtx context.Context, req pathAPIPathsGetReq) (*defs.APIPath, error) {
+	req.res = make(chan pathAPIPathsGetRes, 1)
 	select {
 	case pa.chAPIPathsGet <- req:
-		res := <-req.res
+		var res pathAPIPathsGetRes
+		select {
+		case res = <-req.res:
+		case <-reqCtx.Done():
+			return nil, reqCtx.Err()
+		case <-pa.ctx.Done():
+			return nil, fmt.Errorf("terminated")
+		}
 		return res.data, res.err
 
+	case <-reqCtx.Done():
+		return nil, reqCtx.Err()
 	case <-pa.ctx.Done():
 		return nil, fmt.Errorf("terminated")
 	}
@@ -1242,13 +1251,22 @@ func (pa *path) APIForwardDestsGet(destID uuid.UUID) (*defs.APIForwardDest, erro
 	return pa.forwardManager.APIGet(destID)
 }
 
-func (pa *path) APIStaticSourcesGet(req pathAPIStaticSourcesGetReq) (*defs.APIStaticSource, error) {
-	req.res = make(chan pathAPIStaticSourcesGetRes)
+func (pa *path) APIStaticSourcesGet(reqCtx context.Context, req pathAPIStaticSourcesGetReq) (*defs.APIStaticSource, error) {
+	req.res = make(chan pathAPIStaticSourcesGetRes, 1)
 	select {
 	case pa.chAPIStaticSourcesGet <- req:
-		res := <-req.res
+		var res pathAPIStaticSourcesGetRes
+		select {
+		case res = <-req.res:
+		case <-reqCtx.Done():
+			return nil, reqCtx.Err()
+		case <-pa.ctx.Done():
+			return nil, fmt.Errorf("terminated")
+		}
 		return res.data, res.err
 
+	case <-reqCtx.Done():
+		return nil, reqCtx.Err()
 	case <-pa.ctx.Done():
 		return nil, fmt.Errorf("terminated")
 	}

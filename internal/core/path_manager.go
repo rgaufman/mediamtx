@@ -698,21 +698,32 @@ func (pm *pathManager) SetHLSServer(s *hls.Server) []defs.Path {
 }
 
 // APIPathsList implements defs.APIPathManager.
-func (pm *pathManager) APIPathsList() (*defs.APIPathList, error) {
+func (pm *pathManager) APIPathsList(reqCtx context.Context) (*defs.APIPathList, error) {
+	// Buffer replies so actors can finish even if the caller cancels.
 	req := pathAPIPathsListReq{
-		res: make(chan pathAPIPathsListRes),
+		res: make(chan pathAPIPathsListRes, 1),
 	}
 
 	select {
 	case pm.chAPIPathsList <- req:
-		res := <-req.res
+		var res pathAPIPathsListRes
+		select {
+		case res = <-req.res:
+		case <-reqCtx.Done():
+			return nil, reqCtx.Err()
+		case <-pm.ctx.Done():
+			return nil, fmt.Errorf("terminated")
+		}
 
 		res.data = &defs.APIPathList{
 			Items: []defs.APIPath{},
 		}
 
 		for _, pa := range res.paths {
-			item, err := pa.APIPathsGet(pathAPIPathsGetReq{})
+			item, err := pa.APIPathsGet(reqCtx, pathAPIPathsGetReq{})
+			if reqCtx.Err() != nil {
+				return nil, reqCtx.Err()
+			}
 			if err == nil {
 				res.data.Items = append(res.data.Items, *item)
 			}
@@ -724,28 +735,39 @@ func (pm *pathManager) APIPathsList() (*defs.APIPathList, error) {
 
 		return res.data, nil
 
+	case <-reqCtx.Done():
+		return nil, reqCtx.Err()
 	case <-pm.ctx.Done():
 		return nil, fmt.Errorf("terminated")
 	}
 }
 
 // APIPathsGet implements defs.APIPathManager.
-func (pm *pathManager) APIPathsGet(name string) (*defs.APIPath, error) {
+func (pm *pathManager) APIPathsGet(reqCtx context.Context, name string) (*defs.APIPath, error) {
 	req := pathAPIPathsGetReq{
 		name: name,
-		res:  make(chan pathAPIPathsGetRes),
+		res:  make(chan pathAPIPathsGetRes, 1),
 	}
 
 	select {
 	case pm.chAPIPathsGet <- req:
-		res := <-req.res
+		var res pathAPIPathsGetRes
+		select {
+		case res = <-req.res:
+		case <-reqCtx.Done():
+			return nil, reqCtx.Err()
+		case <-pm.ctx.Done():
+			return nil, fmt.Errorf("terminated")
+		}
 		if res.err != nil {
 			return nil, res.err
 		}
 
-		data, err := res.path.APIPathsGet(req)
+		data, err := res.path.APIPathsGet(reqCtx, req)
 		return data, err
 
+	case <-reqCtx.Done():
+		return nil, reqCtx.Err()
 	case <-pm.ctx.Done():
 		return nil, fmt.Errorf("terminated")
 	}
@@ -797,22 +819,31 @@ func (pm *pathManager) APIForwardDestsGet(name string, id uuid.UUID) (*defs.APIF
 }
 
 // APIStaticSourcesGet implements defs.APIPathManager.
-func (pm *pathManager) APIStaticSourcesGet(name string) (*defs.APIStaticSource, error) {
+func (pm *pathManager) APIStaticSourcesGet(reqCtx context.Context, name string) (*defs.APIStaticSource, error) {
 	req := pathAPIStaticSourcesGetReq{
 		name: name,
-		res:  make(chan pathAPIStaticSourcesGetRes),
+		res:  make(chan pathAPIStaticSourcesGetRes, 1),
 	}
 
 	select {
 	case pm.chAPIStaticSourcesGet <- req:
-		res := <-req.res
+		var res pathAPIStaticSourcesGetRes
+		select {
+		case res = <-req.res:
+		case <-reqCtx.Done():
+			return nil, reqCtx.Err()
+		case <-pm.ctx.Done():
+			return nil, fmt.Errorf("terminated")
+		}
 		if res.err != nil {
 			return nil, res.err
 		}
 
-		data, err := res.path.APIStaticSourcesGet(req)
+		data, err := res.path.APIStaticSourcesGet(reqCtx, req)
 		return data, err
 
+	case <-reqCtx.Done():
+		return nil, reqCtx.Err()
 	case <-pm.ctx.Done():
 		return nil, fmt.Errorf("terminated")
 	}

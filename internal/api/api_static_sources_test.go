@@ -1,6 +1,7 @@
 package api //nolint:revive
 
 import (
+	"context"
 	"net/http"
 	"testing"
 	"time"
@@ -18,11 +19,11 @@ type testStaticSourcesPathManager struct {
 	item *defs.APIStaticSource
 }
 
-func (*testStaticSourcesPathManager) APIPathsList() (*defs.APIPathList, error) {
+func (*testStaticSourcesPathManager) APIPathsList(context.Context) (*defs.APIPathList, error) {
 	return &defs.APIPathList{}, nil
 }
 
-func (*testStaticSourcesPathManager) APIPathsGet(string) (*defs.APIPath, error) {
+func (*testStaticSourcesPathManager) APIPathsGet(context.Context, string) (*defs.APIPath, error) {
 	return &defs.APIPath{}, nil
 }
 
@@ -34,7 +35,7 @@ func (*testStaticSourcesPathManager) APIForwardDestsGet(string, uuid.UUID) (*def
 	return nil, conf.ErrPathNotFound
 }
 
-func (m *testStaticSourcesPathManager) APIStaticSourcesGet(path string) (*defs.APIStaticSource, error) {
+func (m *testStaticSourcesPathManager) APIStaticSourcesGet(reqCtx context.Context, path string) (*defs.APIStaticSource, error) {
 	switch path {
 	case "my/nested/stream":
 		return m.item, nil

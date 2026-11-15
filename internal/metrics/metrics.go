@@ -275,7 +275,7 @@ func (m *Metrics) onMetrics(ctx *gin.Context) {
 	var out strings.Builder
 
 	if (typ == "" || typ == metricsTypePaths) && (!anyFilterActive || pathFilter != "") {
-		data, err := pathManager.APIPathsList()
+		data, err := pathManager.APIPathsList(ctx.Request.Context())
 		if err == nil && len(data.Items) != 0 {
 			out.WriteString("# Paths\n")
 			for _, i := range data.Items {
@@ -362,7 +362,7 @@ func (m *Metrics) onMetrics(ctx *gin.Context) {
 
 	if (typ == "" || typ == metricsTypeForwardDests) &&
 		(!anyFilterActive || pathFilter != "" || forwardFilter != "") {
-		data, err := pathManager.APIPathsList()
+		data, err := pathManager.APIPathsList(ctx.Request.Context())
 		if err == nil {
 			type forwardWithPath struct {
 				path string

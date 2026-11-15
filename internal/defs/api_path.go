@@ -1,18 +1,20 @@
 package defs
 
 import (
+	"context"
 	"time"
 
 	"github.com/google/uuid"
 )
 
 // APIPathManager contains methods used by the API and Metrics server.
+// Path list/detail and static-source reads honor cancellation while waiting for actors.
 type APIPathManager interface {
-	APIPathsList() (*APIPathList, error)
-	APIPathsGet(string) (*APIPath, error)
+	APIPathsList(context.Context) (*APIPathList, error)
+	APIPathsGet(context.Context, string) (*APIPath, error)
 	APIForwardDestsList(string) (*APIForwardDestList, error)
 	APIForwardDestsGet(string, uuid.UUID) (*APIForwardDest, error)
-	APIStaticSourcesGet(string) (*APIStaticSource, error)
+	APIStaticSourcesGet(context.Context, string) (*APIStaticSource, error)
 }
 
 // APIPathSourceType is the type of a path source.
