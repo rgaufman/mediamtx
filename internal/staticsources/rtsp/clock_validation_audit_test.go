@@ -26,7 +26,7 @@ func TestClockQueueDelayDoesNotTriggerCorrection(t *testing.T) {
 				media := time.Duration(frame) * time.Second / 30
 				now = start.Add(media + media/1000) // queue grows 600 ms over ten minutes.
 				ts := uint32(frame * 3000)
-				pkt := &rtp.Packet{Header: rtp.Header{Timestamp: ts, SSRC: 1}}
+				pkt := &rtp.Packet{Timestamp: ts, SSRC: 1}
 				c.process(pkt)
 				if reports && frame%150 == 0 {
 					c.senderReport(&rtcp.SenderReport{SSRC: 1, NTPTime: auditNTP(media), RTPTime: ts})
@@ -55,7 +55,7 @@ func TestClockSenderDriftAndQueue(t *testing.T) {
 				now = start.Add(elapsed + elapsed/1000)
 				// Start near wraparound to exercise both signed RTP differences and rollover.
 				ts := uint32(0xffff0000 + int64(frame)*3000*(1000000+ppm)/1000000)
-				pkt := &rtp.Packet{Header: rtp.Header{Timestamp: ts, SSRC: 7}}
+				pkt := &rtp.Packet{Timestamp: ts, SSRC: 7}
 				c.process(pkt)
 				if frame%150 == 0 {
 					c.senderReport(&rtcp.SenderReport{SSRC: 7, NTPTime: auditNTP(elapsed), RTPTime: ts})
@@ -63,7 +63,7 @@ func TestClockSenderDriftAndQueue(t *testing.T) {
 				if frame > 0 {
 					require.Positive(t, int32(pkt.Timestamp-last))
 				}
-				duplicate := &rtp.Packet{Header: rtp.Header{Timestamp: ts, SSRC: 7}}
+				duplicate := &rtp.Packet{Timestamp: ts, SSRC: 7}
 				c.process(duplicate)
 				require.Equal(t, pkt.Timestamp, duplicate.Timestamp)
 				last = pkt.Timestamp
@@ -74,7 +74,7 @@ func TestClockSenderDriftAndQueue(t *testing.T) {
 			require.InDelta(t, -float64(ppm)*600/1e6, c.duration(c.correction).Seconds(), 0.02)
 			frozen := c.correction
 			now = now.Add(31 * time.Second)
-			c.process(&rtp.Packet{Header: rtp.Header{SSRC: 7, Timestamp: c.lastIn + 3000}})
+			c.process(&rtp.Packet{SSRC: 7, Timestamp: c.lastIn + 3000})
 			require.Equal(t, frozen, c.correction, "stale reports must freeze existing correction")
 			// Resume with a new anchor; missing-report time is never extrapolated.
 			c.senderReport(&rtcp.SenderReport{SSRC: 7, NTPTime: auditNTP(700 * time.Second), RTPTime: c.lastIn})
@@ -92,7 +92,7 @@ func TestClockInvalidSenderReports(t *testing.T) {
 	wallClockNow = func() time.Time { return now }
 	defer func() { wallClockNow = time.Now }()
 	c := newWallClock(90000)
-	c.process(&rtp.Packet{Header: rtp.Header{SSRC: 1}})
+	c.process(&rtp.Packet{SSRC: 1})
 	c.senderReport(&rtcp.SenderReport{SSRC: 2, NTPTime: auditNTP(0)})
 	require.False(t, c.reportSet, "foreign SSRC")
 	for i := range 120 {

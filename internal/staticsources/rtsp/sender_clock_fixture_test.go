@@ -72,7 +72,7 @@ func TestCapturedSenderClockIndependentOfQueue(t *testing.T) {
 					if record.Channel != media.Channel || record.Timestamp == nil {
 						continue
 					}
-					packet := &rtp.Packet{Header: rtp.Header{Timestamp: *record.Timestamp}}
+					packet := &rtp.Packet{Timestamp: *record.Timestamp}
 					clock.process(packet)
 					if len(outputs) == 0 {
 						first = packet.Timestamp
@@ -91,7 +91,9 @@ func TestCapturedSenderClockIndependentOfQueue(t *testing.T) {
 					lead := float64(int32(last-first))/float64(media.Rate) - (end - start)
 					require.Less(t, time.Duration(lead*float64(time.Second)).Abs(), 80*time.Millisecond)
 					require.InDelta(t, -0.95, clock.duration(clock.correction).Seconds(), 0.08)
-					t.Logf("queue=%v ppm=%.1f correction=%v corrected_lead=%v", queue, clock.ppmValue, clock.duration(clock.correction), time.Duration(lead*float64(time.Second)))
+					t.Logf("queue=%v ppm=%.1f correction=%v corrected_lead=%v",
+						queue, clock.ppmValue, clock.duration(clock.correction),
+						time.Duration(lead*float64(time.Second)))
 				} else {
 					require.False(t, clock.active)
 				}

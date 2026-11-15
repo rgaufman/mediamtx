@@ -17,6 +17,7 @@ type sampleClockLog struct {
 }
 
 func newTestSampleClock(t *testing.T, forma format.Format) (*sampleClock, *sampleClockLog) {
+	t.Helper()
 	clock := newSampleClock(forma)
 	require.NotNil(t, clock)
 	log := &sampleClockLog{}
@@ -29,8 +30,9 @@ func feed(clock *sampleClock, seqs []uint16, timestamps []uint32, payload int) [
 	out := make([]uint32, len(seqs))
 	for i := range seqs {
 		pkt := &rtp.Packet{
-			Header:  rtp.Header{SequenceNumber: seqs[i], Timestamp: timestamps[i]},
-			Payload: make([]byte, payload),
+			SequenceNumber: seqs[i],
+			Timestamp:      timestamps[i],
+			Payload:        make([]byte, payload),
 		}
 		clock.process(pkt)
 		out[i] = pkt.Timestamp
@@ -64,7 +66,9 @@ func TestSampleClockRetimesTimestampsAdvancingAtHalfRate(t *testing.T) {
 	in := []uint32{1050083840, 1050084096, 1050084352, 1050084608, 1050084864, 1050085120}
 	out := feed(clock, []uint16{1, 2, 3, 4, 5, 6}, in, 512)
 
-	require.Equal(t, []uint32{1050083840, 1050084096, 1050084352, 1050084352 + 512, 1050084352 + 1024, 1050084352 + 1536}, out)
+	require.Equal(t,
+		[]uint32{1050083840, 1050084096, 1050084352, 1050084352 + 512, 1050084352 + 1024, 1050084352 + 1536},
+		out)
 	require.Equal(t, []uint32{512}, log.starts)
 }
 
@@ -166,7 +170,11 @@ func TestSampleClockRepairsCapturedParkingSawtooth(t *testing.T) {
 				if codec == "G711" {
 					payload *= 4
 				}
-				pkt := &rtp.Packet{Header: rtp.Header{SequenceNumber: record.Sequence, Timestamp: record.Timestamp}, Payload: make([]byte, payload)}
+				pkt := &rtp.Packet{
+					SequenceNumber: record.Sequence,
+					Timestamp:      record.Timestamp,
+					Payload:        make([]byte, payload),
+				}
 				clock.process(pkt)
 				if clock.active {
 					require.Equal(t, uint32(320), pkt.Timestamp-previous)

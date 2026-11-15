@@ -60,7 +60,10 @@ func TestSourceG711StaticPayloadTypeHonoursRTPMap(t *testing.T) {
 	}
 	ctx, cancel := context.WithCancel(context.Background())
 	done := make(chan error, 1)
-	defer func() { cancel(); <-done }()
+	defer func() {
+		cancel()
+		t.Log("source stopped:", <-done)
+	}()
 	go func() {
 		done <- source.Run(defs.StaticSourceRunParams{
 			Context: ctx, ResolvedSource: "rtsp://127.0.0.1:8558/camera",

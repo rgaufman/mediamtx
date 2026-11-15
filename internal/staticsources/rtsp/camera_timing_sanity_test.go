@@ -107,8 +107,8 @@ func TestCollectedCameraTimingSanity(t *testing.T) {
 	require.Len(t, fixtures, 11)
 	for _, path := range fixtures {
 		t.Run(filepath.Base(path), func(t *testing.T) {
-			data, err := os.ReadFile(path)
-			require.NoError(t, err)
+			data, readErr := os.ReadFile(path)
+			require.NoError(t, readErr)
 			var fixture struct {
 				Seconds int                  `json:"seconds"`
 				Medias  []timingSanityMedia  `json:"medias"`
@@ -156,7 +156,9 @@ func TestCollectedCameraTimingSanity(t *testing.T) {
 					now = time.Unix(0, int64(record.Arrival*float64(time.Second)))
 					original := *record.Timestamp
 					packet := &rtp.Packet{
-						Header: rtp.Header{SequenceNumber: record.Seq, Timestamp: original}, Payload: make([]byte, record.Payload),
+						SequenceNumber: record.Seq,
+						Timestamp:      original,
+						Payload:        make([]byte, record.Payload),
 					}
 					if sample != nil {
 						// Independently verify each consecutive fixed-width source

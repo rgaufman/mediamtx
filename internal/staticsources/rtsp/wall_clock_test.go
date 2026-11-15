@@ -23,6 +23,7 @@ type wallClockRun struct {
 // (positive) or slow against elapsed time, stamping `step` ticks per frame at `rate` Hz, with
 // arrival jitter of 0-30 ms. Errors are measured after `settle`.
 func simulate(t *testing.T, rate int, step uint32, ppm float64, duration, settle time.Duration) wallClockRun {
+	t.Helper()
 	start := time.Date(2026, 10, 13, 0, 0, 0, 0, time.UTC)
 	now := start
 	wallClockNow = func() time.Time { return now }
@@ -45,7 +46,7 @@ func simulate(t *testing.T, rate int, step uint32, ppm float64, duration, settle
 		jitter := time.Duration((i*7919)%31) * time.Millisecond
 		now = start.Add(elapsed + jitter)
 
-		pkt := &rtp.Packet{Header: rtp.Header{SequenceNumber: uint16(i), Timestamp: in}}
+		pkt := &rtp.Packet{SequenceNumber: uint16(i), Timestamp: in}
 		clock.process(pkt)
 		if elapsed >= reportAt {
 			clock.senderReport(&rtcp.SenderReport{NTPTime: auditNTP(elapsed), RTPTime: in})
@@ -124,7 +125,7 @@ func TestWallClockTreatsAPauseAsAStep(t *testing.T) {
 			at += 30 * time.Second
 		}
 		now = start.Add(at)
-		pkt := &rtp.Packet{Header: rtp.Header{Timestamp: frame * 3000}}
+		pkt := &rtp.Packet{Timestamp: frame * 3000}
 		clock.process(pkt)
 		if frame%150 == 0 {
 			clock.senderReport(&rtcp.SenderReport{NTPTime: auditNTP(at), RTPTime: frame * 3000})
@@ -150,7 +151,7 @@ func TestWallClockKeepsAFramesPacketsTogether(t *testing.T) {
 		var first uint32
 		for part := range 3 {
 			now = start.Add(time.Duration(frame) * 33100 * time.Microsecond)
-			pkt := &rtp.Packet{Header: rtp.Header{Timestamp: frame * 3000}}
+			pkt := &rtp.Packet{Timestamp: frame * 3000}
 			clock.process(pkt)
 			if part == 0 && frame%150 == 0 {
 				clock.senderReport(&rtcp.SenderReport{NTPTime: auditNTP(now.Sub(start)), RTPTime: frame * 3000})

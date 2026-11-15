@@ -105,8 +105,12 @@ func TestSenderClockRTSPCallbacks(t *testing.T) {
 					originalTimestamp.Store(ts)
 					lastInput = ts
 					packet := &rtp.Packet{
-						Header:  rtp.Header{Version: 2, PayloadType: 0, SequenceNumber: uint16(i), Timestamp: ts, SSRC: 1234},
-						Payload: make([]byte, 160),
+						Version:        2,
+						PayloadType:    0,
+						SequenceNumber: uint16(i),
+						Timestamp:      ts,
+						SSRC:           1234,
+						Payload:        make([]byte, 160),
 					}
 					require.NoError(t, handler.stream.WritePacketRTP(media, packet))
 					select {

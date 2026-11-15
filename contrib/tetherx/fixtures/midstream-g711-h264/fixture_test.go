@@ -82,6 +82,7 @@ func (s *countingSink) AdvanceTo(now time.Duration) error {
 	s.previous = now
 	return nil
 }
+
 func (s *countingSink) RTP(e Event, payload []byte) error {
 	if len(payload) != e.PayloadBytes {
 		panic("synthetic size changed")

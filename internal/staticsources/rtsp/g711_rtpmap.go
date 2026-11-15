@@ -53,9 +53,9 @@ func applyG711RTPMap(desc *description.Session, sdpBody []byte) error {
 				continue
 			}
 
-			sampleRate, channelCount, err := parseG711RTPMap(rtpMap)
-			if err != nil {
-				return fmt.Errorf("invalid rtpmap for payload type %d '%s': %w", g711.PayloadTyp, rtpMap, err)
+			sampleRate, channelCount, parseErr := parseG711RTPMap(rtpMap)
+			if parseErr != nil {
+				return fmt.Errorf("invalid rtpmap for payload type %d '%s': %w", g711.PayloadTyp, rtpMap, parseErr)
 			}
 
 			g711.SampleRate = sampleRate

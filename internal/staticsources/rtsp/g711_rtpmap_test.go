@@ -37,6 +37,7 @@ const dahuaPCMU16000SDP = "v=0\r\n" +
 
 // decodeLikeClient decodes an SDP body exactly as gortsplib.Client.Describe does.
 func decodeLikeClient(t *testing.T, body string) *description.Session {
+	t.Helper()
 	sd, err := sdpunmarshaler.Unmarshal([]byte(body))
 	require.NoError(t, err)
 	var desc description.Session
@@ -45,6 +46,7 @@ func decodeLikeClient(t *testing.T, body string) *description.Session {
 }
 
 func g711Of(t *testing.T, desc *description.Session) *format.G711 {
+	t.Helper()
 	var g711 *format.G711
 	require.NotNil(t, desc.FindFormat(&g711))
 	return g711

@@ -27,7 +27,7 @@ func (m *testPathManager) APIPathsList(context.Context) (*defs.APIPathList, erro
 	return &defs.APIPathList{Items: items}, nil
 }
 
-func (m *testPathManager) APIPathsGet(reqCtx context.Context, name string) (*defs.APIPath, error) {
+func (m *testPathManager) APIPathsGet(_ context.Context, name string) (*defs.APIPath, error) {
 	path, ok := m.paths[name]
 	if !ok {
 		return nil, conf.ErrPathNotFound

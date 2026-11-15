@@ -1577,7 +1577,7 @@ func TestFilter(t *testing.T) {
 						`path="mypath",remoteAddr="5.5.5.5:4321",state="publish"} 5`+"\n\n",
 					string(byts))
 
-			case "webrtc_session":
+			case "webrtc_session": //nolint:dupl
 				require.Equal(t,
 					"# WebRTC sessions\n"+
 						"# The remoteAddr label is deprecated.\n"+

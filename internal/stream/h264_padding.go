@@ -15,7 +15,7 @@ func h264StripCAVLCPadding(nalu, pps []byte) []byte {
 		return nalu
 	}
 	end := len(nalu)
-	if nalu[end-1] != 0 && !(nalu[end-1] == 3 && nalu[end-2] == 0 && nalu[end-3] == 0) {
+	if nalu[end-1] != 0 && (nalu[end-1] != 3 || nalu[end-2] != 0 || nalu[end-3] != 0) {
 		return nalu
 	}
 	if !h264SliceUsesCAVLC(nalu, pps) {

@@ -19,7 +19,8 @@ func TestRTSPSourceMediaTypes(t *testing.T) {
 		{"[video, video]", "duplicate 'rtspSourceMediaTypes' entry: video"},
 	} {
 		t.Run(ca.values, func(t *testing.T) {
-			file := createTempFile(t, []byte("paths:\n  camera:\n    source: rtsp://127.0.0.1:8555/camera\n    rtspSourceMediaTypes: "+ca.values+"\n"))
+			file := createTempFile(t, []byte("paths:\n  camera:\n    source: rtsp://127.0.0.1:8555/camera\n"+
+				"    rtspSourceMediaTypes: "+ca.values+"\n"))
 			_, _, err := Load(file, nil, nil)
 			if ca.err == "" {
 				require.NoError(t, err)

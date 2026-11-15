@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/bluenviron/gortsplib/v5/pkg/format"
+
 	"github.com/bluenviron/mediamtx/internal/unit"
 )
 
@@ -47,7 +48,8 @@ func TestH264CameraPadding(t *testing.T) {
 			original := bytes.Clone(input)
 			out := unitRemuxerH264(&format.H264{PPS: decode(test.pps)}, unit.PayloadH264{input}).(unit.PayloadH264)
 			if len(out) != 1 || !bytes.Equal(out[0], decode(test.expected)) {
-				t.Fatalf("unexpected normalized bytes: original=%d output=%d expected=%d", len(input), len(out[0]), len(decode(test.expected)))
+				t.Fatalf("unexpected normalized bytes: original=%d output=%d expected=%d",
+					len(input), len(out[0]), len(decode(test.expected)))
 			}
 			if !bytes.Equal(input, original) {
 				t.Fatal("normalization mutated the publisher's shared bytes")

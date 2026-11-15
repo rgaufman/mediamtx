@@ -1,6 +1,7 @@
 package rtsp
 
 import (
+	"strings"
 	"sync"
 	"time"
 
@@ -161,8 +162,8 @@ func (c *sampleClock) process(pkt *rtp.Packet) {
 		pkt.Timestamp = c.prevOut + c.prevSamples*uint32(step)
 		c.retimed++
 
-		if now := sampleClockNow(); now.Sub(c.lastReport) >= sampleClockReportEvery {
-			c.lastReport = now
+		if reportAt := sampleClockNow(); reportAt.Sub(c.lastReport) >= sampleClockReportEvery {
+			c.lastReport = reportAt
 			c.onReport(c.retimed)
 		}
 	}
@@ -214,13 +215,18 @@ func (s *timestampRepairSource) PacketNTP(media *description.Media, packet *rtp.
 	return time.Time{}, false
 }
 
-func (s *timestampRepairSource) OnPacketRTP(medi *description.Media, forma format.Format, cb gortsplib.OnPacketRTPFunc) {
+func (s *timestampRepairSource) OnPacketRTP(
+	medi *description.Media,
+	forma format.Format,
+	cb gortsplib.OnPacketRTPFunc,
+) {
 	if medi.Type != description.MediaTypeAudio && medi.Type != description.MediaTypeVideo {
 		s.Client.OnPacketRTP(medi, forma, cb)
 		return
 	}
 
-	codec := forma.Codec()
+	// The RTP encoding name (for example PCMU or H264), for log lines only.
+	codec, _, _ := strings.Cut(forma.RTPMap(), "/")
 	rate := forma.ClockRate()
 
 	clock := newSampleClock(forma)
@@ -243,7 +249,7 @@ func (s *timestampRepairSource) OnPacketRTP(medi *description.Media, forma forma
 	if wall != nil {
 		s.walls[medi] = append(s.walls[medi], wall)
 		// Registered before PLAY, after every format is installed by ToStream.
-		s.Client.OnPacketRTCP(medi, func(packet rtcp.Packet) {
+		s.OnPacketRTCP(medi, func(packet rtcp.Packet) {
 			if report, ok := packet.(*rtcp.SenderReport); ok {
 				for _, track := range s.walls[medi] {
 					track.senderReport(report)

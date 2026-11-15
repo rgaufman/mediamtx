@@ -69,12 +69,18 @@ func TestSourceMediaFilterBeforeSetup(t *testing.T) {
 			}
 			ctx, cancel := context.WithCancel(context.Background())
 			done := make(chan error, 1)
-			defer func() { cancel(); <-done }()
+			defer func() {
+				cancel()
+				t.Log("source stopped:", <-done)
+			}()
 			go func() {
 				done <- source.Run(defs.StaticSourceRunParams{
 					Context: ctx, ResolvedSource: "rtsp://127.0.0.1:8557/camera",
-					Conf: &conf.Path{RTSPTransport: conf.RTSPTransport{Protocol: new(gortsplib.ProtocolTCP)},
-						RTSPSourceMediaTypes: new([]string{wanted}), RTSPUDPSourcePortRange: []uint{32768, 60999}},
+					Conf: &conf.Path{
+						RTSPTransport:          conf.RTSPTransport{Protocol: new(gortsplib.ProtocolTCP)},
+						RTSPSourceMediaTypes:   new([]string{wanted}),
+						RTSPUDPSourcePortRange: []uint{32768, 60999},
+					},
 				})
 			}()
 			select {

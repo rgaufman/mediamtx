@@ -1251,7 +1251,10 @@ func (pa *path) APIForwardDestsGet(destID uuid.UUID) (*defs.APIForwardDest, erro
 	return pa.forwardManager.APIGet(destID)
 }
 
-func (pa *path) APIStaticSourcesGet(reqCtx context.Context, req pathAPIStaticSourcesGetReq) (*defs.APIStaticSource, error) {
+func (pa *path) APIStaticSourcesGet(
+	reqCtx context.Context,
+	req pathAPIStaticSourcesGetReq,
+) (*defs.APIStaticSource, error) {
 	req.res = make(chan pathAPIStaticSourcesGetRes, 1)
 	select {
 	case pa.chAPIStaticSourcesGet <- req:
