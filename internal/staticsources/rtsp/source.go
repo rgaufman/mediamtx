@@ -120,19 +120,20 @@ func (s *Source) Info() defs.StaticSourceInfo {
 
 	return defs.StaticSourceInfo{
 		TypeSpecific: &defs.APIStaticSourceTypeSpecificRTSP{
-			RemoteAddr:                remoteAddr,
-			Transport:                 transport,
-			InboundBytes:              stats.InboundBytes,
-			InboundRTPPackets:         stats.InboundRTPPackets,
-			InboundRTPPacketsLost:     stats.InboundRTPPacketsLost,
-			InboundRTPPacketsInError:  stats.InboundRTPPacketsInError,
-			InboundRTPPacketsJitter:   stats.InboundRTPPacketsJitter,
-			InboundRTPPacketsJitterUs: stats.InboundRTPPacketsJitterUs,
-			InboundRTCPPackets:        stats.InboundRTCPPackets,
-			InboundRTCPPacketsInError: stats.InboundRTCPPacketsInError,
-			OutboundBytes:             stats.OutboundBytes,
-			OutboundRTPPackets:        stats.OutboundRTPPackets,
-			OutboundRTCPPackets:       stats.OutboundRTCPPackets,
+			RemoteAddr:                          remoteAddr,
+			Transport:                           transport,
+			InboundBytes:                        stats.InboundBytes,
+			InboundRTPPackets:                   stats.InboundRTPPackets,
+			InboundRTPPacketsLost:               stats.InboundRTPPacketsLost,
+			InboundRTPPacketsInError:            stats.InboundRTPPacketsInError,
+			InboundRTPPacketsUnknownPayloadType: stats.InboundRTPPacketsUnknownPayloadType,
+			InboundRTPPacketsJitter:             stats.InboundRTPPacketsJitter,
+			InboundRTPPacketsJitterUs:           stats.InboundRTPPacketsJitterUs,
+			InboundRTCPPackets:                  stats.InboundRTCPPackets,
+			InboundRTCPPacketsInError:           stats.InboundRTCPPacketsInError,
+			OutboundBytes:                       stats.OutboundBytes,
+			OutboundRTPPackets:                  stats.OutboundRTPPackets,
+			OutboundRTCPPackets:                 stats.OutboundRTCPPackets,
 		},
 	}
 }
