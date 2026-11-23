@@ -10,7 +10,14 @@ import (
 
 	"github.com/kballard/go-shellquote"
 	"github.com/stretchr/testify/require"
+
+	"github.com/bluenviron/mediamtx/internal/logger"
 )
+
+// nilLogger mirrors test.NilLogger, which this package cannot import (import cycle).
+type nilLogger struct{}
+
+func (nilLogger) Log(logger.Level, string, ...any) {}
 
 func TestExpandCommandPartsShell(t *testing.T) {
 	script := "# keep $comment intact\naudio_packets=$(printf 7)\naudio_args='-c:a aac'\n" +
@@ -42,7 +49,7 @@ func TestCmdShellOwnsExpansion(t *testing.T) {
 		"audio_packets=$(printf 7)\naudio_args='-c:a aac'\n" +
 		"url='rtsp://user:literal$secret@127.0.0.1/stream'\n" +
 		"printf '%s|%s|%s|%s' \"$audio_packets\" \"$audio_args\" \"$MTX_PATH\" \"$url\" > \"$1\""
-	command := &Cmd{Pool: pool, Cmdstr: shellquote.Join("/bin/sh", "-c", script, "hook", out),
+	command := &Cmd{Pool: pool, Parent: nilLogger{}, Cmdstr: shellquote.Join("/bin/sh", "-c", script, "hook", out),
 		Env: Environment{"MTX_PATH": "camera's path"}}
 	command.Start()
 	done := make(chan struct{})
