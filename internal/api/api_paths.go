@@ -13,7 +13,10 @@ import (
 )
 
 func (a *API) onPathsList(ctx *gin.Context) {
-	data, err := a.PathManager.APIPathsList(a.ctx)
+	reqCtx, cancel := a.requestContext(ctx)
+	defer cancel()
+
+	data, err := a.PathManager.APIPathsList(reqCtx)
 	if err != nil {
 		a.writeError(ctx, http.StatusInternalServerError, err)
 		return
@@ -39,7 +42,10 @@ func (a *API) onPathsGet(ctx *gin.Context) {
 		return
 	}
 
-	data, err := a.PathManager.APIPathsGet(a.ctx, pathName)
+	reqCtx, cancel := a.requestContext(ctx)
+	defer cancel()
+
+	data, err := a.PathManager.APIPathsGet(reqCtx, pathName)
 	if err != nil {
 		if errors.Is(err, conf.ErrPathNotFound) {
 			a.writeError(ctx, http.StatusNotFound, err)

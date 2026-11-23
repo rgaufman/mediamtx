@@ -302,6 +302,19 @@ func (a *API) Close() {
 	a.Log(logger.Debug, "closed")
 }
 
+// requestContext returns a context for a path manager read made on behalf of
+// an HTTP request. It is cancelled when the client disconnects (the request's
+// context) or when the API closes (a.ctx), whichever comes first. The caller
+// must call the returned cancel function when the read is done.
+func (a *API) requestContext(ctx *gin.Context) (context.Context, context.CancelFunc) {
+	reqCtx, cancel := context.WithCancel(ctx.Request.Context())
+	stop := context.AfterFunc(a.ctx, cancel)
+	return reqCtx, func() {
+		stop()
+		cancel()
+	}
+}
+
 func (a *API) onListenError(ctx context.Context, err error) {
 	a.Log(logger.Error, "%s", err)
 	a.Parent.OnFatalError(ctx, err)
