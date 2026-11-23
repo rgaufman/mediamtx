@@ -66,6 +66,24 @@ func (c *Cmd) logExit(err error) {
 	c.Parent.Log(logger.Info, "%s command exited with error: %v", c.Label, err)
 }
 
+// Explicit shell scripts own their expansion. Expanding the script here would
+// erase shell-local variables and corrupt command substitutions or literal URLs.
+// Hook variables remain available through Cmd.Env in the shell environment.
+func expandCommandParts(parts []string, env Environment) {
+	scriptIndex := -1
+	if len(parts) >= 3 && parts[1] == "-c" {
+		switch parts[0] {
+		case "sh", "/bin/sh", "bash", "/bin/bash", "dash", "/bin/dash":
+			scriptIndex = 2
+		}
+	}
+	for i, part := range parts {
+		if i != scriptIndex {
+			parts[i] = expandEnv(part, env)
+		}
+	}
+}
+
 func (c *Cmd) run() {
 	defer c.Pool.wg.Done()
 

@@ -24,27 +24,34 @@ const (
 
 // APIWebRTCSession is a WebRTC session.
 type APIWebRTCSession struct {
-	ID                        uuid.UUID             `json:"id"`
-	Created                   time.Time             `json:"created"`
-	RemoteAddr                string                `json:"remoteAddr"`
-	PeerConnectionEstablished bool                  `json:"peerConnectionEstablished"`
-	LocalCandidate            string                `json:"localCandidate"`
-	RemoteCandidate           string                `json:"remoteCandidate"`
-	State                     APIWebRTCSessionState `json:"state"`
-	Path                      string                `json:"path"`
-	Query                     string                `json:"query"`
-	User                      string                `json:"user"`
-	ExpiresAt                 *time.Time            `json:"expiresAt"`
-	UserAgent                 string                `json:"userAgent"`
-	InboundBytes              uint64                `json:"inboundBytes"`
-	InboundRTPPackets         uint64                `json:"inboundRTPPackets"`
-	InboundRTPPacketsLost     uint64                `json:"inboundRTPPacketsLost"`
-	InboundRTPPacketsJitter   float64               `json:"inboundRTPPacketsJitter"`
-	InboundRTCPPackets        uint64                `json:"inboundRTCPPackets"`
-	OutboundBytes             uint64                `json:"outboundBytes"`
-	OutboundRTPPackets        uint64                `json:"outboundRTPPackets"`
-	OutboundRTCPPackets       uint64                `json:"outboundRTCPPackets"`
-	OutboundFramesDiscarded   uint64                `json:"outboundFramesDiscarded"`
+	ID                             uuid.UUID             `json:"id"`
+	Created                        time.Time             `json:"created"`
+	RemoteAddr                     string                `json:"remoteAddr"`
+	PeerConnectionEstablished      bool                  `json:"peerConnectionEstablished"`
+	LocalCandidate                 string                `json:"localCandidate"`
+	RemoteCandidate                string                `json:"remoteCandidate"`
+	State                          APIWebRTCSessionState `json:"state"`
+	Path                           string                `json:"path"`
+	Query                          string                `json:"query"`
+	User                           string                `json:"user"`
+	ExpiresAt                      *time.Time            `json:"expiresAt"`
+	UserAgent                      string                `json:"userAgent"`
+	InboundBytes                   uint64                `json:"inboundBytes"`
+	InboundRTPPackets              uint64                `json:"inboundRTPPackets"`
+	InboundRTPPacketsLost          uint64                `json:"inboundRTPPacketsLost"`
+	InboundRTPPacketsJitter        float64               `json:"inboundRTPPacketsJitter"`
+	InboundRTCPPackets             uint64                `json:"inboundRTCPPackets"`
+	InboundRTCPNACKPackets         uint64                `json:"inboundRTCPNACKPackets"`
+	InboundRTCPPLIPackets          uint64                `json:"inboundRTCPPLIPackets"`
+	OutboundBytes                  uint64                `json:"outboundBytes"`
+	OutboundRTPPackets             uint64                `json:"outboundRTPPackets"`
+	OutboundRTPPacketsReportedLost uint64                `json:"outboundRTPPacketsReportedLost"`
+	// Mean raw RTP clock ticks; use the microsecond field for mixed clocks.
+	OutboundRTPPacketsReportedJitter float64 `json:"outboundRTPPacketsReportedJitter"`
+	// Mean jitter after per-track clock conversion; null without reports or with an unknown clock.
+	OutboundRTPPacketsReportedJitterUs *float64 `json:"outboundRTPPacketsReportedJitterUs"`
+	OutboundRTCPPackets                uint64   `json:"outboundRTCPPackets"`
+	OutboundFramesDiscarded            uint64   `json:"outboundFramesDiscarded"`
 
 	// deprecated
 	BytesReceived       uint64  `json:"bytesReceived" deprecated:"true"`

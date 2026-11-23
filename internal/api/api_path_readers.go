@@ -18,7 +18,7 @@ func (a *API) onPathReadersList(ctx *gin.Context) {
 		return
 	}
 
-	data, err := a.PathManager.APIReadersList(pathName)
+	data, err := a.PathManager.APIReadersList(a.ctx, pathName)
 	if err != nil {
 		if errors.Is(err, conf.ErrPathNotFound) {
 			a.writeError(ctx, http.StatusNotFound, err)
@@ -52,7 +52,7 @@ func (a *API) onPathReadersGet(ctx *gin.Context) {
 		return
 	}
 
-	data, err := a.PathManager.APIReadersGet(pathName, id)
+	data, err := a.PathManager.APIReadersGet(a.ctx, pathName, id)
 	if err != nil {
 		if errors.Is(err, conf.ErrPathNotFound) || errors.Is(err, defs.ErrPathReaderNotFound) {
 			a.writeError(ctx, http.StatusNotFound, err)

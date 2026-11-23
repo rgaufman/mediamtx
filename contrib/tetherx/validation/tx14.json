@@ -1,0 +1,102 @@
+{
+  "scope": "PROVEN frozen build identity and captured-input retention; OBSERVED bounded real-camera acceptance; not universal zero audio holes",
+  "release": "1.21.3-tetherx.14",
+  "build_identity": {
+    "version": "1.21.3-tetherx.14",
+    "architecture": "amd64",
+    "source_repository": "rgaufman/mediamtx",
+    "source_ref": "0a10f2fc85cead17b86c36c770fe67987f9bdfde",
+    "source_sha256": "42b397a01890e1f1caeed0a1c9ec64ca4ac9448fecd3788f165d1855031c57c1",
+    "go_version": "1.27.2",
+    "hls_patch_sha256": "5142a7f0178d5c4aebbb4bd33fd410fb478190e8d6ad68a827730df1e76a23fb",
+    "gortsplib_patch_sha256": "9e665cd1c32fe192b80bf92364450f14d29d987b2fee48d4568cea933bb0c654"
+  },
+  "binary_sha256": "2640a4fcdc1e98111d55d3670997f9c1eed58d9a8087c9a9402ab2f6325903f2",
+  "source_production_commit": "0a10f2fc85cead17b86c36c770fe67987f9bdfde",
+  "gortsplib_commit": "20edd3ee7f2368633eba741152b6dffb73a33fc1",
+  "build_flags": [
+    "CGO_ENABLED=0",
+    "GOTOOLCHAIN=local",
+    "GOMAXPROCS=2",
+    "GOMEMLIMIT=512MiB"
+  ],
+  "real_camera_scope": {
+    "host_role": "authorized amd64 stress unit",
+    "configured_recording_cameras": 59,
+    "continuously_preserved_cameras": 8,
+    "audio_cameras": 7,
+    "camera_codecs": [
+      "H265",
+      "PCMA"
+    ],
+    "video_only_scope": "one selected camera advertises only H265; wider prefix control includes H264",
+    "sample_count": 4,
+    "sample_start_span_seconds": 2700,
+    "restart_aedt": "2026-11-07T15:40:54+11:00",
+    "final_status_aedt": "2026-11-07T16:38:10+11:00",
+    "automatic_restarts": 0,
+    "late_warnings": 0,
+    "recorder_drift_resets": 0,
+    "closed_clips": 432,
+    "keyframe_first_clips": 432,
+    "recorded_video_packets": 389760,
+    "recorded_audio_packets": 561719,
+    "empty_audio_tracks": 1,
+    "full_video_decode_reports": 64,
+    "full_video_decoded_frames": 57780,
+    "audio_track_decode_reports": 56,
+    "decoded_audio_frames": 82125,
+    "decoded_audio_samples": 25951500,
+    "audio_decode_errors": 0,
+    "prefix_video_control_cameras": 59,
+    "prefix_video_control_frames_per_camera": 20
+  },
+  "captured_input_proof": {
+    "input_start_aedt": "2026-11-07T15:42:54+11:00",
+    "input_end_exclusive_aedt": "2026-11-07T16:29:54+11:00",
+    "window_seconds": 2820,
+    "complete_primary_input_packets": 487007,
+    "exact_ordered_retained_packets": 487007,
+    "missing_captured_packets": 0,
+    "startup_packets_before_window": 20652,
+    "missing_startup_packets": 0,
+    "first_last_input_retained_all_audio_paths": true,
+    "audio_bearing_window_overlapping_chunks": 335,
+    "both_chunk_endpoints_retained": 335,
+    "source_sequence_discontinuities_in_fixed_window": 0,
+    "source_payload_gaps_overlapping_window": 9,
+    "source_pauses_crossing_segment_boundaries": 5,
+    "all_observed_gap_endpoints_retained": true,
+    "max_source_payload_gap_seconds": 81.3205,
+    "source_gap_recorded_gap_rotation_error_max_ns": 104491,
+    "flow_binding": "passive DESCRIBE/SETUP camera/UDP ports plus complete G711-to-PCM payload identities",
+    "independent_packet_parsers_agree": true,
+    "capture_parts": 12,
+    "all_capture_frames": 3106283,
+    "all_capture_complete_g711_packets": 1175330,
+    "kernel_capture_drops": 0
+  },
+  "additional_controls": {
+    "whep_read_seconds": 20,
+    "whep_video_packets": 394,
+    "whep_pcma_packets": 506,
+    "whep_peer_reported_lost": 0,
+    "normalized_jitter_us_observed": 44202.77777777778,
+    "direct_source_ffmpeg_wall_seconds": 90.09658428886905,
+    "direct_source_decoded_audio_frames": 2250,
+    "direct_source_decoded_audio_samples": 711000,
+    "direct_source_decoder_errors": 0
+  },
+  "verdict": {
+    "recorder_captured_packet_retention": "PASS within stated observed input/window",
+    "keyframe_first": "PASS",
+    "global_zero_audio_holes": "NOT ACHIEVED: source sample deficits and nine source pauses, including one empty recorded audio segment",
+    "limits": [
+      "Physical camera/NVR pause cause, emission history and absolute A/V synchronization are unproven.",
+      "Source pauses after the fixed window and after closed-output collection are not given a recording-retention verdict.",
+      "One real amd64 unit; not ARM tx.14 camera acceptance or fleet rollout.",
+      "The actual provisioned build includes the two vendor patches in build_identity.",
+      "Documentation publication does not change the production source/binary tuple."
+    ]
+  }
+}

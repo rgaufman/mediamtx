@@ -1,0 +1,186 @@
+{
+  "files": [
+    {
+      "file_id": "f000",
+      "relative_wall_start_ns": -827909470000,
+      "relative_wall_end_ns": -766837957000,
+      "declared_media_duration_ns": 75523099999,
+      "audio_packets": 488,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f001",
+      "relative_wall_start_ns": -766909470000,
+      "relative_wall_end_ns": -706802058000,
+      "declared_media_duration_ns": 74563299999,
+      "audio_packets": 459,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f002",
+      "relative_wall_start_ns": -706854867000,
+      "relative_wall_end_ns": -645798128000,
+      "declared_media_duration_ns": 60999833332,
+      "audio_packets": 350,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f003",
+      "relative_wall_start_ns": -645855034000,
+      "relative_wall_end_ns": -584801199000,
+      "declared_media_duration_ns": 60999422221,
+      "audio_packets": 350,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f004",
+      "relative_wall_start_ns": -584855612000,
+      "relative_wall_end_ns": -523799270000,
+      "declared_media_duration_ns": 61000822222,
+      "audio_packets": 350,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f005",
+      "relative_wall_start_ns": -523854789000,
+      "relative_wall_end_ns": -463799372000,
+      "declared_media_duration_ns": 60001288889,
+      "audio_packets": 342,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f006",
+      "relative_wall_start_ns": -463853500000,
+      "relative_wall_end_ns": -402807444000,
+      "declared_media_duration_ns": 60994355555,
+      "audio_packets": 350,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f007",
+      "relative_wall_start_ns": -402859145000,
+      "relative_wall_end_ns": -342806546000,
+      "declared_media_duration_ns": 60001922222,
+      "audio_packets": 342,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f008",
+      "relative_wall_start_ns": -342857223000,
+      "relative_wall_end_ns": -281807622000,
+      "declared_media_duration_ns": 61000011110,
+      "audio_packets": 350,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f009",
+      "relative_wall_start_ns": -281857212000,
+      "relative_wall_end_ns": -221793718000,
+      "declared_media_duration_ns": 60001966666,
+      "audio_packets": 342,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f010",
+      "relative_wall_start_ns": -221855245000,
+      "relative_wall_end_ns": -160803781000,
+      "declared_media_duration_ns": 60995422221,
+      "audio_packets": 350,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f011",
+      "relative_wall_start_ns": -160859823000,
+      "relative_wall_end_ns": -100799876000,
+      "declared_media_duration_ns": 60000844444,
+      "audio_packets": 342,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f012",
+      "relative_wall_start_ns": -100858978000,
+      "relative_wall_end_ns": -40800971000,
+      "declared_media_duration_ns": 60002833334,
+      "audio_packets": 342,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f013",
+      "relative_wall_start_ns": -40856145000,
+      "relative_wall_end_ns": 20203965000,
+      "declared_media_duration_ns": 61000122222,
+      "audio_packets": 350,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f014",
+      "relative_wall_start_ns": 20143977000,
+      "relative_wall_end_ns": 81195901000,
+      "declared_media_duration_ns": 60995944444,
+      "audio_packets": 350,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f015",
+      "relative_wall_start_ns": 81139922000,
+      "relative_wall_end_ns": 141202805000,
+      "declared_media_duration_ns": 60000077778,
+      "audio_packets": 342,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f016",
+      "relative_wall_start_ns": 141140000000,
+      "relative_wall_end_ns": 201210710000,
+      "declared_media_duration_ns": 60001944444,
+      "audio_packets": 342,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    },
+    {
+      "file_id": "f017",
+      "relative_wall_start_ns": 201141944000,
+      "relative_wall_end_ns": 262205645000,
+      "declared_media_duration_ns": 60999899999,
+      "audio_packets": 350,
+      "audio_codec": "pcm_s16be",
+      "sample_rate": 8000,
+      "channels": 1
+    }
+  ],
+  "global_mtxi_dts_included": false,
+  "global_mtxi_dts_status": "not_validated_by_fixture_builder"
+}

@@ -1,0 +1,1418 @@
+[
+  {
+    "path_id": "c01_sub",
+    "case_id": "c01",
+    "role": "sub",
+    "uri_hash_to_cached_config_mapping_verified": true,
+    "tcp_syn_arrival_ns": 15350439000,
+    "requested_media_types": [
+      "video",
+      "audio"
+    ],
+    "advertised_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        }
+      },
+      {
+        "media": "audio",
+        "rtpmap": {
+          "8": [
+            "PCMA",
+            8000
+          ]
+        }
+      }
+    ],
+    "control_events": [
+      {
+        "method": "OPTIONS",
+        "cseq": 1,
+        "request_arrival_ns": 15357475000,
+        "response_status": 200,
+        "response_arrival_ns": 15358868000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 2,
+        "request_arrival_ns": 15358905000,
+        "response_status": 401,
+        "response_arrival_ns": 15364477000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 3,
+        "request_arrival_ns": 15367547000,
+        "response_status": 200,
+        "response_arrival_ns": 16185827000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 4,
+        "request_arrival_ns": 16185947000,
+        "response_status": 200,
+        "response_arrival_ns": 16190100000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 5,
+        "request_arrival_ns": 16190213000,
+        "response_status": 200,
+        "response_arrival_ns": 16215619000
+      },
+      {
+        "method": "PLAY",
+        "cseq": 6,
+        "request_arrival_ns": 16215872000,
+        "response_status": 200,
+        "response_arrival_ns": 16225048000
+      }
+    ],
+    "negotiated_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 4,
+        "setup_response_arrival_ns": 16190100000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      },
+      {
+        "media": "audio",
+        "rtpmap": {
+          "8": [
+            "PCMA",
+            8000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 5,
+        "setup_response_arrival_ns": 16215619000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      }
+    ]
+  },
+  {
+    "path_id": "c03_sub",
+    "case_id": "c03",
+    "role": "sub",
+    "uri_hash_to_cached_config_mapping_verified": true,
+    "tcp_syn_arrival_ns": 15350646000,
+    "requested_media_types": [
+      "video",
+      "audio"
+    ],
+    "advertised_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        }
+      }
+    ],
+    "control_events": [
+      {
+        "method": "OPTIONS",
+        "cseq": 1,
+        "request_arrival_ns": 15358518000,
+        "response_status": 200,
+        "response_arrival_ns": 15361245000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 2,
+        "request_arrival_ns": 15367345000,
+        "response_status": 401,
+        "response_arrival_ns": 15371305000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 3,
+        "request_arrival_ns": 15371335000,
+        "response_status": 200,
+        "response_arrival_ns": 18266895000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 4,
+        "request_arrival_ns": 18268925000,
+        "response_status": 200,
+        "response_arrival_ns": 18277812000
+      },
+      {
+        "method": "PLAY",
+        "cseq": 5,
+        "request_arrival_ns": 18279019000,
+        "response_status": 200,
+        "response_arrival_ns": 18287003000
+      }
+    ],
+    "negotiated_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 4,
+        "setup_response_arrival_ns": 18277812000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      }
+    ]
+  },
+  {
+    "path_id": "c06_sub",
+    "case_id": "c06",
+    "role": "sub",
+    "uri_hash_to_cached_config_mapping_verified": true,
+    "tcp_syn_arrival_ns": 15350841000,
+    "requested_media_types": [
+      "video",
+      "audio"
+    ],
+    "advertised_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        }
+      },
+      {
+        "media": "audio",
+        "rtpmap": {
+          "8": [
+            "PCMA",
+            8000
+          ]
+        }
+      }
+    ],
+    "control_events": [
+      {
+        "method": "OPTIONS",
+        "cseq": 1,
+        "request_arrival_ns": 15351275000,
+        "response_status": 200,
+        "response_arrival_ns": 15353080000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 2,
+        "request_arrival_ns": 15358457000,
+        "response_status": 401,
+        "response_arrival_ns": 15361562000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 3,
+        "request_arrival_ns": 15367208000,
+        "response_status": 200,
+        "response_arrival_ns": 17361202000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 4,
+        "request_arrival_ns": 17368847000,
+        "response_status": 200,
+        "response_arrival_ns": 17713535000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 5,
+        "request_arrival_ns": 17794706000,
+        "response_status": 200,
+        "response_arrival_ns": 17796260000
+      },
+      {
+        "method": "PLAY",
+        "cseq": 6,
+        "request_arrival_ns": 17818873000,
+        "response_status": 200,
+        "response_arrival_ns": 17828551000
+      }
+    ],
+    "negotiated_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 4,
+        "setup_response_arrival_ns": 17713535000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      },
+      {
+        "media": "audio",
+        "rtpmap": {
+          "8": [
+            "PCMA",
+            8000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 5,
+        "setup_response_arrival_ns": 17796260000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      }
+    ]
+  },
+  {
+    "path_id": "c07_main",
+    "case_id": "c07",
+    "role": "main",
+    "uri_hash_to_cached_config_mapping_verified": true,
+    "tcp_syn_arrival_ns": 15356670000,
+    "requested_media_types": [
+      "video",
+      "audio"
+    ],
+    "advertised_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        }
+      },
+      {
+        "media": "audio",
+        "rtpmap": {
+          "8": [
+            "PCMA",
+            8000
+          ]
+        }
+      }
+    ],
+    "control_events": [
+      {
+        "method": "OPTIONS",
+        "cseq": 1,
+        "request_arrival_ns": 15357328000,
+        "response_status": 200,
+        "response_arrival_ns": 15363185000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 2,
+        "request_arrival_ns": 15367809000,
+        "response_status": 401,
+        "response_arrival_ns": 15401006000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 3,
+        "request_arrival_ns": 15401043000,
+        "response_status": 200,
+        "response_arrival_ns": 17365580000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 4,
+        "request_arrival_ns": 17368756000,
+        "response_status": 200,
+        "response_arrival_ns": 17714412000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 5,
+        "request_arrival_ns": 17794916000,
+        "response_status": 200,
+        "response_arrival_ns": 17797018000
+      },
+      {
+        "method": "PLAY",
+        "cseq": 6,
+        "request_arrival_ns": 17801245000,
+        "response_status": 200,
+        "response_arrival_ns": 17803503000
+      }
+    ],
+    "negotiated_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 4,
+        "setup_response_arrival_ns": 17714412000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      },
+      {
+        "media": "audio",
+        "rtpmap": {
+          "8": [
+            "PCMA",
+            8000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 5,
+        "setup_response_arrival_ns": 17797018000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      }
+    ]
+  },
+  {
+    "path_id": "c02_sub",
+    "case_id": "c02",
+    "role": "sub",
+    "uri_hash_to_cached_config_mapping_verified": true,
+    "tcp_syn_arrival_ns": 15357364000,
+    "requested_media_types": [
+      "video",
+      "audio"
+    ],
+    "advertised_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        }
+      }
+    ],
+    "control_events": [
+      {
+        "method": "OPTIONS",
+        "cseq": 1,
+        "request_arrival_ns": 15358220000,
+        "response_status": 200,
+        "response_arrival_ns": 15364100000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 2,
+        "request_arrival_ns": 15367631000,
+        "response_status": 401,
+        "response_arrival_ns": 15402511000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 3,
+        "request_arrival_ns": 15402538000,
+        "response_status": 200,
+        "response_arrival_ns": 18396529000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 4,
+        "request_arrival_ns": 18399474000,
+        "response_status": 200,
+        "response_arrival_ns": 18416889000
+      },
+      {
+        "method": "PLAY",
+        "cseq": 5,
+        "request_arrival_ns": 18417169000,
+        "response_status": 200,
+        "response_arrival_ns": 18427111000
+      }
+    ],
+    "negotiated_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 4,
+        "setup_response_arrival_ns": 18416889000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      }
+    ]
+  },
+  {
+    "path_id": "c04_main",
+    "case_id": "c04",
+    "role": "main",
+    "uri_hash_to_cached_config_mapping_verified": true,
+    "tcp_syn_arrival_ns": 15357426000,
+    "requested_media_types": [
+      "video",
+      "audio"
+    ],
+    "advertised_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        }
+      }
+    ],
+    "control_events": [
+      {
+        "method": "OPTIONS",
+        "cseq": 1,
+        "request_arrival_ns": 15358221000,
+        "response_status": 200,
+        "response_arrival_ns": 15364372000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 2,
+        "request_arrival_ns": 15367566000,
+        "response_status": 401,
+        "response_arrival_ns": 15402988000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 3,
+        "request_arrival_ns": 15403018000,
+        "response_status": 200,
+        "response_arrival_ns": 18397594000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 4,
+        "request_arrival_ns": 18399352000,
+        "response_status": 200,
+        "response_arrival_ns": 18418042000
+      },
+      {
+        "method": "PLAY",
+        "cseq": 5,
+        "request_arrival_ns": 18418488000,
+        "response_status": 200,
+        "response_arrival_ns": 18427378000
+      }
+    ],
+    "negotiated_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 4,
+        "setup_response_arrival_ns": 18418042000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      }
+    ]
+  },
+  {
+    "path_id": "c07_sub",
+    "case_id": "c07",
+    "role": "sub",
+    "uri_hash_to_cached_config_mapping_verified": true,
+    "tcp_syn_arrival_ns": 15357525000,
+    "requested_media_types": [
+      "video",
+      "audio"
+    ],
+    "advertised_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        }
+      },
+      {
+        "media": "audio",
+        "rtpmap": {
+          "8": [
+            "PCMA",
+            8000
+          ]
+        }
+      }
+    ],
+    "control_events": [
+      {
+        "method": "OPTIONS",
+        "cseq": 1,
+        "request_arrival_ns": 15358243000,
+        "response_status": 200,
+        "response_arrival_ns": 15364688000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 2,
+        "request_arrival_ns": 15367478000,
+        "response_status": 401,
+        "response_arrival_ns": 15403438000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 3,
+        "request_arrival_ns": 15403465000,
+        "response_status": 200,
+        "response_arrival_ns": 17703347000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 4,
+        "request_arrival_ns": 17795822000,
+        "response_status": 200,
+        "response_arrival_ns": 17798006000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 5,
+        "request_arrival_ns": 17799650000,
+        "response_status": 200,
+        "response_arrival_ns": 17801395000
+      },
+      {
+        "method": "PLAY",
+        "cseq": 6,
+        "request_arrival_ns": 17818057000,
+        "response_status": 200,
+        "response_arrival_ns": 17828803000
+      }
+    ],
+    "negotiated_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 4,
+        "setup_response_arrival_ns": 17798006000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      },
+      {
+        "media": "audio",
+        "rtpmap": {
+          "8": [
+            "PCMA",
+            8000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 5,
+        "setup_response_arrival_ns": 17801395000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      }
+    ]
+  },
+  {
+    "path_id": "c00_sub",
+    "case_id": "c00",
+    "role": "sub",
+    "uri_hash_to_cached_config_mapping_verified": true,
+    "tcp_syn_arrival_ns": 15357745000,
+    "requested_media_types": [
+      "video",
+      "audio"
+    ],
+    "advertised_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        }
+      },
+      {
+        "media": "audio",
+        "rtpmap": {
+          "8": [
+            "PCMA",
+            8000
+          ]
+        }
+      }
+    ],
+    "control_events": [
+      {
+        "method": "OPTIONS",
+        "cseq": 1,
+        "request_arrival_ns": 15358730000,
+        "response_status": 200,
+        "response_arrival_ns": 15377562000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 2,
+        "request_arrival_ns": 15379271000,
+        "response_status": 401,
+        "response_arrival_ns": 16183537000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 3,
+        "request_arrival_ns": 16183601000,
+        "response_status": 200,
+        "response_arrival_ns": 17521977000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 4,
+        "request_arrival_ns": 17525930000,
+        "response_status": 200,
+        "response_arrival_ns": 17527674000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 5,
+        "request_arrival_ns": 17535468000,
+        "response_status": 200,
+        "response_arrival_ns": 17537188000
+      },
+      {
+        "method": "PLAY",
+        "cseq": 6,
+        "request_arrival_ns": 17557031000,
+        "response_status": 200,
+        "response_arrival_ns": 17558075000
+      }
+    ],
+    "negotiated_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 4,
+        "setup_response_arrival_ns": 17527674000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      },
+      {
+        "media": "audio",
+        "rtpmap": {
+          "8": [
+            "PCMA",
+            8000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 5,
+        "setup_response_arrival_ns": 17537188000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      }
+    ]
+  },
+  {
+    "path_id": "c04_sub",
+    "case_id": "c04",
+    "role": "sub",
+    "uri_hash_to_cached_config_mapping_verified": true,
+    "tcp_syn_arrival_ns": 15358410000,
+    "requested_media_types": [
+      "video",
+      "audio"
+    ],
+    "advertised_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        }
+      }
+    ],
+    "control_events": [
+      {
+        "method": "OPTIONS",
+        "cseq": 1,
+        "request_arrival_ns": 15359734000,
+        "response_status": 200,
+        "response_arrival_ns": 15366279000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 2,
+        "request_arrival_ns": 15366907000,
+        "response_status": 401,
+        "response_arrival_ns": 15369043000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 3,
+        "request_arrival_ns": 15369071000,
+        "response_status": 200,
+        "response_arrival_ns": 17808362000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 4,
+        "request_arrival_ns": 17816763000,
+        "response_status": 200,
+        "response_arrival_ns": 17818465000
+      },
+      {
+        "method": "PLAY",
+        "cseq": 5,
+        "request_arrival_ns": 17849137000,
+        "response_status": 200,
+        "response_arrival_ns": 17852172000
+      }
+    ],
+    "negotiated_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 4,
+        "setup_response_arrival_ns": 17818465000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      }
+    ]
+  },
+  {
+    "path_id": "c01_main",
+    "case_id": "c01",
+    "role": "main",
+    "uri_hash_to_cached_config_mapping_verified": true,
+    "tcp_syn_arrival_ns": 16378712000,
+    "requested_media_types": [
+      "video",
+      "audio"
+    ],
+    "advertised_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        }
+      },
+      {
+        "media": "audio",
+        "rtpmap": {
+          "8": [
+            "PCMA",
+            8000
+          ]
+        }
+      }
+    ],
+    "control_events": [
+      {
+        "method": "OPTIONS",
+        "cseq": 1,
+        "request_arrival_ns": 16382906000,
+        "response_status": 200,
+        "response_arrival_ns": 16639695000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 2,
+        "request_arrival_ns": 16641756000,
+        "response_status": 401,
+        "response_arrival_ns": 16644599000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 3,
+        "request_arrival_ns": 16645756000,
+        "response_status": 200,
+        "response_arrival_ns": 17967821000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 4,
+        "request_arrival_ns": 17969766000,
+        "response_status": 200,
+        "response_arrival_ns": 17999858000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 5,
+        "request_arrival_ns": 18004395000,
+        "response_status": 200,
+        "response_arrival_ns": 18018070000
+      },
+      {
+        "method": "PLAY",
+        "cseq": 6,
+        "request_arrival_ns": 18018949000,
+        "response_status": 200,
+        "response_arrival_ns": 18021473000
+      }
+    ],
+    "negotiated_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 4,
+        "setup_response_arrival_ns": 17999858000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      },
+      {
+        "media": "audio",
+        "rtpmap": {
+          "8": [
+            "PCMA",
+            8000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 5,
+        "setup_response_arrival_ns": 18018070000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      }
+    ]
+  },
+  {
+    "path_id": "c00_main",
+    "case_id": "c00",
+    "role": "main",
+    "uri_hash_to_cached_config_mapping_verified": true,
+    "tcp_syn_arrival_ns": 16378704000,
+    "requested_media_types": [
+      "video",
+      "audio"
+    ],
+    "advertised_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        }
+      },
+      {
+        "media": "audio",
+        "rtpmap": {
+          "8": [
+            "PCMA",
+            8000
+          ]
+        }
+      }
+    ],
+    "control_events": [
+      {
+        "method": "OPTIONS",
+        "cseq": 1,
+        "request_arrival_ns": 16382768000,
+        "response_status": 200,
+        "response_arrival_ns": 16638177000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 2,
+        "request_arrival_ns": 16641898000,
+        "response_status": 401,
+        "response_arrival_ns": 16655332000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 3,
+        "request_arrival_ns": 16655364000,
+        "response_status": 200,
+        "response_arrival_ns": 17506274000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 4,
+        "request_arrival_ns": 17526264000,
+        "response_status": 200,
+        "response_arrival_ns": 17528573000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 5,
+        "request_arrival_ns": 17535381000,
+        "response_status": 200,
+        "response_arrival_ns": 17537865000
+      },
+      {
+        "method": "PLAY",
+        "cseq": 6,
+        "request_arrival_ns": 17556911000,
+        "response_status": 200,
+        "response_arrival_ns": 17558249000
+      }
+    ],
+    "negotiated_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 4,
+        "setup_response_arrival_ns": 17528573000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      },
+      {
+        "media": "audio",
+        "rtpmap": {
+          "8": [
+            "PCMA",
+            8000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 5,
+        "setup_response_arrival_ns": 17537865000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      }
+    ]
+  },
+  {
+    "path_id": "c03_main",
+    "case_id": "c03",
+    "role": "main",
+    "uri_hash_to_cached_config_mapping_verified": true,
+    "tcp_syn_arrival_ns": 15358992000,
+    "requested_media_types": [
+      "video",
+      "audio"
+    ],
+    "advertised_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        }
+      }
+    ],
+    "control_events": [
+      {
+        "method": "OPTIONS",
+        "cseq": 1,
+        "request_arrival_ns": 15359655000,
+        "response_status": 200,
+        "response_arrival_ns": 15366003000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 2,
+        "request_arrival_ns": 15366949000,
+        "response_status": 401,
+        "response_arrival_ns": 15368629000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 3,
+        "request_arrival_ns": 15368654000,
+        "response_status": 200,
+        "response_arrival_ns": 17807722000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 4,
+        "request_arrival_ns": 17817729000,
+        "response_status": 200,
+        "response_arrival_ns": 17829776000
+      },
+      {
+        "method": "PLAY",
+        "cseq": 5,
+        "request_arrival_ns": 17849812000,
+        "response_status": 200,
+        "response_arrival_ns": 17861227000
+      }
+    ],
+    "negotiated_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 4,
+        "setup_response_arrival_ns": 17829776000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      }
+    ]
+  },
+  {
+    "path_id": "c05_sub",
+    "case_id": "c05",
+    "role": "sub",
+    "uri_hash_to_cached_config_mapping_verified": true,
+    "tcp_syn_arrival_ns": 15359017000,
+    "requested_media_types": [
+      "video",
+      "audio"
+    ],
+    "advertised_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        }
+      }
+    ],
+    "control_events": [
+      {
+        "method": "OPTIONS",
+        "cseq": 1,
+        "request_arrival_ns": 15360026000,
+        "response_status": 200,
+        "response_arrival_ns": 15366600000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 2,
+        "request_arrival_ns": 15366867000,
+        "response_status": 401,
+        "response_arrival_ns": 15369451000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 3,
+        "request_arrival_ns": 15369480000,
+        "response_status": 200,
+        "response_arrival_ns": 18412425000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 4,
+        "request_arrival_ns": 18412569000,
+        "response_status": 200,
+        "response_arrival_ns": 18423787000
+      },
+      {
+        "method": "PLAY",
+        "cseq": 5,
+        "request_arrival_ns": 18432951000,
+        "response_status": 200,
+        "response_arrival_ns": 18457845000
+      }
+    ],
+    "negotiated_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 4,
+        "setup_response_arrival_ns": 18423787000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      }
+    ]
+  },
+  {
+    "path_id": "c06_main",
+    "case_id": "c06",
+    "role": "main",
+    "uri_hash_to_cached_config_mapping_verified": true,
+    "tcp_syn_arrival_ns": 15359047000,
+    "requested_media_types": [
+      "video",
+      "audio"
+    ],
+    "advertised_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        }
+      },
+      {
+        "media": "audio",
+        "rtpmap": {
+          "8": [
+            "PCMA",
+            8000
+          ]
+        }
+      }
+    ],
+    "control_events": [
+      {
+        "method": "OPTIONS",
+        "cseq": 1,
+        "request_arrival_ns": 15359981000,
+        "response_status": 200,
+        "response_arrival_ns": 15367233000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 2,
+        "request_arrival_ns": 15367730000,
+        "response_status": 401,
+        "response_arrival_ns": 15431370000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 3,
+        "request_arrival_ns": 15431593000,
+        "response_status": 200,
+        "response_arrival_ns": 17709043000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 4,
+        "request_arrival_ns": 17795254000,
+        "response_status": 200,
+        "response_arrival_ns": 17798924000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 5,
+        "request_arrival_ns": 17799562000,
+        "response_status": 200,
+        "response_arrival_ns": 17802174000
+      },
+      {
+        "method": "PLAY",
+        "cseq": 6,
+        "request_arrival_ns": 17819130000,
+        "response_status": 200,
+        "response_arrival_ns": 17830000000
+      }
+    ],
+    "negotiated_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 4,
+        "setup_response_arrival_ns": 17798924000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      },
+      {
+        "media": "audio",
+        "rtpmap": {
+          "8": [
+            "PCMA",
+            8000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 5,
+        "setup_response_arrival_ns": 17802174000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      }
+    ]
+  },
+  {
+    "path_id": "c05_main",
+    "case_id": "c05",
+    "role": "main",
+    "uri_hash_to_cached_config_mapping_verified": true,
+    "tcp_syn_arrival_ns": 16378701000,
+    "requested_media_types": [
+      "video",
+      "audio"
+    ],
+    "advertised_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        }
+      }
+    ],
+    "control_events": [
+      {
+        "method": "OPTIONS",
+        "cseq": 1,
+        "request_arrival_ns": 16382941000,
+        "response_status": 200,
+        "response_arrival_ns": 16653004000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 2,
+        "request_arrival_ns": 16654763000,
+        "response_status": 401,
+        "response_arrival_ns": 16656165000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 3,
+        "request_arrival_ns": 16658036000,
+        "response_status": 200,
+        "response_arrival_ns": 18834062000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 4,
+        "request_arrival_ns": 18834143000,
+        "response_status": 200,
+        "response_arrival_ns": 18842790000
+      },
+      {
+        "method": "PLAY",
+        "cseq": 5,
+        "request_arrival_ns": 18842971000,
+        "response_status": 200,
+        "response_arrival_ns": 18855047000
+      }
+    ],
+    "negotiated_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 4,
+        "setup_response_arrival_ns": 18842790000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      }
+    ]
+  },
+  {
+    "path_id": "c02_main",
+    "case_id": "c02",
+    "role": "main",
+    "uri_hash_to_cached_config_mapping_verified": true,
+    "tcp_syn_arrival_ns": 16378693000,
+    "requested_media_types": [
+      "video",
+      "audio"
+    ],
+    "advertised_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        }
+      }
+    ],
+    "control_events": [
+      {
+        "method": "OPTIONS",
+        "cseq": 1,
+        "request_arrival_ns": 16382984000,
+        "response_status": 200,
+        "response_arrival_ns": 16652650000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 2,
+        "request_arrival_ns": 16654798000,
+        "response_status": 401,
+        "response_arrival_ns": 16655868000
+      },
+      {
+        "method": "DESCRIBE",
+        "cseq": 3,
+        "request_arrival_ns": 16657888000,
+        "response_status": 200,
+        "response_arrival_ns": 18833294000
+      },
+      {
+        "method": "SETUP",
+        "cseq": 4,
+        "request_arrival_ns": 18833395000,
+        "response_status": 200,
+        "response_arrival_ns": 18840534000
+      },
+      {
+        "method": "PLAY",
+        "cseq": 5,
+        "request_arrival_ns": 18840642000,
+        "response_status": 200,
+        "response_arrival_ns": 18854940000
+      }
+    ],
+    "negotiated_tracks": [
+      {
+        "media": "video",
+        "rtpmap": {
+          "98": [
+            "H265",
+            90000
+          ]
+        },
+        "transport": "UDP",
+        "setup_cseq": 4,
+        "setup_response_arrival_ns": 18840534000,
+        "association": "unique_observed_RTP_PT_in_advertised_SDP_on_negotiated_client_port"
+      }
+    ]
+  }
+]

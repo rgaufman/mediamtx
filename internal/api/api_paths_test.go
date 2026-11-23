@@ -1,6 +1,7 @@
 package api //nolint:revive
 
 import (
+	"context"
 	"net/http"
 	"testing"
 	"time"
@@ -18,7 +19,7 @@ type testPathManager struct {
 	paths map[string]*defs.APIPath
 }
 
-func (m *testPathManager) APIPathsList() (*defs.APIPathList, error) {
+func (m *testPathManager) APIPathsList(context.Context) (*defs.APIPathList, error) {
 	items := make([]defs.APIPath, 0, len(m.paths))
 	for _, path := range m.paths {
 		items = append(items, *path)
@@ -26,7 +27,7 @@ func (m *testPathManager) APIPathsList() (*defs.APIPathList, error) {
 	return &defs.APIPathList{Items: items}, nil
 }
 
-func (m *testPathManager) APIPathsGet(name string) (*defs.APIPath, error) {
+func (m *testPathManager) APIPathsGet(reqCtx context.Context, name string) (*defs.APIPath, error) {
 	path, ok := m.paths[name]
 	if !ok {
 		return nil, conf.ErrPathNotFound
@@ -38,7 +39,7 @@ func (*testPathManager) APIForwardDestsList(string) (*defs.APIForwardDestList, e
 	return &defs.APIForwardDestList{}, nil
 }
 
-func (*testPathManager) APIReadersList(path string) (*defs.APIPathReaderList, error) {
+func (*testPathManager) APIReadersList(_ context.Context, path string) (*defs.APIPathReaderList, error) {
 	if path != "mypath" {
 		return nil, conf.ErrPathNotFound
 	}
@@ -49,7 +50,7 @@ func (*testPathManager) APIReadersList(path string) (*defs.APIPathReaderList, er
 	}}, nil
 }
 
-func (*testPathManager) APIReadersGet(path string, id string) (*defs.APIPathReader, error) {
+func (*testPathManager) APIReadersGet(_ context.Context, path string, id string) (*defs.APIPathReader, error) {
 	if path != "mypath" {
 		return nil, conf.ErrPathNotFound
 	}
@@ -65,7 +66,7 @@ func (*testPathManager) APIForwardDestsGet(string, uuid.UUID) (*defs.APIForwardD
 	return nil, conf.ErrPathNotFound
 }
 
-func (*testPathManager) APIStaticSourcesGet(string) (*defs.APIStaticSource, error) {
+func (*testPathManager) APIStaticSourcesGet(context.Context, string) (*defs.APIStaticSource, error) {
 	return nil, conf.ErrPathNotFound
 }
 

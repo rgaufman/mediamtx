@@ -262,7 +262,10 @@ type Path struct {
 	SRTPublishPassphrase     string `json:"srtPublishPassphrase"`
 	RTSPDemuxMpegts          bool   `json:"rtspDemuxMpegts"`
 
-	// RTSP source
+	// RTSP source media types to subscribe to; null selects all non-backchannel media.
+	// Only video and audio are supported.
+	RTSPSourceMediaTypes *[]string `json:"rtspSourceMediaTypes"`
+	// RTSP source transport.
 	RTSPTransport          RTSPTransport  `json:"rtspTransport"`
 	RTSPAnyPort            bool           `json:"rtspAnyPort"`
 	SourceProtocol         *RTSPTransport `json:"sourceProtocol,omitempty" deprecated:"true"`
@@ -477,6 +480,22 @@ func (pconf *Path) validate(
 
 	if pconf.Source != "redirect" && pconf.SourceRedirect != "" {
 		return fmt.Errorf("'sourceRedirect' is useless when source is not 'redirect'")
+	}
+
+	if pconf.RTSPSourceMediaTypes != nil {
+		if len(*pconf.RTSPSourceMediaTypes) == 0 {
+			return fmt.Errorf("'rtspSourceMediaTypes' must include video or audio")
+		}
+		seen := make(map[string]bool)
+		for _, mediaType := range *pconf.RTSPSourceMediaTypes {
+			if mediaType != "video" && mediaType != "audio" {
+				return fmt.Errorf("invalid 'rtspSourceMediaTypes' entry: %s", mediaType)
+			}
+			if seen[mediaType] {
+				return fmt.Errorf("duplicate 'rtspSourceMediaTypes' entry: %s", mediaType)
+			}
+			seen[mediaType] = true
+		}
 	}
 
 	// General

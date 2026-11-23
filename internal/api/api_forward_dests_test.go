@@ -1,6 +1,7 @@
 package api //nolint:revive
 
 import (
+	"context"
 	"net/http"
 	"testing"
 	"time"
@@ -18,11 +19,11 @@ type testForwardDestsPathManager struct {
 	items map[uuid.UUID]*defs.APIForwardDest
 }
 
-func (*testForwardDestsPathManager) APIPathsList() (*defs.APIPathList, error) {
+func (*testForwardDestsPathManager) APIPathsList(context.Context) (*defs.APIPathList, error) {
 	return &defs.APIPathList{}, nil
 }
 
-func (*testForwardDestsPathManager) APIPathsGet(string) (*defs.APIPath, error) {
+func (*testForwardDestsPathManager) APIPathsGet(context.Context, string) (*defs.APIPath, error) {
 	return &defs.APIPath{}, nil
 }
 
@@ -39,11 +40,11 @@ func (m *testForwardDestsPathManager) APIForwardDestsList(path string) (*defs.AP
 	return &defs.APIForwardDestList{Items: items}, nil
 }
 
-func (*testForwardDestsPathManager) APIReadersList(string) (*defs.APIPathReaderList, error) {
+func (*testForwardDestsPathManager) APIReadersList(context.Context, string) (*defs.APIPathReaderList, error) {
 	return &defs.APIPathReaderList{}, nil
 }
 
-func (*testForwardDestsPathManager) APIReadersGet(string, string) (*defs.APIPathReader, error) {
+func (*testForwardDestsPathManager) APIReadersGet(context.Context, string, string) (*defs.APIPathReader, error) {
 	return nil, defs.ErrPathReaderNotFound
 }
 
@@ -60,7 +61,7 @@ func (m *testForwardDestsPathManager) APIForwardDestsGet(path string, id uuid.UU
 	return item, nil
 }
 
-func (*testForwardDestsPathManager) APIStaticSourcesGet(string) (*defs.APIStaticSource, error) {
+func (*testForwardDestsPathManager) APIStaticSourcesGet(context.Context, string) (*defs.APIStaticSource, error) {
 	return nil, conf.ErrPathNotFound
 }
 

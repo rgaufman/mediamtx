@@ -1,0 +1,120 @@
+{
+  "schema_version": 2,
+  "name": "ress-current-timing",
+  "supersedes": "v1 RTP/sequence/SSRC rebasing and near-zero NTP normalization are SUPERSEDED; v2 retains raw generic counters",
+  "observation_family": "current_20_43_to_20_46_continuation",
+  "not_historical_20_10": true,
+  "capture_starts_midstream": true,
+  "true_bootstrap_observed": false,
+  "initial_decoder_clock_state": "unknown",
+  "per_unit_ntp": "unobserved",
+  "representative_transport": "tcp_interleaved",
+  "representative_role": "main_codec_config_equivalent_recorder_socket_unknown",
+  "normalizations": {
+    "arrival": "capture origin subtracted; integer microsecond precision expressed as ns",
+    "rtp_timestamp": "RAW uint32 counters unchanged, including matching raw SR RTPTime and wrap/offset conditions",
+    "sender_ntp": "one COMMON audio/video WHOLE-SECOND shift into positive2000 NTP epoch; original uint32 fractional bits unchanged",
+    "absolute_source_vs_host_epoch_trust": "UNQUALIFIED; synthetic positive epoch is not observed source/host wallclock agreement",
+    "ssrc": "RAW: video0 and shared audio10 preserved",
+    "sequence": "RAW uint16 counters unchanged; no first-packet rebasing",
+    "sr_sender_counters": "RAW sender packet/octet counters unchanged",
+    "identities": "synthetic IDs only; equivalent audio transports share IDs"
+  },
+  "tracks": [
+    {
+      "track_id": 1,
+      "media": "video",
+      "pt": 99,
+      "clock_rate": 90000,
+      "ssrc": 0,
+      "codec": "H264"
+    },
+    {
+      "track_id": 2,
+      "media": "audio",
+      "pt": 0,
+      "clock_rate": 8000,
+      "ssrc": 10,
+      "codec": "PCMU"
+    }
+  ],
+  "raw_initial_headers": {
+    "video": {
+      "seq": 14669,
+      "rtp_timestamp": 348065220,
+      "ssrc": 0,
+      "pt": 99
+    },
+    "audio": {
+      "seq": 30802,
+      "rtp_timestamp": 30802000,
+      "ssrc": 10,
+      "pt": 0
+    }
+  },
+  "event_counts": {
+    "rtp_video": 46430,
+    "rtp_audio": 1437,
+    "sr_video": 180,
+    "sr_audio": 28
+  },
+  "events": 48075,
+  "equivalent_audio_events": 2874,
+  "observed_audio_packets": 1437,
+  "observed_retained": 1023,
+  "observed_missing": 414,
+  "missing_runs": [
+    {
+      "first_source_index": 161,
+      "last_source_index": 298,
+      "packets": 138,
+      "payload_duration_ns": 17250000000
+    },
+    {
+      "first_source_index": 649,
+      "last_source_index": 786,
+      "packets": 138,
+      "payload_duration_ns": 17250000000
+    },
+    {
+      "first_source_index": 1129,
+      "last_source_index": 1266,
+      "packets": 138,
+      "payload_duration_ns": 17250000000
+    }
+  ],
+  "content_policy": "No source addresses/ports/URLs/credentials, original audio/video/SPS/NAL bytes, or actual media-payload hashes are included.",
+  "replay_limit": "Header/timing replay only. Synthetic payloads are opaque and not codec-valid H264. NAL metadata must drive an explicit test adapter; do not claim real codec/bootstrap replay.",
+  "observed_labels_are_inputs": false,
+  "artifacts": {
+    "go.mod": {
+      "bytes": 40
+    },
+    "fixture.go": {
+      "bytes": 6995
+    },
+    "equivalent-audio-events.jsonl.gz": {
+      "bytes": 75394
+    },
+    "fixture_test.go": {
+      "bytes": 3729
+    },
+    "README.md": {
+      "bytes": 5720
+    },
+    "recorded-files.json": {
+      "bytes": 5290
+    },
+    "observed-audio-outcomes.jsonl.gz": {
+      "bytes": 23061
+    },
+    "SUPERSEDED-V1.md": {
+      "bytes": 656
+    },
+    "events.jsonl.gz": {
+      "bytes": 1583035
+    }
+  },
+  "validation_report": "VALIDATION.json",
+  "validation_status": "passed"
+}

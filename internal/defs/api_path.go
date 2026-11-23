@@ -1,6 +1,7 @@
 package defs
 
 import (
+	"context"
 	"errors"
 	"time"
 
@@ -11,14 +12,15 @@ import (
 var ErrPathReaderNotFound = errors.New("path reader not found")
 
 // APIPathManager contains methods used by the API and Metrics server.
+// Path list/detail, path-reader and static-source reads honor cancellation while waiting for actors.
 type APIPathManager interface {
-	APIPathsList() (*APIPathList, error)
-	APIPathsGet(string) (*APIPath, error)
-	APIReadersList(string) (*APIPathReaderList, error)
-	APIReadersGet(string, string) (*APIPathReader, error)
+	APIPathsList(context.Context) (*APIPathList, error)
+	APIPathsGet(context.Context, string) (*APIPath, error)
+	APIReadersList(context.Context, string) (*APIPathReaderList, error)
+	APIReadersGet(context.Context, string, string) (*APIPathReader, error)
 	APIForwardDestsList(string) (*APIForwardDestList, error)
 	APIForwardDestsGet(string, uuid.UUID) (*APIForwardDest, error)
-	APIStaticSourcesGet(string) (*APIStaticSource, error)
+	APIStaticSourcesGet(context.Context, string) (*APIStaticSource, error)
 }
 
 // APIPathSourceType is the type of a path source.

@@ -1,0 +1,470 @@
+{
+  "review_date": "7 November 2026 AEDT",
+  "scope": "OBSERVED open-PR snapshot, not executed merge validation",
+  "prs": [
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6453,
+      "title": "build(deps): bump github.com/quic-go/quic-go from 0.64.1 to 0.65.0",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6453",
+      "head_sha": "be98917614ce1fb99effc62030af51a300e12f3a",
+      "updated_aedt": "2026-11-07T04:03:23+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6452,
+      "title": "build(deps): bump code.cloudfoundry.org/bytefmt from 0.96.0 to 0.97.0",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6452",
+      "head_sha": "0462683eadc870a48292b4e10003dfb86860566b",
+      "updated_aedt": "2026-11-07T04:03:10+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6451,
+      "title": "recorder: retain fMP4 samples across track offsets and reference changes",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6451",
+      "head_sha": "f950574408b4eb14871eb88e497509b95d8786ce",
+      "updated_aedt": "2026-11-07T01:57:24+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6448,
+      "title": "allow: use alwaysAvailableFile and alwaysAvailableTracks together",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6448",
+      "head_sha": "81e7cd005c9752a51268044c52b98eb1e94f53cd",
+      "updated_aedt": "2026-11-05T23:33:14+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6447,
+      "title": "playback: limit parallel segment reads in /list (#6446)",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6447",
+      "head_sha": "68dc15af986504d8aa9528ee3c7bda05990e1e86",
+      "updated_aedt": "2026-11-05T19:35:05+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6440,
+      "title": "srt: add srtMinLatency parameter",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6440",
+      "head_sha": "93a0c87838ccb9c4f47926fbb89254a327139889",
+      "updated_aedt": "2026-11-01T02:39:39+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6439,
+      "title": "playback: do not fail requests because of a segment that cannot be read",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6439",
+      "head_sha": "01f560db8393145479c918be31978b3f787dc562",
+      "updated_aedt": "2026-11-01T01:35:19+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6438,
+      "title": "recorder: do not leave empty segments when the header cannot be written",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6438",
+      "head_sha": "e73b24f404bf6925b7994b22fe841a45ec44dc3d",
+      "updated_aedt": "2026-11-01T01:35:21+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6429,
+      "title": "docs: mention webrtc-internals and rtcStats for debugging WebRTC sessions",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6429",
+      "head_sha": "10d936f43814fc664815f9b1f2d6ea171434dd06",
+      "updated_aedt": "2026-10-28T02:59:50+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6421,
+      "title": "Add MTX_SOURCE_CLOSE_REASON to Unavailable/Offline hooks",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6421",
+      "head_sha": "aed143237633e988a435b55e7e3af549d66443ca",
+      "updated_aedt": "2026-10-27T02:05:54+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6401,
+      "title": "fix(hooks): preserve explicit shell scripts",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6401",
+      "head_sha": "d3709c9d682f18015086e57f88760539b3516ca5",
+      "updated_aedt": "2026-10-23T03:34:40+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6400,
+      "title": "fix(h264): strip invalid CAVLC padding",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6400",
+      "head_sha": "21b401c6b8d8dd73dd8040c335dd7b443e95d679",
+      "updated_aedt": "2026-10-23T03:34:54+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6399,
+      "title": "feat(api): expose normalized RTSP jitter",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6399",
+      "head_sha": "01fadb16a98a2ad5b3a02c01bca6be86a51f60be",
+      "updated_aedt": "2026-11-05T13:18:43+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6398,
+      "title": "feat(rtsp): add source media filtering",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6398",
+      "head_sha": "a4c252f2475deec72a657509fa5dc02fb39ff481",
+      "updated_aedt": "2026-10-23T03:37:02+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6397,
+      "title": "fix(confwatcher): retain burst updates",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6397",
+      "head_sha": "6f0835d19653cf146ed1c90caba4ce75deb0c3e8",
+      "updated_aedt": "2026-11-05T13:18:44+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6388,
+      "title": "Update streamid.go",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6388",
+      "head_sha": "ba26c25e190a0049680f5a50a3aa71dd8b38aaed",
+      "updated_aedt": "2026-10-28T12:25:52+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6380,
+      "title": "hooks: route hook output to the server log",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6380",
+      "head_sha": "7bd58e10d26b728a004f9a46029b47f8bbeb683d",
+      "updated_aedt": "2026-10-27T16:26:44+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6372,
+      "title": "Moq: Make the Moq publisher and reader an exported es module",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6372",
+      "head_sha": "3f0bc9aae02d85fad0bfbe3bca2cf602f76ed4cf",
+      "updated_aedt": "2026-10-27T16:27:54+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6364,
+      "title": " moq: add moqInitialPacketSize, fix H264/H265 playback in Safari, document authentication",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6364",
+      "head_sha": "d107bcc4d0b487b3aec7f2c417c4d6bbad98f34b",
+      "updated_aedt": "2026-10-19T19:17:59+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6347,
+      "title": "webrtc: expose RTCP feedback from remote peers (reported loss/jitter, NACK, PLI)",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6347",
+      "head_sha": "042fddff88cbc7dab955dc1fb8db2d1aee489dbd",
+      "updated_aedt": "2026-10-20T20:39:14+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6336,
+      "title": "docs: document garbage collector tuning",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6336",
+      "head_sha": "ede8ac5f41cec2ccb01dd31dea7b1f0f2623833c",
+      "updated_aedt": "2026-10-13T18:03:49+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6330,
+      "title": "Allow publish pages without both media devices",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6330",
+      "head_sha": "77030e4d80d86e4d7d5a9170c2076edf48fa8848",
+      "updated_aedt": "2026-10-12T20:55:04+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6329,
+      "title": "Avoid reordering inbound WebRTC audio",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6329",
+      "head_sha": "ba61a9be81426e87eaea1de8bbebd4feb37f2cad",
+      "updated_aedt": "2026-10-12T20:53:38+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6328,
+      "title": "Add remote address to forward destination metrics",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6328",
+      "head_sha": "c6b398d41e5880b0200164da2b559531d5a92432",
+      "updated_aedt": "2026-10-12T20:41:33+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6308,
+      "title": "webrtc: allow pausing and resuming WHEP sessions",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6308",
+      "head_sha": "a25dbd20c3ead2f2fd3a7b83e57d5a72248aeec5",
+      "updated_aedt": "2026-10-14T04:31:25+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6306,
+      "title": "srt: add srtPassphrase to users",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6306",
+      "head_sha": "99ea6c0015d68e63552541ecdc933c32b63baf6b",
+      "updated_aedt": "2026-10-27T16:43:39+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6305,
+      "title": "recorder: preserve fMP4 samples across local timestamp corrections",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6305",
+      "head_sha": "6ca3460451acd6b72f821b85e346e888f6d34a46",
+      "updated_aedt": "2026-10-09T02:25:20+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6302,
+      "title": "hls: do not create automatic muxers for runOnDemand paths",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6302",
+      "head_sha": "902a8566171387ec314cd6304351bb120ba34edf",
+      "updated_aedt": "2026-10-07T15:58:58+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6298,
+      "title": "Pipe stream to external command via stdin",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6298",
+      "head_sha": "4e4cebf0214caecd9989df0489c90817acc02471",
+      "updated_aedt": "2026-10-15T07:24:14+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6262,
+      "title": "record: add recordPartAlignToKeyframe parameter to end parts at sync samples",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6262",
+      "head_sha": "9f390730b7765a4ed055d919ae3e81e3b55f6140",
+      "updated_aedt": "2026-09-24T05:55:31+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6259,
+      "title": "hooks: log the failure of every hook command",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6259",
+      "head_sha": "69280137d990d0c8975e690378aead841af03ebc",
+      "updated_aedt": "2026-10-27T13:53:27+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6255,
+      "title": "rtsp: fix HLS and recordings breaking on frames stamped out of the timeline",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6255",
+      "head_sha": "2a4b2f1d2ba51b91ca06c7f9883fe446dfd00c04",
+      "updated_aedt": "2026-10-25T02:27:08+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6248,
+      "title": "Add optional timing metadata to WebRTC KLV",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6248",
+      "head_sha": "24ab5ce72137e6ce60f96f61e45f4c84287ebb82",
+      "updated_aedt": "2026-09-25T01:35:54+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6225,
+      "title": "fix: decode MoQ H264 streams with avc1 on Safari",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6225",
+      "head_sha": "6b572466189177c493c1dac23c549c29dd29e041",
+      "updated_aedt": "2026-09-13T18:29:43+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6195,
+      "title": "playback: cache segment headers to speed up /list (#5094)",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6195",
+      "head_sha": "42b1c29b1919db07f86a0a906b2464dfe17ed5aa",
+      "updated_aedt": "2026-11-05T17:53:11+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6163,
+      "title": "webrtc: add webrtcIPFromHostHeader option to derive an ICE candidate from the Host header",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6163",
+      "head_sha": "05d2f2813e951a81e402f6302238b330cc8ede14",
+      "updated_aedt": "2026-10-25T08:33:46+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6135,
+      "title": "docs: Twitch Enhanced Broadcasting clarification",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6135",
+      "head_sha": "4a6636e69499ee987be84937b3df8e4830a27bcc",
+      "updated_aedt": "2026-08-26T19:28:55+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6074,
+      "title": "moq: stabilize browser playback timing",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6074",
+      "head_sha": "5faadba7c029dd0c6ebf32e0ecb3a3ceda428db5",
+      "updated_aedt": "2026-08-14T08:09:47+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6047,
+      "title": "Add rtspRequire and rtspRateControl to RTSP sources",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6047",
+      "head_sha": "0aacc9c4b559d252da722ac9f2327604a1a17898",
+      "updated_aedt": "2026-11-06T16:59:04+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 6014,
+      "title": "Recorder: write seek index and track durations into fMP4 segments",
+      "url": "https://github.com/bluenviron/mediamtx/pull/6014",
+      "head_sha": "cec1b7e2493a59f2448f356bf15abbc8a61a241a",
+      "updated_aedt": "2026-07-30T21:47:34+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 5999,
+      "title": "feat: add global recordDeleteMaxSize for recording storage limits",
+      "url": "https://github.com/bluenviron/mediamtx/pull/5999",
+      "head_sha": "790b626d21635b6fc1a751ab51338e56d47c7752",
+      "updated_aedt": "2026-07-30T20:01:39+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 5940,
+      "title": "Add wall-clock alignment for recording segments",
+      "url": "https://github.com/bluenviron/mediamtx/pull/5940",
+      "head_sha": "3537b06d6f8af72ac864cc760471268a0e6bd5f0",
+      "updated_aedt": "2026-10-15T12:16:21+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 5936,
+      "title": "perf: preload alwaysAvailableFile into memory with configurable size threshold",
+      "url": "https://github.com/bluenviron/mediamtx/pull/5936",
+      "head_sha": "f2477244371910f3e17ffbf771f89de00f2ba643",
+      "updated_aedt": "2026-11-06T21:24:49+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 5934,
+      "title": "feat: add fallbackSource path option for seamless standby-to-live switching",
+      "url": "https://github.com/bluenviron/mediamtx/pull/5934",
+      "head_sha": "04043b05b07ced4c04eafcc08507b7fe44bc88eb",
+      "updated_aedt": "2026-11-06T21:42:20+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 5912,
+      "title": "feat: support forcing internal authentication for selected actions",
+      "url": "https://github.com/bluenviron/mediamtx/pull/5912",
+      "head_sha": "8b469a5cba31603d7ae94eae2d529e8522acf832",
+      "updated_aedt": "2026-09-09T07:49:48+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 5896,
+      "title": "fix: handle DTS discontinuity by resetting extractor on error",
+      "url": "https://github.com/bluenviron/mediamtx/pull/5896",
+      "head_sha": "2a377cc941cc298efc788992be63bdf1d541a40e",
+      "updated_aedt": "2026-10-20T17:26:16+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 5811,
+      "title": "feat: SRTLA receiver support",
+      "url": "https://github.com/bluenviron/mediamtx/pull/5811",
+      "head_sha": "3ee61c1b3d2ef8d85cc2085d11b19bae15aab92b",
+      "updated_aedt": "2026-10-15T07:44:06+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 5714,
+      "title": "recover from H264/H265 DTS extractor failures instead of disconnecting",
+      "url": "https://github.com/bluenviron/mediamtx/pull/5714",
+      "head_sha": "7501f0afacd309f94dd6e832e7eeb864b4793c52",
+      "updated_aedt": "2026-11-06T21:22:43+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 5633,
+      "title": "Add Config To SQLite",
+      "url": "https://github.com/bluenviron/mediamtx/pull/5633",
+      "head_sha": "47ca3d4fd3be7c1874dbbc2fb188ec9ba367d737",
+      "updated_aedt": "2026-04-23T06:48:39+11:00"
+    },
+    {
+      "repository": "bluenviron/mediamtx",
+      "number": 4189,
+      "title": "Cache H264/H265 GOPs in order to allow readers to decode frames immediately",
+      "url": "https://github.com/bluenviron/mediamtx/pull/4189",
+      "head_sha": "aaffa28d9d1f6f96ad09897fe911fbd26d7bcd2e",
+      "updated_aedt": "2026-02-08T07:08:34+11:00"
+    },
+    {
+      "repository": "bluenviron/gortsplib",
+      "number": 1209,
+      "title": "Add normalized session RTP jitter in microseconds",
+      "url": "https://github.com/bluenviron/gortsplib/pull/1209",
+      "head_sha": "df6c90d8e37f63620f1dec885e734fa656cf8424",
+      "updated_aedt": "2026-11-07T00:11:31+11:00"
+    },
+    {
+      "repository": "bluenviron/gortsplib",
+      "number": 1191,
+      "title": "auth: add a policy to refuse MD5 Digest and cleartext Basic",
+      "url": "https://github.com/bluenviron/gortsplib/pull/1191",
+      "head_sha": "ea44bbb4021e88683844cc3f41661cdf5c28dac1",
+      "updated_aedt": "2026-10-10T05:26:54+11:00"
+    },
+    {
+      "repository": "bluenviron/gortsplib",
+      "number": 1181,
+      "title": "client: support SETUP responses without Transport header",
+      "url": "https://github.com/bluenviron/gortsplib/pull/1181",
+      "head_sha": "c99800a59b60095753970e9c21157a6aae4b036f",
+      "updated_aedt": "2026-11-01T03:21:29+11:00"
+    },
+    {
+      "repository": "bluenviron/gortsplib",
+      "number": 1178,
+      "title": "format: support mismatched fmtp payload type",
+      "url": "https://github.com/bluenviron/gortsplib/pull/1178",
+      "head_sha": "03ccf9d7bee468862b1de4bad174a030e4cd979b",
+      "updated_aedt": "2026-11-01T22:08:29+11:00"
+    },
+    {
+      "repository": "bluenviron/gortsplib",
+      "number": 1157,
+      "title": "rtph264, rtph265: do not split an SEI NAL unit on an inner start code",
+      "url": "https://github.com/bluenviron/gortsplib/pull/1157",
+      "head_sha": "deced47bb320c411a85ed66ed52b4a95f4f251b8",
+      "updated_aedt": "2026-11-01T09:08:55+11:00"
+    },
+    {
+      "repository": "bluenviron/gortsplib",
+      "number": 1110,
+      "title": "Add IPv6 multicast support on Linux",
+      "url": "https://github.com/bluenviron/gortsplib/pull/1110",
+      "head_sha": "576f1ff1e906e0ede333f14cc301adf93f7748ab",
+      "updated_aedt": "2026-08-31T04:31:51+11:00"
+    },
+    {
+      "repository": "bluenviron/gortsplib",
+      "number": 1073,
+      "title": "description: add optional Language field to Media",
+      "url": "https://github.com/bluenviron/gortsplib/pull/1073",
+      "head_sha": "b64d0a47527dfb31010ca8184bff5b14a1792e12",
+      "updated_aedt": "2026-11-06T00:50:41+11:00"
+    },
+    {
+      "repository": "bluenviron/gortsplib",
+      "number": 599,
+      "title": "Add option to reuse buffers for interleaved frames",
+      "url": "https://github.com/bluenviron/gortsplib/pull/599",
+      "head_sha": "2e3e0f6e9167bb9aa597dbd3fec97893e82a347f",
+      "updated_aedt": "2024-08-26T07:23:49+11:00"
+    }
+  ]
+}

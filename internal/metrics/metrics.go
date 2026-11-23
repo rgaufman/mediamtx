@@ -277,7 +277,7 @@ func (m *Metrics) onMetrics(ctx *gin.Context) {
 	var out strings.Builder
 
 	if (typ == "" || typ == metricsTypePaths) && (!anyFilterActive || pathFilter != "") {
-		data, err := pathManager.APIPathsList()
+		data, err := pathManager.APIPathsList(ctx.Request.Context())
 		if err == nil && len(data.Items) != 0 {
 			out.WriteString("# Paths\n")
 			for _, i := range data.Items {
@@ -364,7 +364,7 @@ func (m *Metrics) onMetrics(ctx *gin.Context) {
 
 	if (typ == "" || typ == metricsTypeForwardDests) &&
 		(!anyFilterActive || pathFilter != "" || forwardFilter != "") {
-		data, err := pathManager.APIPathsList()
+		data, err := pathManager.APIPathsList(ctx.Request.Context())
 		if err == nil {
 			type forwardWithPath struct {
 				path string
@@ -1046,8 +1046,18 @@ func (m *Metrics) onMetrics(ctx *gin.Context) {
 					metric(&out, "webrtc_sessions_inbound_rtp_packets_lost", labels, int64(i.InboundRTPPacketsLost))
 					metricFloat(&out, "webrtc_sessions_inbound_rtp_packets_jitter", labels, i.InboundRTPPacketsJitter)
 					metric(&out, "webrtc_sessions_inbound_rtcp_packets", labels, int64(i.InboundRTCPPackets))
+					metric(&out, "webrtc_sessions_inbound_rtcp_nack_packets", labels, int64(i.InboundRTCPNACKPackets))
+					metric(&out, "webrtc_sessions_inbound_rtcp_pli_packets", labels, int64(i.InboundRTCPPLIPackets))
 					metric(&out, "webrtc_sessions_outbound_bytes", labels, int64(i.OutboundBytes))
 					metric(&out, "webrtc_sessions_outbound_rtp_packets", labels, int64(i.OutboundRTPPackets))
+					metric(&out, "webrtc_sessions_outbound_rtp_packets_reported_lost", labels,
+						int64(i.OutboundRTPPacketsReportedLost))
+					metricFloat(&out, "webrtc_sessions_outbound_rtp_packets_reported_jitter", labels,
+						i.OutboundRTPPacketsReportedJitter)
+					if i.OutboundRTPPacketsReportedJitterUs != nil {
+						metricFloat(&out, "webrtc_sessions_outbound_rtp_packets_reported_jitter_us",
+							labels, *i.OutboundRTPPacketsReportedJitterUs)
+					}
 					metric(&out, "webrtc_sessions_outbound_rtcp_packets", labels, int64(i.OutboundRTCPPackets))
 					metric(&out, "webrtc_sessions_outbound_frames_discarded", labels, int64(i.OutboundFramesDiscarded))
 				}
@@ -1084,8 +1094,12 @@ func (m *Metrics) onMetrics(ctx *gin.Context) {
 			metric(&out, "webrtc_sessions_inbound_rtp_packets_lost", "", 0)
 			metricFloat(&out, "webrtc_sessions_inbound_rtp_packets_jitter", "", 0)
 			metric(&out, "webrtc_sessions_inbound_rtcp_packets", "", 0)
+			metric(&out, "webrtc_sessions_inbound_rtcp_nack_packets", "", 0)
+			metric(&out, "webrtc_sessions_inbound_rtcp_pli_packets", "", 0)
 			metric(&out, "webrtc_sessions_outbound_bytes", "", 0)
 			metric(&out, "webrtc_sessions_outbound_rtp_packets", "", 0)
+			metric(&out, "webrtc_sessions_outbound_rtp_packets_reported_lost", "", 0)
+			metricFloat(&out, "webrtc_sessions_outbound_rtp_packets_reported_jitter", "", 0)
 			metric(&out, "webrtc_sessions_outbound_rtcp_packets", "", 0)
 			metric(&out, "webrtc_sessions_outbound_frames_discarded", "", 0)
 			out.WriteString("\n")
